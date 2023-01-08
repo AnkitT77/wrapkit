@@ -3,6 +3,7 @@ import "../styles/globals.css";
 import "../styles/style.css";
 import CartContextProvider from "../components/context/cartContext";
 import NextNProgress from "nextjs-progressbar";
+import React from "react";
 
 export default function MyApp({ Component, pageProps }) {
   // Use the layout defined at the page level, if available
@@ -18,7 +19,7 @@ export default function MyApp({ Component, pageProps }) {
 
   return getLayout(
     <>
-          <NextNProgress color="#A2F578" />
+        <NextNProgress color="#0F1133" />
       <Component {...pageProps} />
     </>
   );

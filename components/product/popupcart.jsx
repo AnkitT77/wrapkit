@@ -1,7 +1,7 @@
 import React from "react";
 import { FormatingCurrency } from "../utils/feture";
 
-export default function Popupcart({ data, qty, transition,passclose }) {
+export default function Popupcart({ data, qty, transition, passclose }) {
   return (
     <>
       <div
@@ -29,7 +29,11 @@ export default function Popupcart({ data, qty, transition,passclose }) {
         </div>
         <div className="flex gap-5">
           <div>
-            <img className="w-[100px] rounded" src={data?.imgs[0]} alt="test" />
+            <img
+              className="w-[100px] rounded"
+              src={data?.image[0]}
+              alt="test"
+            />
           </div>
           <div className="flex  flex-col gap-1">
             <h5 className="font-semibold leading-6 text-[18px] text-zinc-800">

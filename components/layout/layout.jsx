@@ -1,16 +1,14 @@
 import React from "react";
 import Footer from "../footer/footer";
-import Navbar from "../navbar/navbar";
-import Phone from "../old/phone";
 import What from "../old/what";
+import TopNav from "../navbar/header";
 
 export default function Layout({ children }) {
  
   return (
     <>
-      <Navbar />
+      <TopNav/>
       <div className="min-h-screen">{children}</div>
-      <Phone />
       <What />
       <Footer/>
     </>

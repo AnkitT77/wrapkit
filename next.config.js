@@ -2,9 +2,9 @@
 const nextConfig = {
   reactStrictMode: false,
   images: {
-    domains: ["akblsrgwrgpiowzqztyj.supabase.co"],
-    formats: ['image/avif', 'image/webp'],
-    },
+    domains: ["bwgtcxruldaadezshyej.supabase.co"],
+    formats: ["image/avif", "image/webp"],
+  },
 };
 
 module.exports = nextConfig;

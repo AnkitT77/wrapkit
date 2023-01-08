@@ -9,6 +9,7 @@ import { supabase } from "../components/supabase/supabase";
 import displayRazorpay from "../components/paymentbutton/razorpay";
 import CartContextProvider from "../components/context/cartContext";
 import { FormatingCurrency } from "../components/utils/feture";
+import Model from "../components/popup";
 const country = require("../components/jsondata/country.json");
 
 export default function Checkout(props) {
@@ -23,7 +24,7 @@ export default function Checkout(props) {
     user_country: "India",
     user_zipcode: "",
   };
-
+const [popup,setpopup] = useState(true);
   const [inputvalue, setinputvalue] = useState(initialvalue);
   const [loader, setloader] = useState(true);
   const [loader2, setloader2] = useState(false);
@@ -103,8 +104,9 @@ export default function Checkout(props) {
     }
     if (Object.keys(validate(inputvalue)).length === 0) {
       setloader2(true);
-      await updatedatabase();
-      await displayRazorpay(inputvalue.email, inputvalue.firstname + " " + inputvalue.lastname, inputvalue.user_mobile_number, Toalvalue().totalvalue, item);
+      setpopup(true)
+      //await updatedatabase();
+      //await displayRazorpay(inputvalue.email, inputvalue.firstname + " " + inputvalue.lastname, inputvalue.user_mobile_number, Toalvalue().totalvalue, item);
     } else {
       setFormErrors(validate(inputvalue));
     }
@@ -123,7 +125,6 @@ export default function Checkout(props) {
     if (!error) {
       setloader2(false);
     }
-
   }
 
   if (loader2) {
@@ -167,12 +168,10 @@ export default function Checkout(props) {
 
   return (
     <>
+      {popup &&
+<Model active={popup} closepopup={()=> setpopup(false)}/>
+      }
 
-      <div className="bg-amber-100/70 py-2.5 text-center center px-3">
-
-        Note : We deliver Idols only in Mumbai, Please do not proceed if you are not from Mumbai location
-
-      </div>
       {loader ?
         <Loader2 />
         :
@@ -181,8 +180,8 @@ export default function Checkout(props) {
             <div className="flex flex-col px-5  lg:w-3/5 2xl:w-full border-zinc-300 border-r pb-24 pt-6 lg:pt-10 w-full bg-white h-full w-full   gap-5">
               <div className="max-w-lg w-full mx-auto 2xl:ml-auto 2xl:mr-[200px] flex flex-col gap-5">
                 <div>
-                  <div className={` md:pt-0 relative w-[140px] -mt-2`}>
-                    <Image src="/imgs/test.png" width={200} height={90} layout="responsive" />
+                  <div className={` md:pt-10`}>
+                    <img src="/img/logo-no-background.svg" className="w-[200px]" />
                   </div>
                 </div>
 
@@ -220,6 +219,31 @@ export default function Checkout(props) {
                         Email
                       </label>
                     </div>
+                    <div className="flex mt-5 relative flex-col gap-2 w-full">
+                      <input
+                          autoComplete="off"
+                          autoCorrect="off"
+                          type="number"
+                          minLength="9"
+                          maxLength="11"
+                          value={inputvalue.user_mobile_number}
+                          required
+                          onChange={handleNumber}
+                          placeholder=" "
+                          id="number"
+                          name="user_mobile_number"
+                          className={`${formErrors.user_mobile_number
+                              ? "border-red-400"
+                              : "border-zinc-500"
+                          }  focus:border-green-600 st text-[15px] focus:ring-1 focus:ring-green-600  h-[50px] text-base border  rounded  text-zinc-800 px-3 pt-2.5 outline-none`}
+                      />
+                      <label
+                          htmlFor="number"
+                          className="whitespace-nowrap labelt "
+                      >
+                        Phone Number
+                      </label>
+                    </div>
                   </div>
                 </div>
                 <div className="flex pt-5 border-zinc-300 mt-3 flex-col gap-5">
@@ -231,22 +255,7 @@ export default function Checkout(props) {
                     onSubmit={submitingform}
                   >
                     <div className="flex gap-5 flex-col">
-                      <div className="flex w-full flex-col gap-2 ">
-                        <select
-                          onChange={handleselect}
-                          name="user_country"
-                          defaultValue={inputvalue.user_country}
-                          className="w-full h-[50px]   p-2  !border-zinc-500 rounded  text-zinc-800 border  focus:border-green-600 focus:ring-1 focus:ring-green-600  focus:outline-none"
-                        >
-                          {country.map((item, i) => (
-                            <option value={item.country_name} key={i}>
-                              {item.country_name}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-
-                      <div className="flex gap-10 md:flex-row flex-col">
+                      <div className="flex gap-8 md:flex-row flex-col">
                         <div className="flex relative flex-col gap-2 w-full">
                           <input
                             autoComplete="off"
@@ -270,6 +279,7 @@ export default function Checkout(props) {
                             First name
                           </label>
                         </div>
+
                         <div className="flex relative flex-col gap-2 w-full">
                           <input
                             autoComplete="off"
@@ -293,6 +303,20 @@ export default function Checkout(props) {
                             Last name
                           </label>
                         </div>
+                      </div>
+                      <div className="flex w-full flex-col gap-2 ">
+                        <select
+                            onChange={handleselect}
+                            name="user_country"
+                            defaultValue={inputvalue.user_country}
+                            className="w-full h-[50px]   p-2  !border-zinc-500 rounded  text-zinc-800 border  focus:border-green-600 focus:ring-1 focus:ring-green-600  focus:outline-none"
+                        >
+                          {country.map((item, i) => (
+                              <option value={item.country_name} key={i}>
+                                {item.country_name}
+                              </option>
+                          ))}
+                        </select>
                       </div>
 
                       <div className="flex flex-col gap-2 w-full">
@@ -393,59 +417,23 @@ export default function Checkout(props) {
                           </label>
                         </div>
                       </div>
-                      <div className="flex relative flex-col gap-2 w-full">
-                        <input
-                          autoComplete="off"
-                          autoCorrect="off"
-                          type="number"
-                          minLength="9"
-                          maxLength="11"
-                          value={inputvalue.user_mobile_number}
-                          required
-                          onChange={handleNumber}
-                          placeholder=" "
-                          id="number"
-                          name="user_mobile_number"
-                          className={`${formErrors.user_mobile_number
-                            ? "border-red-400"
-                            : "border-zinc-500"
-                            }  focus:border-green-600 st text-[15px] focus:ring-1 focus:ring-green-600  h-[50px] text-base border  rounded  text-zinc-800 px-3 pt-2.5 outline-none`}
-                        />
-                        <label
-                          htmlFor="number"
-                          className="whitespace-nowrap labelt "
-                        >
-                          Phone Number
-                        </label>
-                      </div>
+
                       <div className="grid gap-6 md:gap-7 w-full md:grid-cols-3 grid-cols-1 "></div>
                     </div>
                     {error && <ErrorButton text={error} />}
 
-                    {/*
+
                     <button
                       onClick={submitingform}
                       disabled={loader2}
                       className={`${!loader2 ? "cursor-pointer" : "cursor-not-allowed"
-                        } text-[18px]  bg-[#184029] text-white font-bold  max-w-[250px] hover:bg-green-800 py-4 px-5 rounded`}
+                        } text-[18px] ml-auto  bg-[#184029] text-white font-bold  max-w-[250px] hover:bg-green-800 py-4 px-5 rounded`}
                     >
                       {loader2 ? <Loader3 /> : "Continue shopping"}
                     </button>
-                      */}
-
-                    <div>
-
-                      <h3 className="bg-green-300 text-xl py-3 center px-3 text-center">
-                        Bookings are Closed for 2022
-                      </h3>
-
-                    </div>
-
-
-
 
                     <div className="mt-10 text-sm border-t border-zinc-200 pt-4 ">
-                      <span>All rights reserved GoGreenGanesha.</span>
+                      <span>All rights reserved WrapKit.</span>
                     </div>
                   </form>
                 </div>
@@ -453,24 +441,23 @@ export default function Checkout(props) {
             </div>
             <div className="w-full lg:border-t-none 2xl:w-full border-t md:border-transparent border-zinc-300  lg:w-2/5  pt-10 md:pt-10 pb-20 h-full">
               <div className=" lg:max-w-md px-5 mx-auto flex flex-col gap-5 lg:gap-7 2xl:mr-auto 2xl:ml-[200px]">
-                <div className="flex max-h-[300px] overflow-y-scroll divide-y divide-slate-200 flex-col items-center border-b border-slate-200">
-
+                <div className="flex max-h-[350px] overflow-y-scroll divide-y divide-slate-200 flex-col items-center border-b border-slate-200">
                   {item.map((data, i) => (
-                    <div key={i} className="flex py-3 justify-between w-full gap-5">
-                      <div className="min-w-[80px] relative">
-                        <Image src={data?.imgs[0]} width={50} height={50} layout="responsive" className="rounded-md" />
+                    <div key={i} className="flex  items-center py-3 justify-between w-full gap-5">
+                      <div className="min-w-[80px] p-1 bg-white rounded-md relative">
+                        <Image src={data?.image[0]} width={50} height={50} layout="responsive" className="rounded-md" />
                       </div>
-                      <div className="w-full flex flex-col justify-between">
-                        <h2 className="break-words md:text-[18px] leading-6 inline-block">
+                      <div className="flex  justify-between w-full items-center">
+                        <div className=" flex gap-3 justify-between flex-col">
+                        <h2 className="font-semibold capitalize md:text-[18px] leading-6 inline-block">
                           {data?.name}
                         </h2>
-
-                        <p className="flex justify-between items-center gap-5">
-                          <span>Qty : {data?.quantity}</span>
-                          <span className="text-zinc-800 text-xl ">₹ {FormatingCurrency(data?.price)}</span>
-
-                        </p>
+                        <span>Qty : {data?.quantity}</span>
                       </div>
+                      <h3 className="font-semibold md:text-xl text-lg">
+                      ₹ {FormatingCurrency(data?.price)}
+                      </h3>
+                    </div>
                     </div>
                   ))}
                 </div>

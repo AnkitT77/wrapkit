@@ -66,7 +66,7 @@ export const faq =[
   },
   {
     title:"When & How will I get my Murti?\n",
-    desc:["Murti can be delivered to you at your doorsteps. Your Murti will be delivered 2-6 days before Ganesh Chaturthi, We provide delivery in all the Metro Cities. Charges may vary according to Pincode \n You can also Pickup your Murti from the location near to our Office in Kandivali West that will be provided. \n"]
+    desc:["Murti can be delivered to you at your doorsteps. Your Murti will be delivered 2-6 days before Ganesh Chaturthi, We provide delivery in all-products the Metro Cities. Charges may vary according to Pincode \n You can also Pickup your Murti from the location near to our Office in Kandivali West that will be provided. \n"]
   },
   {
     title:"How do I see the Murti I like?\n",

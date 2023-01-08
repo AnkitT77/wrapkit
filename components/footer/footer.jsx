@@ -1,67 +1,67 @@
 import Image from "next/image";
 import Link from "next/link";
+import React from "react";
 export default function Footer() {
 	return (
-		<div id="footer " className=" bg-[#184029]  text-creme">
-			<div className=" w-11/12 mx-auto pt-14 md:pt-20 pb-12 flex items-center text-gray-100 ">
-				<div className="grid grid-col-1 gap-x-7 gap-y-7 items-start w-full sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
-					<div>
-						<Image src="/imgs/white.png" width={160} height={80} />
-						<div className=" flex flex-col mt-3 gap-y-1 ">
-							<h2 className="md:text-xl mb-1 uppercase text-white font-semibold">Go Green Ganesha</h2>
-							<p className=" capitalize text-zinc-300 ">
-								Eco friendly Ganpati Murti | Shadu Mati Clay Ganesha | Nature
-								Ganesha | Paper Ganesha | Plant Ganesha
+		<div id="footer " className=" bg-[#0F1133]  text-creme">
+			<div className="px-5 max-w-7xl mx-auto pt-14 md:pt-20 pb-12 flex items-center text-gray-100 ">
+				<div className="grid grid-col-1 gap-x-14 gap-y-7 items-start w-full lg:grid-cols-10">
+					<div className="col-span-3">
+						<img src="/img/logo-white.svg" width={180} height={90} />
+						<div className=" flex flex-col mt-5 gap-y-1 ">
+							<p className=" capitalize text-zinc-400 ">
+								WrapKit Customer Care: WrapKit.in@gmail.com. We’re pretty up and coming in terms of our scale, but the grandiose of our vision surrenders to one thing, and one thing only, ‘The Customer’s Service’. Here at WrapKit, we provide the coolest, the strongest and the dopest wraps that you could imagine.
 							</p>
 						</div>
 					</div>
 
-					<div className="font-body flex flex-col gap-y-1 gap-x-2  sm:mx-auto text-sm sm:text-lg">
-						<h3 className="font-semibold uppercase  text-lg text-[#A2F578] mb-2">
-							Contact Info
-						</h3>
-						<p className="text-zinc-300 ">   No 3 ,Patel Bhaugh ,Marve Road ,Malad West , Mumbai -400064 .</p>
-						<code className="text-sm text-zinc-300">+91 8169882692 / 9137606816</code>
-						<p className="text-zinc-300 ">gogreenganeshaa@gmail.com</p>
-						<p className="text-zinc-300 ">Instragram ID : <span> @gogreenganesha </span></p>
-					</div>
-
-					<div className="flex  w-full lg:justify-center">
+					<div className="flex col-span-2 w-full lg:justify-center">
 						<div className="flex font-body flex-col gap-y-1 text-base sm:text-lg">
-							<h3 className="font-semibold uppercase  text-lg text-[#A2F578] mb-2">
-								EXPLORE
+							<h3 className="font-semibold uppercase  text-lg text-white mb-2">
+								EXPLORE MENU
 							</h3>
 							<div className="flex flex-col gap-2">
-								<Link href="/clay-ganesha">
-									<a className=" hover:text-zinc-400 duration-200 ease-in">
-										Clay/Shadu Ganesha
+								<Link href="/phone">
+									<a className=" hover:text-white text-zinc-400  duration-200 ease-in">
+										Mobile Phone
 									</a>
 								</Link>
 
-								<Link href="/paper-ganesha">
-									<a className=" hover:text-zinc-400 duration-200 ease-in">Paper Ganesha</a>
+								<Link href="/laptop">
+									<a className=" hover:text-white text-zinc-400 duration-200 ease-in">Laptop</a>
 								</Link>
 
-								<Link href="/plant-ganesha">
-									<a className=" hover:text-zinc-400 duration-200 ease-in ">Plant Ganesha</a>
+								<Link href="/tablet">
+									<a className=" hover:text-white text-zinc-400 duration-200 ease-in ">Tablet</a>
 								</Link>
-								
-								<Link href="/faq">
-									<a className=" hover:text-zinc-400 duration-200 ease-in">FAQ's</a>
-								</Link>
+								{/*<Link href="/phone">*/}
+								{/*	<a className=" hover:text-white text-zinc-400  duration-200 ease-in">*/}
+								{/*		All Products*/}
+								{/*	</a>*/}
+								{/*</Link>*/}
+
+							</div>
+						</div>
+					</div>
+					<div className="flex col-span-2 w-full lg:justify-center">
+						<div className="flex font-body flex-col gap-y-1 text-base sm:text-lg">
+							<h3 className="font-semibold uppercase  text-lg text-white mb-2">
+								OTHER LINKS
+							</h3>
+							<div className="flex flex-col gap-2">
 								<Link href="/contact">
-									<a className=" hover:text-zinc-400 duration-200 ease-in">Contact</a>
+									<a className=" hover:text-white text-zinc-400 duration-200 ease-in">Contact</a>
 								</Link>
 								<Link href="/about">
-									<a className=" hover:text-zinc-400 duration-200 ease-in">About</a>
+									<a className=" hover:text-white text-zinc-400 duration-200 ease-in">About</a>
 								</Link>
 
 								<Link href="/terms">
-									<a className=" hover:text-zinc-400 duration-200 ease-in">Terms and Condition</a>
+									<a className=" hover:text-white text-zinc-400 duration-200 ease-in">Terms and Condition</a>
 								</Link>
 
 								<Link href="/privacy">
-									<a className=" hover:text-zinc-400 duration-200 ease-in">Privacy Policy </a>
+									<a className=" hover:text-white text-zinc-400 duration-200 ease-in">Privacy Policy </a>
 								</Link>
 
 
@@ -69,16 +69,15 @@ export default function Footer() {
 						</div>
 					</div>
 
-					<div className="flex flex-col gap-y-3 w-full">
-						<h3 className="font-semibold uppercase  text-lg text-[#A2F578] mb-2">
+					<div className="flex flex-col col-span-2 gap-y-3 w-full">
+						<h3 className="font-semibold uppercase  text-lg text-white mb-2">
 							Stay Connected
 						</h3>
-						<p className="mb-2 text-zinc-300">
-							An appeal to everyone please go eco friendly help us spread the
-							awareness and help our mother earth.
-						</p>
+						<p className="mb-2 text-zinc-400">
+                            We’re low on scale, but high on ambitions. We’re a young company….hence, we understand what the young seek….and we, will make their phones, look cool from WrapKit.
+                        </p>
 						<div className="flex mt-2 items-center justify-start gap-x-6 w-full">
-							<Link href="https://api.whatsapp.com/send?phone=918169882692">
+							<Link href="https://api.whatsapp.com/send?phone=8591386693">
 								<a className="">
 									<div className="bg-white ] rounded-full w-10 h-10 flex justify-center items-center   duration-200">
 										<svg
@@ -101,7 +100,7 @@ export default function Footer() {
 									</div>
 								</a>
 							</Link>
-							<Link href="https://www.instagram.com/gogreenganesha/">
+							<Link href="https://www.instagram.com/wrapkit.in/?igshid=OGQ2MjdiOTE%3D">
 								<a className="">
 									<div className=" ] bg-white rounded-full w-10 h-10 flex justify-center items-center  duration-200">
 										<svg viewBox="0 0 1024 1024" className="fill-red-800">
@@ -112,30 +111,30 @@ export default function Footer() {
 									</div>
 								</a>
 							</Link>
-							<Link
-								href="https://www.facebook.com/profile.php?id=100024018794238"
-								target="_blank"
-							>
-								<a className="">
-									<div className="bg-white ] rounded-full w-10 h-10 flex justify-center items-center duration-200">
-										<svg
-											className="group hover:fill-indigo-200 fill-indigo-600  w-6 h-6"
-											enableBackground="new 0 0 56.693 56.693"
-											id="Layer_1"
-											version="1.1"
-											viewBox="0 0 56.693 56.693"
-										>
-											<path d="M40.43,21.739h-7.645v-5.014c0-1.883,1.248-2.322,2.127-2.322c0.877,0,5.395,0,5.395,0V6.125l-7.43-0.029  c-8.248,0-10.125,6.174-10.125,10.125v5.518h-4.77v8.53h4.77c0,10.947,0,24.137,0,24.137h10.033c0,0,0-13.32,0-24.137h6.77  L40.43,21.739z" />
-										</svg>
-									</div>
-								</a>
-							</Link>
+							{/*<Link*/}
+							{/*	href="https://www.facebook.com/profile.php?id=100024018794238"*/}
+							{/*	target="_blank"*/}
+							{/*>*/}
+							{/*	<a className="">*/}
+							{/*		<div className="bg-white ] rounded-full w-10 h-10 flex justify-center items-center duration-200">*/}
+							{/*			<svg*/}
+							{/*				className="group hover:fill-indigo-200 fill-indigo-600  w-6 h-6"*/}
+							{/*				enableBackground="new 0 0 56.693 56.693"*/}
+							{/*				id="Layer_1"*/}
+							{/*				version="1.1"*/}
+							{/*				viewBox="0 0 56.693 56.693"*/}
+							{/*			>*/}
+							{/*				<path d="M40.43,21.739h-7.645v-5.014c0-1.883,1.248-2.322,2.127-2.322c0.877,0,5.395,0,5.395,0V6.125l-7.43-0.029  c-8.248,0-10.125,6.174-10.125,10.125v5.518h-4.77v8.53h4.77c0,10.947,0,24.137,0,24.137h10.033c0,0,0-13.32,0-24.137h6.77  L40.43,21.739z" />*/}
+							{/*			</svg>*/}
+							{/*		</div>*/}
+							{/*	</a>*/}
+							{/*</Link>*/}
 						</div>
 					</div>
 				</div>
 			</div>
-			<div className="border-t border-green-800 py-8 justify-around flex items-center  text-sm">
-				<p className=" text-zinc-300">© Copyright 2022 Ganesha. All rights reserved.</p>
+			<div className="border-t border-zinc-700 py-8 justify-around flex items-center  text-sm">
+				<p className=" text-zinc-300">© Copyright 2023 WrapKit. All rights reserved.</p>
 				
 			</div>
 			

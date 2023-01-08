@@ -6,6 +6,22 @@ select {
   box-shadow: 0 7px 17px 0 rgb(23 84 116 / 18%);
 }
 
+.tooltiparrow {
+  box-shadow: rgb(17 17 23 / 20%) 2px 2px 10px;
+}
+.tooltiparrow::after {
+  content: "";
+  display: block;
+  width: 0px;
+  height: 0px;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid rgb(255, 255, 255);
+  position: absolute;
+  bottom: 100%;
+  left: 45px;
+}
+
 
 select{
   -webkit-appearance: none;
@@ -14,7 +30,7 @@ select{
   background-image: url("data:image/svg+xml;utf8,<svg fill='gray' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
   background-repeat: no-repeat;
   background-position-x: 100%;
-  background-position-y: 5px;
+  background-position-y: 50%;
 }
 
 

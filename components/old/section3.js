@@ -5,22 +5,20 @@ import Image from "next/image";
 
 export default function Sectionthird() {
 	return (
-		<div className="py-14 bg-green-50/50 md:py-20" >
+		<div className="py-14 bg-indigo-50 md:py-20" >
 				<div className="w-full flex flex-col flex-grow items-center text-center justify-center my-6">
 
 					<div className='flex flex-col text-center justify-center items-center'>
 					<h2 className="md:text-4xl text-3xl w-full flex-grow font-heading font-semibold text-zinc-800 tracking-wider md:text-3xl ">
-							WHY TO CHOOSE  GOGREENGANESHA 
+							WHY TO CHOOSE WRAPKIT
 						</h2>
         <div className='flex flex-row-1 text-center justify-center items-center mt-3'>
-        <div className="w-[100px] h-px  bg-[#7abf18] center  mr-[20px]" />
-        <Image src="/imgs/herbal-spa-treatment-leaves.png" 
-				width={15} height={15}  
-                className="   colors-[#e2e8f0]  "
-            
+        <div className="w-[100px] h-px  bg-indigo-500 center  mr-[20px]" />
+        <Image src="/img/wrapicon.png"
+				width={30} height={30}
                 />
                         
-        <div className="w-[100px] h-px  bg-[#7abf18] ml-[20px] " />
+        <div className="w-[100px] h-px  bg-indigo-500 ml-[20px] " />
         </div>
                
                 </div>						
@@ -39,9 +37,9 @@ export default function Sectionthird() {
 						className="h-full hover:text-white"
 					>
 						
-						<div className=" md:p-9 p-6  max-w-7xl mx-auto mt-10 mx-auto font-heading   grid grid-cols-1 gap-7  place-items-center   sm:grid-cols-2  lg:grid-cols-4 ">						
+						<div className=" md:p-9 p-6  max-w-7xl mx-auto mt-10 mx-auto font-heading   grid grid-cols-1 gap-7     sm:grid-cols-2  lg:grid-cols-4 ">
 							<div
-								className="w-full bg-white group lg:md:p-9 p-6 hover:fill-white  items-center justify-center rounded-lg  hover:bg-[#184029] shadow-xl	transition duration-150 ease-out hover:ease-in p-8 hover:shadow-xl text-left"
+								className="w-full bg-white group lg:md:p-9 p-6 hover:fill-white  items-center justify-center rounded-lg  hover:bg-blue-500 shadow-xl	transition duration-150 ease-out hover:ease-in p-8 hover:shadow-xl text-left"
 								
 							>
 									<div className="flex flex-col   ">
@@ -54,18 +52,18 @@ export default function Sectionthird() {
 										
 								
 									<h2 className="text-xl group-hover:text-white text-left mt-4 font-heading  font-bold tracking-wider">
-									100% Natural 
+									Best Quality
 									</h2>
 									</div>
 								
 								<p className="group-hover:text-white capitalize font-body hover:text-white md:text-base text-sm mt-1">
-								Our Ganesh Idols are made of natural clay (shadu), red soil (mitti) & paper mache
+									Our wraps are made of high-quality vinyl, which makes them flexible and long-lasting
 								</p>
 								</div>
 							</div>
 
 <div
-className="w-full bg-white group center items-center hover:fill-white justify-center   hover:bg-[#184029] hover:text-white rounded-lg  shadow-xl	transition duration-150 ease-out hover:ease-in p-8 lg:md:p-9 p-6 hover:shadow-xl text-left"
+className="w-full bg-white group center items-center hover:fill-white justify-center   hover:bg-blue-500 hover:text-white rounded-lg  shadow-xl	transition duration-150 ease-out hover:ease-in p-8 lg:md:p-9 p-6 hover:shadow-xl text-left"
 
 >
 	<div className="flex flex-col  ">
@@ -82,14 +80,14 @@ className="w-full bg-white group center items-center hover:fill-white justify-ce
 	</div>
 
 	<p className="group-hover:text-white capitalize font-body hover:text-white md:text-base text-sm mt-1">
-We deliver the idol directly to your place with best safety measures and intact
+We deliver the skins directly to your place with best safety measures and intact
 </p>
 </div>
 </div>
 
 
 {/* <div
-className="w-full lg:md:p-9 p-6    hover:fill-white rounded-lg center items-center justify-center   hover:bg-[#184029] hover:text-white   shadow-xl	transition duration-150 ease-out hover:ease-in p-8 hover:shadow-xl text-left"
+className="w-full lg:md:p-9 p-6    hover:fill-white rounded-lg center items-center justify-center   hover:bg-blue-500 hover:text-white   shadow-xl	transition duration-150 ease-out hover:ease-in p-8 hover:shadow-xl text-left"
 
 >
 	<div className="flex flex-col  ">
@@ -113,7 +111,7 @@ Colors used on the murti are also non toxic and are not harmful to environment
 </div> */}
 
 <div
-className="w-full bg-white lg:md:p-9 p-6 group rounded-lg  hover:fill-white center items-center justify-center  hover:bg-[#184029] hover:text-white  shadow-xl	transition duration-150 ease-out hover:ease-in p-8 hover:shadow-xl text-left"
+className="w-full bg-white lg:md:p-9 p-6 group rounded-lg  hover:fill-white center items-center justify-center  hover:bg-blue-500 hover:text-white  shadow-xl	transition duration-150 ease-out hover:ease-in p-8 hover:shadow-xl text-left"
 
 >
 	<div className="flex flex-col   ">
@@ -125,13 +123,12 @@ className="w-full bg-white lg:md:p-9 p-6 group rounded-lg  hover:fill-white cent
 <g><path  d="M10.05,96.6C6.38,105.51,1.42,113.97,0,122.88l5.13-0.44c8.1-23.56,15.4-39.4,31.23-59.21 C48.24,48.39,61.13,36.58,77.66,27.2c8.8-5,20.07-10.47,30.21-11.85c2.77-0.38,5.58-0.49,8.46-0.24 c-31.4,7.19-56.26,23.84-76.12,48.8C32.1,74.09,25.05,85.4,18.57,97.32l11.94,2.18l-4.97-2.47l17.78-2.83 c-6.6-2.33-13.12-1.55-15.21-4.06c18.3-0.83,33.34-4.78,43.9-12.45c-3.93-0.55-8.46-1.04-10.82-2.17 c17.69-5.98,27.92-16.73,40.9-26.27c-16.87,3.54-32.48,2.96-37-0.25c29.77,2.21,49-6.02,55.59-26.77c0.57-2.24,0.73-4.5,0.37-6.78 C118.74,0.62,92.49-4.39,83.95,7.77c-1.71,2.43-4.12,4.66-6.11,7.48L85.97,0c-21.88,7.39-23.68,15.54-35,40.09 c0.9-7.47,2.97-14.24,5.66-20.63c-27.34,10.55-36.45,37.11-37.91,59.7c-0.79-7.88,0.67-17.78,3.49-28.9 c-7.98,8-13.41,17.39-11.47,30.79l-3.65-1.63l1.92,7.19l-5.46-2.59L10.05,96.6L10.05,96.6z"/></g></svg>
 
 <h2 className="text-xl group-hover:text-white text-left mt-4 font-heading  font-bold tracking-wider">
-	Light Weight
+	Hide Scratches
 	</h2>
 	</div>
 
 	<p className="group-hover:text-white capitalize font-body hover:text-white md:text-base text-sm mt-1">
-Easy to carry  with our safe packaging  and one person can handle it safely
-</p>
+		Our high performance skins are not only great to prevent nicks and scratches, but also hide any old ones</p>
 </div>
 </div>
 
@@ -139,7 +136,7 @@ Easy to carry  with our safe packaging  and one person can handle it safely
 							
 							
 <div
-className="w-full bg-white lg:md:p-9 p-6 group rounded-lg  hover:fill-white center items-center justify-center  hover:bg-[#184029] hover:text-white  shadow-xl	transition duration-150 ease-out hover:ease-in p-8 hover:shadow-xl text-left"
+className="w-full bg-white lg:md:p-9 p-6 group rounded-lg  hover:fill-white center items-center justify-center  hover:bg-blue-500 hover:text-white  shadow-xl	transition duration-150 ease-out hover:ease-in p-8 hover:shadow-xl text-left"
 
 >
 	<div className="flex flex-col   ">
@@ -150,13 +147,12 @@ className="w-full bg-white lg:md:p-9 p-6 group rounded-lg  hover:fill-white cent
 			<svg version="1.1" className=" w-14 h-10"   id="Layer_1" xmlns="http://www.w3.org/2000/svg"  x="0px" y="0px" viewBox="0 0 122.88 110.29" style={{enableBackground:"new 0 0 122.88 110.29"}} ><g><path  d="M7.59,71.54l1.6-8.71c1.38-0.13,2.72-0.38,4.04-0.76c1.36-0.39,2.69-0.89,3.99-1.49l5.66,6.86L7.59,71.54 L7.59,71.54L7.59,71.54z M122.88,35.63c-3.17,6.17,2.45,14.47-3.99,19.02c-1.71,1.21-4.2,1.78-6.33,1.24 c-0.86-0.22-1.65-0.61-2.3-1.21c-0.29-0.26-0.55-0.57-0.79-0.91c-2.96-4.25-0.48-9.5,2.99-12.61 C115.66,38.3,119.93,36.63,122.88,35.63L122.88,35.63L122.88,35.63z M96.55,68.44c2.94,2.74,6.15,4.73,9.67,5.88l-6.06,8.64 c2.29,0.64,4.28,1.32,5.74,2.14c2.12,1.18,4.04,2.69,5.58,4.72c3.21,4.24,9.79,19.65-0.88,20.46H5.84 c-10.66-0.81-4.09-16.22-0.88-20.46c1.54-2.04,3.46-3.54,5.58-4.72c0.18-0.1,0.36-0.2,0.55-0.29L8.05,73.43h0l15.36-4.12 l3.01,11.22c6.03-1.41,11.94-3.05,14.95-5.76h0c5.51,16.21,28.53,16.81,33.7,0c3.04,2.74,9.06,4.38,15.15,5.81L96.55,68.44 L96.55,68.44L96.55,68.44z M107.21,56.09c0.92,1.24,2.98,2.82,4.98,2.97l-5.01,13.53c-3.86-1.27-7.28-3.12-9.93-5.95 C101.18,62.7,103.57,60.45,107.21,56.09L107.21,56.09L107.21,56.09z M13.12,83.95c0.74-0.27,1.53-0.52,2.38-0.77l-2.1-7.84 c-0.18-0.66-0.87-1.06-1.53-0.88c-0.66,0.18-1.06,0.87-0.88,1.53L13.12,83.95L13.12,83.95z M17.46,82.64 c0.78-0.2,1.59-0.4,2.42-0.6l-2.11-7.87c-0.18-0.66-0.87-1.06-1.53-0.88c-0.66,0.18-1.06,0.87-0.88,1.53L17.46,82.64L17.46,82.64z M21.87,81.58l2.43-0.56L22.15,73c-0.18-0.66-0.87-1.06-1.53-0.88c-0.66,0.18-1.06,0.87-0.88,1.53L21.87,81.58L21.87,81.58z M9.73,59.87l1.26-6.85l4.33,5.25c-0.94,0.4-1.9,0.75-2.87,1.02C11.56,59.55,10.65,59.75,9.73,59.87L9.73,59.87L9.73,59.87z M37.14,41.18c-1.15,0.04-2.03,0.28-2.63,0.69c-0.34,0.23-0.59,0.52-0.75,0.87c-0.18,0.39-0.26,0.86-0.25,1.4 c0.05,1.59,0.88,3.66,2.48,6.05l0.02,0.03l0,0l5.21,8.29c2.09,3.32,4.28,6.71,7,9.2c2.62,2.39,5.79,4.01,9.99,4.02 c4.55,0.01,7.87-1.67,10.57-4.2c2.81-2.63,5.02-6.23,7.21-9.83l5.87-9.67c1.09-2.5,1.49-4.17,1.24-5.15 c-0.15-0.58-0.79-0.87-1.89-0.92c-0.23-0.01-0.47-0.01-0.71-0.01c-0.26,0.01-0.54,0.03-0.82,0.05c-0.16,0.01-0.31,0-0.45-0.03 c-0.52,0.03-1.06-0.01-1.61-0.09l2.01-8.9c-14.92,2.35-26.07-8.73-41.84-2.22l1.14,10.49C38.31,41.29,37.7,41.26,37.14,41.18 L37.14,41.18L37.14,41.18z M83.23,39.31c1.44,0.44,2.37,1.36,2.75,2.84c0.42,1.64-0.04,3.96-1.43,7.12l0,0 c-0.03,0.06-0.05,0.11-0.09,0.17l-5.94,9.78c-2.29,3.77-4.61,7.55-7.71,10.45c-3.21,3.01-7.17,5.01-12.58,4.99 c-5.05-0.01-8.86-1.94-11.98-4.8c-3.01-2.76-5.32-6.31-7.51-9.8l-5.21-8.28c-1.91-2.84-2.9-5.44-2.96-7.57 c-0.03-1,0.14-1.91,0.51-2.71c0.39-0.84,0.99-1.54,1.79-2.08c0.38-0.25,0.8-0.47,1.26-0.64c-0.34-4.49-0.46-10.16-0.25-14.9 c0.11-1.12,0.33-2.25,0.64-3.37c1.33-4.76,4.67-8.59,8.8-11.22c2.28-1.45,4.78-2.55,7.38-3.28c1.65-0.47-1.41-5.76,0.3-5.93 c8.27-0.85,21.66,6.7,27.43,12.95c2.89,3.13,4.71,7.28,5.1,12.77L83.23,39.31L83.23,39.31L83.23,39.31z"/></g></svg>
 
 <h2 className="text-xl group-hover:text-white text-left mt-4 font-heading  font-bold tracking-wider">
-	Wide Range of Avtar
+	Wide Range of Skins
 	</h2>
 	</div>
 
 	<p className="group-hover:text-white capitalize font-body hover:text-white md:text-base text-sm mt-1">
-We offers wide range of avtars and each of them is hand made 
-</p>
+		We have a variety of classic designs and materials to choose from</p>
 </div>
 </div>
 						</div>

@@ -1,5 +1,5 @@
 import React from "react";
 
 export default function BaseSection({ children }) {
-  return <div className="pt-[80px]">{children}</div>;
+  return <div className="pb-20">{children}</div>;
 }
