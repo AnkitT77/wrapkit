@@ -49,15 +49,15 @@ export default function Footer() {
 								OTHER LINKS
 							</h3>
 							<div className="flex flex-col gap-2">
-								<Link href="/contact">
+								<Link href="/">
 									<a className=" hover:text-white text-zinc-400 duration-200 ease-in">Contact</a>
 								</Link>
 								<Link href="/about">
 									<a className=" hover:text-white text-zinc-400 duration-200 ease-in">About</a>
 								</Link>
 
-								<Link href="/terms">
-									<a className=" hover:text-white text-zinc-400 duration-200 ease-in">Terms and Condition</a>
+								<Link href="/refund-policy">
+									<a className=" hover:text-white text-zinc-400 duration-200 ease-in">Refund Policy</a>
 								</Link>
 
 								<Link href="/privacy">

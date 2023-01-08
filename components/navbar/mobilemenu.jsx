@@ -152,7 +152,7 @@ export default function Mobilemenu({ active, passclose }) {
              </li>
 
         <li className="py-3">
-          <Link passHref href="/contact">
+          <Link passHref href="/">
           <h6 className='text-xl hover:text-indigo-500 duration-100 ease-in cursor-pointer  font-semibold'>
             Contact
           </h6>

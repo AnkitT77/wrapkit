@@ -154,7 +154,7 @@ export default function TopNav() {
                         </li>
 
                         <li className="py-2">
-                            <Link href="/contact">
+                            <Link href="/">
                                 <a className="hover:text-indigo-500 font-semibold rounded-full hover:shadow-lg hover:bg-white py-1 px-5 text-lg cursor-pointer">
                                     Contact
                                 </a>
