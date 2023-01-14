@@ -6,6 +6,44 @@ select {
   box-shadow: 0 7px 17px 0 rgb(23 84 116 / 18%);
 }
 
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+
+.overlay{
+  position:relative;
+  z-index: 2;
+}
+.overlay::after {
+  content:'';
+  position: absolute;
+  top:0;
+  background: black;
+  opacity:.1;
+  left: 0;
+  height: 100%;
+  z-index:-1;
+  width: 100%;
+}
+.overlay::before {
+  content:'';
+  position: absolute;
+  top:0;
+  background-image:url('/banner/banner.png');
+  background-size:cover;
+  left: 0;
+  height: 100%;
+  z-index:-1;
+  width: 100%;
+}
+
+
 .tooltiparrow {
   box-shadow: rgb(17 17 23 / 20%) 2px 2px 10px;
 }

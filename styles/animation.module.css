@@ -1,0 +1,19 @@
+.card:hover .icon{
+    animation: icontransition 600ms forwards;
+}
+
+
+@keyframes icontransition {
+    0%{
+        transform: translateX(10px);
+        opacity: 0;
+    }
+    50%{
+        transform: translateX(-5px);
+        opacity: .5;
+    }
+    100% {
+        transform: translateX(00px);
+        opacity: 1;
+    }
+}

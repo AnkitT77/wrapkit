@@ -1,14 +1,33 @@
 import React from "react";
 import { FormatingCurrency } from "../utils/feture";
+import Link from "next/link";
+import { a, useTransition } from '@react-spring/web'
 
-export default function Popupcart({ data, qty, transition, passclose }) {
-  return (
+export default function Popupcart({ data,passclose,active }) {
+
+    const transitions = useTransition(active, {
+        from: { opacity: 0, translateX: '100px' },
+        enter: { opacity: 1, translateX: '0' },
+        leave: { opacity: 0.2, translateX: '100px' },
+        config: { duration: 400,
+            tension: 280, friction: 60
+        },
+    })
+
+
+    return (
     <>
-      <div
-        className={`flex z-30  duration-200 ease-in fixed w-full border-[2px] border-green-500 rounded shadow-xl shadow-gray-200/30 bg-white top-[50px] right-0 flex-col gap-5 p-6  max-w-[330px] ${transition}`}
+        {active &&
+        <div onClick={passclose} className="fixed z-30 top-0 left-0 bg-zinc-800/50 h-full w-full"/>
+        }
+        {transitions((style, i) => (
+      <a.div
+          style={style}
+        className={`flex z-30 flex justify-between duration-200 ease-in fixed w-full h-full shadow-md shadow-gray-200 bg-white top-[0px] right-0 flex-col gap-5 p-6  max-w-[400px]`}
       >
-        <div className="flex text-zinc-800 justify-between font-semibold items-center md:text-xl text-xl">
-          Added To Basket
+        <div>
+          <div className="flex text-zinc-800 border-b pb-4 justify-between font-semibold items-center md:text-xl text-xl">
+          YOUR CART
           <button
             onClick={() => passclose(true)}
             className="hover:bg-zinc-100 p-1 rounded-full"
@@ -27,43 +46,60 @@ export default function Popupcart({ data, qty, transition, passclose }) {
             </svg>
           </button>
         </div>
-        <div className="flex gap-5">
-          <div>
-            <img
-              className="w-[100px] rounded"
-              src={data?.image[0]}
-              alt="test"
-            />
-          </div>
-          <div className="flex  flex-col gap-1">
-            <h5 className="font-semibold leading-6 text-[18px] text-zinc-800">
-              {data?.name}
-            </h5>
-            <span className="flex gap-2 items-center font-cera_medium text-green-600">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-4 h-4"
-                viewBox="0 0 32 32"
-              >
-                <path
-                  fill="#41B14F"
-                  fillOpacity="1"
-                  d="M16 0c-8.836 0-16 7.164-16 16s7.164 16 16 16 16-7.164 16-16-7.164-16-16-16zM13.52 23.383l-7.362-7.363 2.828-2.828 4.533 4.535 9.617-9.617 2.828 2.828-12.444 12.445z"
-                />
-              </svg>
-              Added to Basket
-            </span>
-            <div className="text-white flex gap-5 mt-2 justify-between items-center">
-              <p className="text-zinc-700">QTY: {qty}</p>
-              <div className="flex gap-1">
-                <h5 className="font-bold text-lg text-zinc-800">
-                  ₹{FormatingCurrency(parseInt(data?.price) * qty)}
-                </h5>
+          <div className="divide-y max-h-[450px] overflow-y-scroll">
+            {data.map((item,i)=>(
+              <div key={i} className="flex py-5 gap-5">
+                <div className="bg-zinc-100/80 p-2 flex justify-center items-center">
+                  <img
+                      className="w-[100px]  rounded"
+                      src={item?.image[0]}
+                      alt="test"
+                  />
+                </div>
+                <div className="flex justify-between flex-col gap-1">
+                  <h5 className="font-semibold capitalize leading-6 text-[20px] text-zinc-800">
+                    {item?.name}
+                  </h5>
+                    <div className="text-[15px]">
+                        <p>
+                            Device: {item?.optionalData.type}
+                        </p>
+                        <p>
+                            Model: {item?.optionalData.model}
+                        </p>
+                        <p>
+                            Version: {item?.optionalData.version}
+                        </p>
+                    </div>
+                    <div className="text-white flex gap-5 mt-2 justify-between items-center">
+                        <p className="text-zinc-700">QTY: {item.quantity}</p>
+                        <div className="flex gap-1">
+                            <h5 className="font-bold text-lg text-zinc-800">
+                                ₹{FormatingCurrency(parseInt(item?.price) * parseInt(item.quantity))}
+                            </h5>
+                        </div>
+                    </div>
+                </div>
               </div>
-            </div>
+          ))}
           </div>
+
         </div>
-      </div>
+        <div className="flex flex-col gap-3">
+            <Link href="/cart">
+                <a  className="border-2 text-center border-orange-500 text-orange-500 w-full px-5 py-4 rounded hover:bg-orange-500 hover:text-white duration-100 ease-linear font-semibold md:text-xl">
+                View Cart
+            </a>
+            </Link>
+            <Link href="/checkout">
+          <a className="bg-zinc-800 text-center text-white w-full px-5 py-5 rounded hover:bg-zinc-700 font-semibold md:text-xl duration-100 ease-linear">
+            Checkout
+          </a>
+            </Link>
+
+        </div>
+      </a.div>
+        ))}
     </>
   );
 }

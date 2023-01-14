@@ -21,7 +21,7 @@ export default function Cart() {
 
   const router = useRouter();
   return (
-    <div className={`bg-gray-50 pt-28 md:pt-28 w-full min-h-screen pb-24`}>
+    <div className={`bg-gray-50 pt-14 w-full min-h-screen pb-24`}>
       {item.length === 0 ? (
         <div className="justify-center items-start flex">
           <div className="flex items-center mt-[100px] w-full justify-center flex-col gap-7 px-5">
@@ -32,7 +32,7 @@ export default function Cart() {
               Continue shopping our eco friendly ganesha
             </p>
             <button
-              onClick={() => router.push("/clay-ganesha")}
+              onClick={() => router.push("/")}
               className="border border-zinc-800 hover:bg-zinc-800 hover:text-white text-zinc-800 py-3 px-7 max-w-xs"
             >
               Continue Shopping
@@ -45,7 +45,7 @@ export default function Cart() {
             <h3 className="md:text-4xl text-3xl font-semibold text-zinc-800 px-5">
               Shopping Bag
             </h3>
-            <div className="w-full flex gap-10 md:flex-row flex-col sm:px-3">
+            <div className="w-full flex gap-10 md:flex-row flex-col px-5 sm:px-3">
               <div className=" md:w-4/6  ">
                 <div className="bg-white flex flex-col divide-y divide-slate-200">
                   {item.map((item, i) => (
@@ -54,22 +54,22 @@ export default function Cart() {
                 </div>
               </div>
               <div className=" w-full md:w-2/6 ">
-                <div className="bg-white flex flex-col gap-3  py-7">
+                <div className="bg-white border  shadow-md shadow-zinc-200/50 rounded flex flex-col gap-3  py-7">
                   <div className="flex flex-col gap-2">
                     <h3 className="text-2xl font-semibold px-5 pb-3">
                       Summary
                     </h3>
                   </div>
                   <div className="mt-5">
-                    <div className="flex text-zinc-600 justify-between pb-3 px-6">
+                    <div className="flex md:text-xl text-lg text-zinc-600 justify-between pb-3 px-6">
                       Subtotal{" "}
-                      <span className="font-semibold text-lg text-zinc-800">
+                      <span className="font-semibold md:text-2xl text-xl text-zinc-800">
                         {Toalvalue().subtotalformat}
                       </span>
                     </div>
-                    <div className="flex text-zinc-600 justify-between py-3 px-6">
+                    <div className="flex text-zinc-600 md:text-xl text-lg justify-between py-3 px-6">
                       Shipping Charges
-                      <span className="font-semibold text-zinc-800 text-lg">
+                      <span className="font-semibold md:text-2xl text-xl text-zinc-800 ">
                         {parseInt(
                           Toalvalue()
                             .subtotal.split("")
@@ -80,9 +80,9 @@ export default function Cart() {
                           : "+ ₹0"}
                       </span>
                     </div>
-                    <div className="flex pt-5 border-t justify-between text-zinc-800 px-6 font-cera_medium pb-6">
+                    <div className="flex mt-4 pt-5 md:text-xl text-lg border-t justify-between text-zinc-800 px-6 font-cera_medium pb-6">
                       Total{" "}
-                      <span className="font-semibold text-zinc-800 text-lg">
+                      <span className="font-semibold text-zinc-800 md:text-2xl text-xl">
                         {Toalvalue().totalformat}
                       </span>
                     </div>
@@ -90,9 +90,9 @@ export default function Cart() {
                   <div className="px-5 flex justify-center">
                     <button
                       onClick={() => router.push("/checkout")}
-                      className="rounded-full py-3 max-w-sm w-full hover:bg-green-800 px-7 bg-[#184029] text-white font-bold"
+                      className="rounded-full py-4 md:text-lg w-full hover:bg-zinc-700 px-7 bg-zinc-800 text-white font-bold"
                     >
-                      Go to Checkout
+                      Go To Checkout
                     </button>
                   </div>
                 </div>
@@ -109,9 +109,7 @@ function CartItemList({ data, cartid }) {
   // const [optonal,setoptional]  = useState(false);
   const { increase, decrease, removeCart } = useCart();
   const [qty, setqty] = useState({ qty: data.quantity });
-
-  console.log(data);
-
+  
   const handleincrase = () => {
     increase(data);
     setqty((prev) => ({ qty: prev.qty + 1 }));
@@ -122,8 +120,8 @@ function CartItemList({ data, cartid }) {
   };
   return (
     <>
-      <div className={`p-5 flex gap-4`}>
-        <div className="relative md:w-[160px] p-1 bg-zinc-100 w-[150px] ">
+      <div className={`p-5 flex gap-4 items-start`}>
+        <div className="relative  md:w-[160px] p-1 bg-zinc-100 w-[150px] ">
           <Image
             src={data?.image[0]}
             alt={data.name}
@@ -159,6 +157,18 @@ function CartItemList({ data, cartid }) {
             <h6 className="capitalize font-semibold md:text-xl text-lg">
               {data.name}
             </h6>
+            <div className="text-[15px]">
+              <p>
+                Device: {data?.optionalData.type}
+              </p>
+              <p>
+                Model: {data?.optionalData.model}
+              </p>
+              <p>
+                Version: {data?.optionalData.version}
+              </p>
+            </div>
+            <div className="flex  justify-between items-center gap-5 flex-row ">
             <div className="flex rounded-[10px] max-w-[100px] px-2 w-full   border border-zinc-300">
               <button
                 onClick={handledecrease}
@@ -203,10 +213,11 @@ function CartItemList({ data, cartid }) {
                 </svg>
               </button>
             </div>
-          </div>
-          <h5 className="text-lg text-left font-semibold sm:mt-0 mt-2 sm:text-right">
+          <h5 className="md:text-2xl text-xl text-left font-semibold sm:mt-0 mt-2 sm:text-right">
             ₹{FormatingCurrency(data?.price)}
           </h5>
+            </div>
+        </div>
         </div>
       </div>
     </>

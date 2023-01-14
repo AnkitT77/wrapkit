@@ -31,10 +31,10 @@ export default function Footer() {
 									<a className=" hover:text-white text-zinc-400 duration-200 ease-in">Laptop</a>
 								</Link>
 
-								<Link href="/tablet">
-									<a className=" hover:text-white text-zinc-400 duration-200 ease-in ">Tablet</a>
+								<Link href="/charger">
+									<a className=" hover:text-white text-zinc-400 duration-200 ease-in ">Charger</a>
 								</Link>
-								{/*<Link href="/phone">*/}
+								{/*<Link href="/charger">*/}
 								{/*	<a className=" hover:text-white text-zinc-400  duration-200 ease-in">*/}
 								{/*		All Products*/}
 								{/*	</a>*/}
@@ -49,7 +49,7 @@ export default function Footer() {
 								OTHER LINKS
 							</h3>
 							<div className="flex flex-col gap-2">
-								<Link href="/">
+								<Link href="/contact">
 									<a className=" hover:text-white text-zinc-400 duration-200 ease-in">Contact</a>
 								</Link>
 								<Link href="/about">
@@ -63,8 +63,6 @@ export default function Footer() {
 								<Link href="/privacy">
 									<a className=" hover:text-white text-zinc-400 duration-200 ease-in">Privacy Policy </a>
 								</Link>
-
-
 							</div>
 						</div>
 					</div>
@@ -77,7 +75,7 @@ export default function Footer() {
                             We’re low on scale, but high on ambitions. We’re a young company….hence, we understand what the young seek….and we, will make their phones, look cool from WrapKit.
                         </p>
 						<div className="flex mt-2 items-center justify-start gap-x-6 w-full">
-							<Link href="https://api.whatsapp.com/send?phone=8591386693">
+							<Link href="https://api.whatsapp.com/send?phone=918591386693">
 								<a className="">
 									<div className="bg-white ] rounded-full w-10 h-10 flex justify-center items-center   duration-200">
 										<svg

@@ -5,13 +5,13 @@ import React from "react";
 export default function Category() {
 	return (
 		<>
-			<div className=" w-full overflow-x-hidden px-5 flex flex-col gap-14  md:py-20 py-14" >
-				<div className="w-full max-w-4xl overflow-x-scroll flex flex-row gap-5 md:gap-12 mx-auto ">
+			<div className=" w-full no-scrollbar overflow-x-hidden px-5 flex flex-col gap-14  md:py-20 py-14" >
+				<div className="w-full no-scrollbar max-w-4xl overflow-x-scroll flex flex-row gap-5 md:gap-12 mx-auto ">
 
 				<CategoryItem
 						data={{
 							image: "/category/c1.webp",
-							url: "tablet",
+							url: "phone",
 							name:"Phone"
 						}}
 					/>

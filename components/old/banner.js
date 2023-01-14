@@ -18,20 +18,14 @@ export default function Baner() {
 
 
 						<div>
-							<Image layout="responsive" src="/banner/banner2.jpeg" alt="banner2" width={2000} height={800} />
+							<Image layout="responsive" src="/banner/banner3.png" alt="banner2" width={1600} height={700} />
 						</div>
 
 						<div>
-							<Image loading="lazy" layout="responsive" src="/banner/banner3.jpeg" alt="banner3" width={2000} height={800} />
+							<Image loading="lazy" layout="responsive" src="/banner/banner1.png" alt="banner3" width={1600} height={700}/>
 						</div>
 						<div>
-							<Image loading="lazy" layout="responsive" src="/banner/banner4.jpeg" alt="banner4" width={2000} height={800} />
-						</div>
-						<div>
-							<Image loading="lazy" layout="responsive" src="/banner/banner5.jpeg" alt="banner5" width={2000} height={800} />
-						</div>
-						<div>
-							<Image loading="lazy" layout="responsive" src="/banner/banner6.jpeg" alt="banner6" width={2000} height={800} />
+							<Image loading="lazy" layout="responsive" src="/banner/banner2.png" alt="banner4"  width={1600} height={700} />
 						</div>
 					</Carousel>
 				</div>

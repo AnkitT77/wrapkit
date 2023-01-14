@@ -30,7 +30,7 @@ async function displayRazorpay(email, name, mobilenumber, amount1, item) {
         amount: amount,
         currency: currency,
         name: name,
-        description: "GoGreenGanesha",
+        description: "WrapKit",
         order_id: order_id,
         handler: async function (response) {
           const data1 = {
@@ -41,45 +41,7 @@ async function displayRazorpay(email, name, mobilenumber, amount1, item) {
             razorpayOrderId: response.razorpay_order_id,
             razorpaySignature: response.razorpay_signature,
           };
-
-          //   let arr = [];
-          //   for(let i = 0 ;i <item.length;i++){
-          //   const item =  `<div style="width:100%;padding:10px 0;;border-bottom:2px solid silver">
-          //   <h3 style="font-weight:600;line-height:1.3;font-size:16px;word-break:break-word">${item[i].name}</h3>
-          //   <div style="width:100%;font-size:15px">
-          //   <p>
-          //   Qty: ${item[i].quantity}
-          //   </p>
-          //   <p style="font-weight:700">
-          //   ₹${item[i].price}
-          //   </p>
-          //   </div>
-          //   </div>`
-          //   arr.push(item);
-          //   }
-
-
-          //   const msg = `<p>
-          //   Dear Admin,
-          //   </p>
-          //   <h2>
-          //   We just recieved one order from test
-          //   </h2>
-          //   ${arr}
-          //   <p>
-          //   Regards, Gogreenganesha.
-          //   </p>`;
-
-
-          //   var templateParams = {
-          //     to_name: name,
-          //     to_email: "rathoddharmik9@gmail.com",
-          //     message: msg,
-          //     from_email: "rathoddharmik9@gmail.com",
-          //   };
-
-          //  await sendemail(templateParams);
-          await updatePaymentSuccess(order_id, email);
+          //await updatePaymentSuccess(order_id, email);
           alert(JSON.stringify(data1));
         },
         prefill: {
@@ -88,7 +50,7 @@ async function displayRazorpay(email, name, mobilenumber, amount1, item) {
           contact: mobilenumber,
         },
         theme: {
-          color: "#184029",
+          color: "#2563eb",
         },
       };
 

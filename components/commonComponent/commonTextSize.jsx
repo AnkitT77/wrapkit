@@ -1,9 +1,10 @@
-export function Paragraph({ extra, height, children }) {
+export function Paragraph({ extra,size, height, children }) {
   const extratext = extra || "";
+  const textsize = size || "text-lg md:text-[19px]"
   return (
     <p
       style={{ lineHeight: 1.6 }}
-      className={`${extratext} text-lg md:text-[19px]  text-zinc-700 `}
+      className={`${extratext}  ${textsize} text-zinc-700 `}
     >
       {children}
     </p>

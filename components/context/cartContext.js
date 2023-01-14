@@ -1,4 +1,4 @@
-import React, {createContext, useEffect, useReducer, useState} from "react";
+import React, {createContext, useReducer} from "react";
 import {cartReducer, itemCountHandle} from "./cartReducer";
 
 export const CartContext = createContext();
@@ -19,13 +19,6 @@ initialValue = {cartItem:storage,checkout:false,...itemCountHandle(storage)};
 
 const CartContextProvider = ({children}) => {
     const [state, dispatch] = useReducer(cartReducer,initialValue);
-    // const [itemcount,setitemcount] = useState({count:0});
-
-
-
-// useEffect(()=> {
-//     setitemcount({count:state.itemCount});
-// },[state])
 
 
     const addtocart =(payload) => {
@@ -40,6 +33,7 @@ const CartContextProvider = ({children}) => {
     const decrease =(payload) => {
         dispatch({type:"DECREASE",payload});
     }
+
 
     const contextValues = {
         addtocart,

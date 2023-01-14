@@ -3,7 +3,6 @@ import {
   Heading,
   Paragraph,
 } from "../../components/commonComponent/commonTextSize";
-import AnimatedMulti from "../../components/commonComponent/reactSelect";
 import { Loader2 } from "../../components/loader";
 import { Product } from "../../components/product/productcard";
 import Trail from "../../components/react-spring/trailanimation";
@@ -13,72 +12,36 @@ import { color, ProductBackground } from "../../components/utils/feture";
 export default function ClayGanesha() {
   const [loader, setloader] = useState(true);
   const [product, setproducts] = useState([]);
-  const [allproducts, setallproducts] = useState();
+  // const [allproducts, setallproducts] = useState();
 
   useEffect(() => {
     fetchProcucts();
   }, []);
 
   const fetchProcucts = async () => {
-    const { data, error } = await supabase.from("products").select("*");
+    const { data, error } = await supabase.from("charger").select("*");
     // .order("id", { isActive: true });
     setproducts(data);
-    setallproducts(data);
+    // setallproducts(data);
     setloader(false);
     return data;
   };
 
-  const handlefilter = (e, o) => {
-    // console.log(e.length === 0 && o !== "latest")
-    if (e.length === 0) {
-      setproducts(allproducts);
-    }
-        // else if (e.length === 0 && o !== "latest") {
-        //   if (o === "high") {
-        //     const hight = allproducts.sort((a, b) => parseInt(b?.price) - parseInt(a?.price));
-        //     setproducts(hight);
-        //   }
-        //   else if (o === "low") {
-        //     const low = allproducts.sort((a, b) => parseInt(a?.price) - parseInt(b?.price));
-        //     setproducts(low);
-        //   }
-    // }
-    else {
-      const arr = allproducts.filter((item, i) => {
-        return e.indexOf(item?.inch) > -1;
-      });
-      // if (o === "high") {
-      //   arr.sort((a, b) => parseInt(b?.price) - parseInt(a?.price));
-      //   setproducts(arr);
-      // }
-      // else if (o === "low") {
-      //   arr.sort((a, b) => parseInt(a?.price) - parseInt(b?.price));
-      //   setproducts(arr);
-      // }
-      // else {
-      setproducts(arr);
-      // }
-    }
-  };
-
   return (
       <div className="pb-24">
-        <div className="bg-gradient-to-b from-indigo-50/70 to-violet-100/70 pt-[130px] md:pt-[150px] pb-[60px] md:pb-[80px] flex items-center justify-start w-full">
+        <div className=" overlay md:h-[350px] h-[250px] flex items-center justify-start w-full">
           <div className="max-w-7xl w-full mx-auto">
             <div className="flex flex-col gap-5 max-w-4xl text-center mx-auto px-5">
-              <Heading size="md:text-[50px] text-[40px]">
+              <Heading size="md:text-[50px] text-[30px] sm:text-[40px]">
                 CHARGER SKINS
-
               </Heading>
-              <Paragraph extra="max-w-2xl mx-auto">
+              <Paragraph size="md:text-lg " extra="max-w-2xl mx-auto">
                 We have a variety of classic designs and materials to choose from. So go ahead and decorate your charger with one of our cool printed mobile charger wraps.
-
               </Paragraph>
             </div>
           </div>
         </div>
 
-        {/*<AnimatedMulti passheight={handlefilter} />*/}
         {loader ? (
             <Loader2 />
         ) : (
@@ -87,7 +50,7 @@ export default function ClayGanesha() {
                 {product.map((item, i) => (
                     <Product
                         key={i}
-                        category="tablet"
+                        category="charger"
                         color={ProductBackground(color, i)}
                         url={item?.url}
                         data={item}

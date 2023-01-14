@@ -12,6 +12,8 @@ export default function Mobilemenu({ active, passclose }) {
         setCollapseMenu(e.currentTarget.title)
       }
   }
+
+
   return (
       <>
         {active &&
@@ -75,21 +77,21 @@ export default function Mobilemenu({ active, passclose }) {
              <ul className="text-zinc-800 text-[17px] px-5">
                <li className="py-2 hover:text-indigo-500 duration-100 ease-in  cursor-pointer">
                  <Link href="/phone">
-                   <a>
+                   <a onClick={()=> passclose(false)}>
                     Mobile Phone
                    </a>
                  </Link>
                </li>
                <li className="py-2 hover:text-indigo-500 duration-100 ease-in  cursor-pointer">
-                 <Link href="/tablet">
-                   <a>
-                     Tablet
+                 <Link href="/charger">
+                   <a onClick={()=> passclose(false)}>
+                     charger
                    </a>
                  </Link>
                </li>
                <li className="py-2 hover:text-indigo-500 duration-100 ease-in  cursor-pointer">
                  <Link href="/laptop">
-                   <a>
+                   <a onClick={()=> passclose(false)}>
                      Laptop
                    </a>
                  </Link>
@@ -127,23 +129,37 @@ export default function Mobilemenu({ active, passclose }) {
              {collapseMenu == "theme" &&
              <ul className="px-5 text-[17px]">
                <li className="py-2 hover:text-indigo-500 duration-100 ease-in  cursor-pointer">
-                 <Link href="/">
-                   <a>
+                 <Link href="/phone">
+                   <a onClick={()=> passclose(false)}>
                      Dark
                    </a>
                  </Link>
                </li>
                <li className="py-2 hover:text-indigo-500 duration-100 ease-in  cursor-pointer">
-                 <Link href="/">
-                   <a>
-                     Into The Wood
+                 <Link href="/phone">
+                   <a onClick={()=> passclose(false)}>
+                     Abstract
                    </a>
                  </Link>
                </li>
                <li className="py-2 hover:text-indigo-500 duration-100 ease-in  cursor-pointer">
-                 <Link href="/">
+                 <Link href="/phone">
+                   <a onClick={()=> passclose(false)}>
+                     Tropical Flowers
+                   </a>
+                 </Link>
+               </li>
+               <li className="py-2 hover:text-indigo-500 duration-100 ease-in  cursor-pointer">
+                 <Link href="/phone">
                    <a>
-                     The Ripple
+                     Cartoons
+                   </a>
+                 </Link>
+               </li>
+               <li className="py-2 hover:text-indigo-500 duration-100 ease-in  cursor-pointer">
+                 <Link href="/phone">
+                   <a onClick={()=> passclose(false)}>
+                     Bright Colors
                    </a>
                  </Link>
                </li>
@@ -152,7 +168,7 @@ export default function Mobilemenu({ active, passclose }) {
              </li>
 
         <li className="py-3">
-          <Link passHref href="/">
+          <Link passHref href="/contact">
           <h6 className='text-xl hover:text-indigo-500 duration-100 ease-in cursor-pointer  font-semibold'>
             Contact
           </h6>
@@ -164,7 +180,7 @@ export default function Mobilemenu({ active, passclose }) {
               Follow us on :
             </h6>
             <div className="flex mt-4 items-center justify-start gap-x-5 w-full">
-              <Link href="https://api.whatsapp.com/send?phone=8591386693">
+              <Link href="https://api.whatsapp.com/send?phone=918591386693">
                 <a className="">
                   <div className="bg-green-500  rounded-full w-10 h-10 flex justify-center items-center   duration-200">
                     <svg

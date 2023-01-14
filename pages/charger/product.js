@@ -24,7 +24,7 @@ export default function ClayGaneshaSlug() {
   const [product, setproducts] = useState(null);
   const { addtocart, increase, decrease, cartItem } = useCart();
   const [device,setdevice] = useState({
-    model:"laptop",
+    model:"",
     version:"",
     type:""
   });
@@ -37,7 +37,7 @@ export default function ClayGaneshaSlug() {
 
   const fetchGanesha = async (id) => {
     const { data, error } = await supabase
-        .from("laptop")
+        .from("charger")
         .select("*")
         .eq("url", id)
         .single();
@@ -134,9 +134,9 @@ export default function ClayGaneshaSlug() {
                         <a className="hover:text-green-700 text-zinc-800">Home</a>
                       </Link>
                       /
-                      <Link href="/laptop">
+                      <Link href="/charger">
                         <a className="hover:text-green-700 text-zinc-800">
-                          laptop
+                          charger
                         </a>
                       </Link>
                       /
@@ -263,7 +263,7 @@ export default function ClayGaneshaSlug() {
                               <a
                                   target="_blank"
                                   rel="noreferrer"
-                                  href={`https://wa.me/918591386693/?text=Hii, Wrapkit, %0a %0a I want to order this ${product?.name} %0a  https://wrapkit.in/laptop/product?q=${product?.url}`}
+                                  href={`https://wa.me/918591386693/?text=Hii, Wrapkit, %0a %0a I want to order this ${product?.name} %0a  https://wrapkit.in/charger/product?q=${product?.url}`}
                                   className="text-base rounded-full hover:scale-[1.05] transform transition duration-200 ease-in bg-green-600 uppercase text-white font-semibold hover:bg-green-700 flex gap-3 justify-center items-center  px-4 py-3  w-full"
                               >
                             <span>

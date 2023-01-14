@@ -1,13 +1,22 @@
 import React from "react";
-import Mobilemenu from "../components/navbar/mobilemenu";
+import Popupcart from "../components/product/popupcart";
+import useCart from "../components/context/cartHooks";
 
 const App = () => {
+
+    const {cartItem} = useCart();
+
+    console.log(cartItem)
+
 
 
   return (
     <div className="">
- <Mobilemenu/>
-    </div>
+        <Popupcart
+            qty={1}
+            data={""}
+            passclose={()=> ""}
+        />    </div>
   );
 };
 

@@ -30,18 +30,19 @@ export default function Contact() {
       (formValue.name !== "" && formValue.message !== "") ||
       formValue.email !== ""
     ) {
-      fetch(
-        "https://5yab4wx3hj.execute-api.ap-south-1.amazonaws.com/default/e-educationContact",
-        {
-          method: "post",
-          // headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formValue),
-        }
-      ).then((res) => {
-        console.log(res.json());
-        // notify();
-        // setformValue(initialvalue);
-      });
+      notify();
+      // fetch(
+      //   "https://5yab4wx3hj.execute-api.ap-south-1.amazonaws.com/default/e-educationContact",
+      //   {
+      //     method: "post",
+      //     // headers: { "Content-Type": "application/json" },
+      //     body: JSON.stringify(formValue),
+      //   }
+      // ).then((res) => {
+      //   console.log(res.json());
+      //   // notify();
+      //   // setformValue(initialvalue);
+      // });
     } else {
       seterror("All detailed must be filed");
     }
@@ -54,124 +55,70 @@ export default function Contact() {
 
   return (
     <>
-
-
-<div className="mt-[100px] lg:hidden ">
-
-
-<Image
-
-src="/try/group.jpg"
-width={1200}
-height={600}
-className=" "
-
-/>
-
-</div>
-
-
-
-
-
-     
       <div className="  ">
-        <div className="    mt-0  ">
-          <h4 className="max-w-7xl px-5 mx-auto md:text-4xl text-white font-cera_medium text-3xl">
-            Contact US 
-          </h4>
-        </div>
         <div className="md:px-0 md:pt-16 pb-24">
           <div className="  max-w-6xl w-full mx-auto">
-            <div className="flex px-10 md:flex-row  flex-col mb-12 divide-zinc-300  md:divide-x gap-x-16 max-w-4xl mx-auto items-start md:items-center">
-              <div className="md:max-w-xs w-full">
-                <span>#Contact</span>
-                <h2 className="mt-2 font-bold text-2xl">Get in touch with us</h2>
-              </div>
-              <p className=" w-full md:pl-14 py-3 text-lg leading-7">
-                Let us know what you want to know. Our representatives are here to help you  
-              </p>
-            </div>
             <div className="flex gap-10 md:gap-40 px-5 md:flex-row flex-col ">
-              <div className="bg-indigo-200 mt-10   p-5 md:p-3 max-w-lg w-full mx-auto rounded-[20px] shadow-lg">
+              <div className=" mt-10  border border-blue-800 p-5 md:p-3 max-w-lg w-full mx-auto rounded-[20px] shadow-lg">
                 <form
                   onSubmit={handleForm}
-                  className="flex rounded-xl flex-col md:bg-indigo-200  w-full gap-10 md:py-8 md:px-7"
+                  className="flex rounded-xl flex-col   w-full gap-5 md:py-8 md:px-7"
                 >
-                  <h4 className="font-cera_bold text-zinc-800 ">
-                    Ready to Get Started?
+                  <h4 className="font-bold md:text-2xl mb-2 text-xl text-zinc-800 ">
+                    Contact us
                   </h4>
-                  <div className="w-full relative   flex  gap-3 ">
-                  <label
-                      htmlFor="name"
-                      className="whitespace-nowrap max-w-[200px] text-center items-center justify-center mt-3 labelt dark:text-zinc-800 text-base"
-                    >
-                      Enter Your Name:
+                    <div className="flex flex-col ">
+                      <label htmlFor="name" className="mb-2 text-zinc-700 font-semibold">
+                        Name{' '}
+                      </label>
+                      <input
+                          id="name"
+                          type="name"
+                          onChange={handleInput}
+                          value={formValue.name}
+                          name="name"
+                          placeholder="Kevin"
+                          className={`border-gray-300 border rounded focus:border-blue-300 focus:ring-2 focus:ring-blue-100  outline-none w-full  p-2.5`}
+                      />
+                    </div>
+                  <div className="flex flex-col ">
+                    <label htmlFor="name" className="mb-2 text-zinc-700 font-semibold">
+                      Email Address{' '}
                     </label>
                     <input
-                      type="text"
-                      value={formValue.name}
-                      onChange={handleInput}
-                      id="name"
-                      name="name"
-                      className={`w-full min-w-[200px] bg-zinc-100  items-center justify-center  text-zinc-800  border-lg ${
-                        formError.name && formValue.name === ""
-                          ? "border-green-500"
-                          : "border-gren-800"
-                      } focus:border-green-700  pt-3 pb-2   `}
-                      placeholder=" "
+                        id="email"
+                        type="email"
+                        onChange={handleInput}
+                        value={formValue.email}
+                        name="email"
+                        placeholder="name@address.com"
+                        className={`border-gray-300 border rounded focus:border-blue-300 focus:ring-2 focus:ring-blue-100  outline-none w-full  p-2.5`}
                     />
-                    
                   </div>
-                  <div className="w-full flex relative  gap-3  ">
-                  <label
-                      htmlFor="email"
-                      className="whitespace-nowrap max-w-[200px] mt-3 labelt dark:text-zinc-800 text-base"
+                  <div className="flex flex-col ">
+                    <label
+                        htmlFor="message"
+                        className="text-zinc-700 mb-2   font-semibold "
                     >
-                      Email Address:
+                      Message
                     </label>
-                    <input
-                      type="text"
-                      value={formValue.email}
-                      onChange={handleInput}
-                      id="email"
-                      name="email"
-                      className={`w-full min-w-[200px]  items-center justify-center  text-zinc-800  border-lg ${
-                        formError.name && formValue.name === ""
-                          ? "border-green-500"
-                          : "border-green-500"
-                      } focus:border-green-700 pt-3 pb-2   `}
-                      placeholder=" "
-                    />
-                   
-                  </div>
-                  <div className="w-full min-w-[200px] flex relative  gap-3  ">
-                  <label
-                      htmlFor="message"
-                      className="whitespace-nowrap max-w-[200px] labelt dark:text-zinc-800 text-base"
-                    >
-                      Message:
-                    </label>
-                    <textarea
-                      value={formValue.message}
-                      onChange={handleInput}
-                      id="message"
-                      name="message"
-                      className={`w-full min-w-[200px]  items-center justify-center  h-[120px] st text-zinc-800 border-lg ${
-                        formError.name && formValue.name === ""
-                          ? "border-green-500"
-                          : "border-greenc-500"
-                      } focus:border-green-700  outline-none  pt-3 pb-2    `}
-                      placeholder=" "
-                    />
-                   
+                    <div className="w-full ">
+              <textarea
+                  id="message"
+                  placeholder="Write your message"
+                  onChange={handleInput}
+                  name="message"
+                  value={formValue.message}
+                  className={`border-gray-300 resize-y border focus:border-blue-300 outline-none focus:ring-2 focus:ring-blue-100  w-full rounded p-2.5 h-24`}
+              />
+                    </div>
                   </div>
                   {error !== null && (
                     <span className="py-2 px-6 text-red-500 border-red-500 font-semibold border-l-4 bg-red-50">
                       {error}
                     </span>
                   )}
-                  <button className="bg-green-900 px-10 py-2.5 transition duration-150  max-w-[200px] hover:bg-green-800 hover:scale-[1.05]  rounded-md font-cera_medium text-base text-white">
+                  <button className="bg-blue-500 px-10 py-2.5 transition duration-150  max-w-[200px] hover:bg-green-800 hover:scale-[1.05]  rounded-md font-semibold text-base text-white">
                     Send Enquiry
                   </button>
                 </form>
@@ -198,7 +145,7 @@ className=" "
                     Address
                   </h5>
                   <p className="mt-1 max-w-xs ml-10 group-hover:text-white md:text-lg">
-                   No 3 ,Patel Bhaugh ,Marve Road , Malad West , Mumbai -400064 .
+                    Vidhya Nagari, Kalina Air India, Santacruz East, Mumbai - 400055
                   </p>
                 </div>
 
@@ -222,7 +169,7 @@ className=" "
                     href="mailto:gogreenganeshaa@gmail.com"
                     className="mt-1 ml-10 group-hover:text-white md:text-lg"
                   >
-                   gogreenganeshaa@gmail.com
+                   wrapkit.in@gmail.com
                   </a>
                 </div>
 
@@ -243,12 +190,8 @@ className=" "
                     Phone{" "}
                   </h5>
                   <p className="mt-1 ml-10 group-hover:text-white md:text-lg">
-                    Mobile: +91 8169882692
+                    Mobile: +91 8591386693
                   </p>
-
-
-
-                
 
                 </div>
 
@@ -258,9 +201,9 @@ className=" "
 
                 <div className="flex w-full flex-col gap-5">
                   <h6>Follow Us</h6>
-                  <div className="flex gap-5 ">
+                  <div className="flex items-center gap-5 ">
                     <a
-                      href="https://www.facebook.com/drashti.mehta.94"
+                      href="#"
                       className="p-3 group hover:bg-indigo-200 bg-indigo-600 rounded-md"
                     >
                       <svg
@@ -273,42 +216,26 @@ className=" "
                         <path d="M40.43,21.739h-7.645v-5.014c0-1.883,1.248-2.322,2.127-2.322c0.877,0,5.395,0,5.395,0V6.125l-7.43-0.029  c-8.248,0-10.125,6.174-10.125,10.125v5.518h-4.77v8.53h4.77c0,10.947,0,24.137,0,24.137h10.033c0,0,0-13.32,0-24.137h6.77  L40.43,21.739z" />
                       </svg>
                     </a>
-                    <a
-                      href="/"
-                      className=" p-3 group hover:bg-white bg-gray-500 rounded-md"
-                    >
-                      <svg
-                        className="fill-red-500 group-hover:fill-black fill-gray-100 w-6 h-7"
-                        viewBox="0 0 48 48"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <title />
-                        <g data-name="8-Email" id="_8-Email">
-                          <path d="M45,7H3a3,3,0,0,0-3,3V38a3,3,0,0,0,3,3H45a3,3,0,0,0,3-3V10A3,3,0,0,0,45,7Zm-.64,2L24,24.74,3.64,9ZM2,37.59V10.26L17.41,22.17ZM3.41,39,19,23.41l4.38,3.39a1,1,0,0,0,1.22,0L29,23.41,44.59,39ZM46,37.59,30.59,22.17,46,10.26Z" />
-                        </g>
-                      </svg>
-                    </a>
-
 
                     <a
-                      href="https://www.instagram.com/gogreenganesha/"
+                      href="https://www.instagram.com/wrapkit.in/?igshid=OGQ2MjdiOTE%3D"
                       className="p-3 group hover:bg-red-200 bg-red-600 rounded-mdhover:bg-red-200 bg-red-600 rounded-md"
                     >
 <Image
 											src="/imgs/insta.svg"
-											width={25}
-											height={25}
+											width={20}
+											height={20}
 											className="cursor-pointer items-center text-center justify-center "
 										></Image>
 
 
                       </a>
                     <a
-                      href="https://wa.me/918169882692"
+                      href="https://wa.me/918591386693"
                       className=" p-3 group hover:bg-green-200 bg-green-600 rounded-md"
                     >
                       <svg
-                        className="fill-green-500 group-hover:fill-white fill-white w-6 h-6 "
+                        className="fill-white group-hover:fill-white fill-white w-6 h-6 "
                         id="Layer_1"
                         version="1.1"
                         viewBox="0 0 56.693 56.693"

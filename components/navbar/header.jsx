@@ -4,11 +4,13 @@ import { useRouter } from "next/router";
 import React, {useEffect, useState} from "react";
 import useCart from "../context/cartHooks";
 import Mobilemenu from "./mobilemenu";
+import DesktopMenu, {DesktopTheme} from "./desktopMenuContent";
 
 export default function TopNav() {
     const [diaplsymenu, setdisplaymenu] = useState(false);
     const { itemCount } = useCart();
     const [cartitem, setcartitem] = useState(0);
+    const [active, setactive] = useState('')
 
 
     useEffect(() => {
@@ -27,8 +29,6 @@ export default function TopNav() {
         }
         }
 
-        console.log(diaplsymenu);
-
     const router = useRouter();
     return (
         <>
@@ -38,7 +38,7 @@ export default function TopNav() {
             <div
                 className={` shadow bg-white sticky top-0 z-30 w-full`}
             >
-                <div className="max-w-7xl w-full bg-white py-1.5 gap-10 mx-auto px-5 text-zinc-800 flex justify-between items-center ">
+                <div className="max-w-7xl w-full bg-white  gap-10 mx-auto px-5 text-zinc-800 flex justify-between items-center ">
                     <div className="flex gap-3 items-center">
                         <button onClick={()=> hanlemenu(true)} className='md:hidden block'>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-7 h-7">
@@ -59,15 +59,20 @@ export default function TopNav() {
                     </div>
                     </div>
                     <ul
-                        className={`text-zinc-800 md:flex  hidden max-w-max w-full gap-x-4 gap-y-2`}
+                        className={`text-zinc-800 md:flex items-center hidden max-w-max w-full gap-x-4 gap-y-2`}
                     >
-                        <li className="relative group py-1">
-                            <button>
-                <span className="  py-1 px-5 font-semibold rounded-full text-lg flex gap-1 items-center transition-colors duration-150 cursor-pointer ease-linear">
+                        <li
+                            onMouseEnter={() => setactive('select_device')}
+                            onMouseLeave={() => {
+                                setactive('')
+                            }}
+                            className="py-4">
+
+                <span className="py-1  px-5 font-semibold rounded-full text-lg flex gap-1 items-center transition-colors duration-150 cursor-pointer ease-linear">
                     Select Devices
                   <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5 transform group-hover:rotate-180 duration-150 ease-in"
+                      className={`h-5 w-5  ${active === 'select_device' ? "group-hover:rotate-180 duration-150 ease-in transform" : ""}  `}
                       viewBox="0 0 20 20"
                       fill="currentColor"
                   >
@@ -78,45 +83,59 @@ export default function TopNav() {
                     />
                   </svg>
                 </span>
-                            </button>
-                            <ul className="tooltiparrow shadow-xl text-zinc-800 group-hover:opacity-100 group-hover:visible invisible opacity-0  absolute z-10 w-[220px] top-full left-0 bg-white rounded-xl p-4">
-                                <li className="py-2 hover:text-indigo-500 cursor-pointer">
-                                    <Link href="/phone">
-                                        <a className="hover:text-indigo-500 font-semibold rounded-full px-3 text-lg cursor-pointer">
-                                            Phone
-                                        </a>
-                                    </Link>
-                                </li>
-                                <li className="py-2 hover:text-indigo-500 cursor-pointer">
-                                    <Link href="/tablet">
-                                        <a className="hover:text-indigo-500 font-semibold rounded-full px-3 text-lg cursor-pointer">
-                                            Tablet
-                                        </a>
-                                    </Link>
-                                </li>
-                                <li className="py-2 hover:text-indigo-500 cursor-pointer">
-                                    <Link href="/laptop">
-                                        <a className="hover:text-indigo-500 font-semibold rounded-full px-3 text-lg cursor-pointer">
-                                            Laptop
-                                        </a>
-                                    </Link>
-                                </li>
-                                <li className="py-2 hover:text-indigo-500 cursor-pointer">
-                                    <Link href="/all-products">
-                                        <a className="hover:text-indigo-500 font-semibold rounded-full px-3 text-lg cursor-pointer">
-                                            All Products
-                                        </a>
-                                    </Link>
-                                </li>
-                            </ul>
+                            <div
+                                className={`top-[67px]  transition-transform duration-[200ms] ease-in border-t border-zinc-200/70 z-10 bg-white absolute shadow-md shadow-gray-300/20 left-0  w-full ${
+                                    active === 'select_device'
+                                        ? 'opacity-100 visible translate-y-0'
+                                        : 'opacity-0 invisible -translate-y-[1.5px]'
+                                }`}
+                            >
+                                <DesktopMenu/>
+                            </div>
+
+
+                            {/*<ul className="tooltiparrow shadow-xl text-zinc-800 group-hover:opacity-100 group-hover:visible invisible opacity-0  absolute z-10 w-[220px] top-full left-0 bg-white rounded-xl p-4">*/}
+                            {/*    <li className="py-2 hover:text-indigo-500 cursor-pointer">*/}
+                            {/*        <Link href="/charger">*/}
+                            {/*            <a className="hover:text-indigo-500 font-semibold rounded-full px-3 text-lg cursor-pointer">*/}
+                            {/*                Phone*/}
+                            {/*            </a>*/}
+                            {/*        </Link>*/}
+                            {/*    </li>*/}
+                            {/*    <li className="py-2 hover:text-indigo-500 cursor-pointer">*/}
+                            {/*        <Link href="/phone">*/}
+                            {/*            <a className="hover:text-indigo-500 font-semibold rounded-full px-3 text-lg cursor-pointer">*/}
+                            {/*                Tablet*/}
+                            {/*            </a>*/}
+                            {/*        </Link>*/}
+                            {/*    </li>*/}
+                            {/*    <li className="py-2 hover:text-indigo-500 cursor-pointer">*/}
+                            {/*        <Link href="/laptop">*/}
+                            {/*            <a className="hover:text-indigo-500 font-semibold rounded-full px-3 text-lg cursor-pointer">*/}
+                            {/*                Laptop*/}
+                            {/*            </a>*/}
+                            {/*        </Link>*/}
+                            {/*    </li>*/}
+                            {/*    <li className="py-2 hover:text-indigo-500 cursor-pointer">*/}
+                            {/*        <Link href="/all-products">*/}
+                            {/*            <a className="hover:text-indigo-500 font-semibold rounded-full px-3 text-lg cursor-pointer">*/}
+                            {/*                All Products*/}
+                            {/*            </a>*/}
+                            {/*        </Link>*/}
+                            {/*    </li>*/}
+                            {/*</ul>*/}
                         </li>
-                        <li className="relative group py-1">
-                            <button onClick={() => router.push("/")}>
+                        <li
+                            onMouseEnter={() => setactive('select_theme')}
+                            onMouseLeave={() => {
+                                setactive('')
+                            }}
+                            className="py-4">
                 <span className="  py-1 px-5 font-semibold rounded-full text-lg flex gap-1 items-center transition-colors duration-150 cursor-pointer ease-linear">
                     Themes
                   <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5 transform group-hover:rotate-180 duration-150 ease-in"
+                      className={`h-5 w-5 transform ${active === 'select_theme' ? "group-hover:rotate-180" : ""}  duration-150 ease-in`}
                       viewBox="0 0 20 20"
                       fill="currentColor"
                   >
@@ -127,34 +146,42 @@ export default function TopNav() {
                     />
                   </svg>
                 </span>
-                            </button>
-                            <ul className="tooltiparrow shadow-xl text-zinc-800 group-hover:opacity-100 group-hover:visible invisible opacity-0  absolute z-10 w-[220px] top-full left-0 bg-white rounded-xl p-4">
-                                <li className="py-2 hover:text-indigo-500 cursor-pointer">
-                                    <Link href="/">
-                                        <a className="hover:text-indigo-500 font-semibold rounded-full px-3 text-lg cursor-pointer">
-                                            Dark
-                                        </a>
-                                    </Link>
-                                </li>
-                                <li className="py-2 hover:text-indigo-500 cursor-pointer">
-                                    <Link href="/">
-                                        <a className="hover:text-indigo-500 font-semibold rounded-full px-3 text-lg cursor-pointer">
-                                            Into The Wood
-                                        </a>
-                                    </Link>
-                                </li>
-                                <li className="py-2 hover:text-indigo-500 cursor-pointer">
-                                    <Link href="/">
-                                        <a className="hover:text-indigo-500 font-semibold rounded-full px-3 text-lg cursor-pointer">
-                                            The Ripple
-                                        </a>
-                                    </Link>
-                                </li>
-                            </ul>
+                            <div
+                                className={`top-[67px]  transition-transform duration-[200ms] ease-in border-t border-zinc-200/70 z-10 bg-white absolute shadow-md shadow-gray-300/20 left-0  w-full ${
+                                    active === 'select_theme'
+                                        ? 'opacity-100 visible translate-y-0'
+                                        : 'opacity-0 invisible -translate-y-[1.5px]'
+                                }`}
+                            >
+                                <DesktopTheme/>
+                            </div>
+                            {/*<ul className="tooltiparrow shadow-xl text-zinc-800 group-hover:opacity-100 group-hover:visible invisible opacity-0  absolute z-10 w-[220px] top-full left-0 bg-white rounded-xl p-4">*/}
+                            {/*    <li className="py-2 hover:text-indigo-500 cursor-pointer">*/}
+                            {/*        <Link href="/">*/}
+                            {/*            <a className="hover:text-indigo-500 font-semibold rounded-full px-3 text-lg cursor-pointer">*/}
+                            {/*                Dark*/}
+                            {/*            </a>*/}
+                            {/*        </Link>*/}
+                            {/*    </li>*/}
+                            {/*    <li className="py-2 hover:text-indigo-500 cursor-pointer">*/}
+                            {/*        <Link href="/">*/}
+                            {/*            <a className="hover:text-indigo-500 font-semibold rounded-full px-3 text-lg cursor-pointer">*/}
+                            {/*                Into The Wood*/}
+                            {/*            </a>*/}
+                            {/*        </Link>*/}
+                            {/*    </li>*/}
+                            {/*    <li className="py-2 hover:text-indigo-500 cursor-pointer">*/}
+                            {/*        <Link href="/">*/}
+                            {/*            <a className="hover:text-indigo-500 font-semibold rounded-full px-3 text-lg cursor-pointer">*/}
+                            {/*                The Ripple*/}
+                            {/*            </a>*/}
+                            {/*        </Link>*/}
+                            {/*    </li>*/}
+                            {/*</ul>*/}
                         </li>
 
-                        <li className="py-2">
-                            <Link href="/">
+                        <li className="py-4">
+                            <Link href="/contact">
                                 <a className="hover:text-indigo-500 font-semibold rounded-full hover:shadow-lg hover:bg-white py-1 px-5 text-lg cursor-pointer">
                                     Contact
                                 </a>

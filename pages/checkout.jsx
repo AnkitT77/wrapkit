@@ -9,7 +9,6 @@ import { supabase } from "../components/supabase/supabase";
 import displayRazorpay from "../components/paymentbutton/razorpay";
 import CartContextProvider from "../components/context/cartContext";
 import { FormatingCurrency } from "../components/utils/feture";
-import Model from "../components/popup";
 const country = require("../components/jsondata/country.json");
 
 export default function Checkout(props) {
@@ -104,9 +103,8 @@ const [popup,setpopup] = useState(true);
     }
     if (Object.keys(validate(inputvalue)).length === 0) {
       setloader2(true);
-      setpopup(true)
       //await updatedatabase();
-      //await displayRazorpay(inputvalue.email, inputvalue.firstname + " " + inputvalue.lastname, inputvalue.user_mobile_number, Toalvalue().totalvalue, item);
+      await displayRazorpay(inputvalue.email, inputvalue.firstname + " " + inputvalue.lastname, inputvalue.user_mobile_number, Toalvalue().totalvalue, item);
     } else {
       setFormErrors(validate(inputvalue));
     }
@@ -168,16 +166,16 @@ const [popup,setpopup] = useState(true);
 
   return (
     <>
-      {popup &&
-<Model active={popup} closepopup={()=> setpopup(false)}/>
-      }
+{/*      {popup &&*/}
+{/*<Model active={popup} closepopup={()=> setpopup(false)}/>*/}
+{/*      }*/}
 
       {loader ?
         <Loader2 />
         :
         <div className=" bg-[#f9f8f8]">
           <div className="flex  w-full  items-start lg:flex-row flex-col">
-            <div className="flex flex-col px-5  lg:w-3/5 2xl:w-full border-zinc-300 border-r pb-24 pt-6 lg:pt-10 w-full bg-white h-full w-full   gap-5">
+            <div className="flex flex-col px-5  lg:w-3/5 2xl:w-full border-zinc-300 border-r pb-24 pt-6  w-full bg-white h-full w-full   gap-5">
               <div className="max-w-lg w-full mx-auto 2xl:ml-auto 2xl:mr-[200px] flex flex-col gap-5">
                 <div>
                   <div className={` md:pt-10`}>
@@ -210,7 +208,7 @@ const [popup,setpopup] = useState(true);
                         onChange={handleinput}
                         name="email"
                         className={`${formErrors.email ? "border-red-400" : "border-zinc-500"
-                          }  focus:border-green-600 st text-[15px] focus:ring-1 focus:ring-green-600  h-[50px] text-base border  rounded  text-zinc-800 px-3 pt-2.5 outline-none`}
+                          }  focus:ring-2 focus:ring-blue-200 focus:border-blue-600 st text-[15px]   h-[50px] text-base border  rounded  text-zinc-800 px-3 pt-2.5 outline-none`}
                       />
                       <label
                         htmlFor="email"
@@ -235,7 +233,7 @@ const [popup,setpopup] = useState(true);
                           className={`${formErrors.user_mobile_number
                               ? "border-red-400"
                               : "border-zinc-500"
-                          }  focus:border-green-600 st text-[15px] focus:ring-1 focus:ring-green-600  h-[50px] text-base border  rounded  text-zinc-800 px-3 pt-2.5 outline-none`}
+                          }  focus:ring-2 focus:ring-blue-200 focus:border-blue-600 st text-[15px]  h-[50px] text-base border  rounded  text-zinc-800 px-3 pt-2.5 outline-none`}
                       />
                       <label
                           htmlFor="number"
@@ -270,7 +268,7 @@ const [popup,setpopup] = useState(true);
                             className={`${formErrors.lastname
                               ? "border-red-400"
                               : "border-zinc-500"
-                              }  focus:border-green-600 st text-[15px] focus:ring-1 focus:ring-green-600  h-[50px] text-base border  rounded  text-zinc-800 px-3 pt-2.5 outline-none`}
+                              }  focus:ring-2 focus:ring-blue-200 focus:border-blue-600 st text-[15px]   h-[50px] text-base border  rounded  text-zinc-800 px-3 pt-2.5 outline-none`}
                           />
                           <label
                             htmlFor="fname"
@@ -294,7 +292,7 @@ const [popup,setpopup] = useState(true);
                             className={`${formErrors.lastname
                               ? "border-red-400"
                               : "border-zinc-500"
-                              }  focus:border-green-600 text-[15px] st focus:ring-1 focus:ring-green-600  h-[50px] text-base border  rounded  text-zinc-800 px-3 pt-2.5 outline-none`}
+                              }  text-[15px] st focus:ring-2 focus:ring-blue-200 focus:border-blue-600  h-[50px] text-base border  rounded  text-zinc-800 px-3 pt-2.5 outline-none`}
                           />
                           <label
                             htmlFor="lname"
@@ -309,7 +307,7 @@ const [popup,setpopup] = useState(true);
                             onChange={handleselect}
                             name="user_country"
                             defaultValue={inputvalue.user_country}
-                            className="w-full h-[50px]   p-2  !border-zinc-500 rounded  text-zinc-800 border  focus:border-green-600 focus:ring-1 focus:ring-green-600  focus:outline-none"
+                            className="w-full h-[50px] bg-white  p-2  !border-zinc-500 rounded  text-zinc-800 border  focus:ring-2 focus:ring-blue-200 focus:border-blue-600  focus:outline-none"
                         >
                           {country.map((item, i) => (
                               <option value={item.country_name} key={i}>
@@ -335,7 +333,7 @@ const [popup,setpopup] = useState(true);
                               className={`${formErrors.user_address_line_1
                                 ? "border-red-400"
                                 : "border-zinc-500"
-                                }  focus:border-green-600 st text-[15px] h-[50px] focus:ring-1 focus:ring-green-600  border w-full rounded  text-zinc-800 p-2 outline-none`}
+                                }  focus:ring-2 focus:ring-blue-200 focus:border-blue-600 st text-[15px] h-[50px]   border w-full rounded  text-zinc-800 p-2 outline-none`}
                             />
                             <label
                               htmlFor="address2"
@@ -358,7 +356,7 @@ const [popup,setpopup] = useState(true);
                               className={`${formErrors.user_address_line_2
                                 ? "border-red-400"
                                 : "border-zinc-500"
-                                }  focus:border-green-600 st text-[15px] focus:ring-1 focus:ring-green-600  h-[50px] text-base border  rounded  text-zinc-800 px-3 pt-2.5 outline-none w-full`}
+                                }  focus:ring-2 focus:ring-blue-200 focus:border-blue-600 st text-[15px]  h-[50px] text-base border  rounded  text-zinc-800 px-3 pt-2.5 outline-none w-full`}
                             />
                             <label
                               htmlFor="address2"
@@ -384,7 +382,7 @@ const [popup,setpopup] = useState(true);
                             className={`${formErrors.user_city
                               ? "border-red-400"
                               : "border-zinc-500"
-                              }  focus:border-green-600 st text-[15px] focus:ring-1 focus:ring-green-600  h-[50px] text-base border  rounded  text-zinc-800 px-3 pt-2.5 outline-none`}
+                              } focus:ring-2 focus:ring-blue-200 focus:border-blue-600 st text-[15px]   h-[50px] text-base border  rounded  text-zinc-800 px-3 pt-2.5 outline-none`}
                           />
                           <label
                             htmlFor="city"
@@ -407,7 +405,7 @@ const [popup,setpopup] = useState(true);
                             className={`${formErrors.user_zipcode
                               ? "border-red-400"
                               : "border-zinc-500"
-                              }  focus:border-green-600 st text-[15px] focus:ring-1 focus:ring-green-600  h-[50px] text-base border  rounded  text-zinc-800 px-3 pt-2.5 outline-none`}
+                              }  focus:ring-2 focus:ring-blue-200 focus:border-blue-600 st text-[15px]   h-[50px] text-base border  rounded  text-zinc-800 px-3 pt-2.5 outline-none`}
                           />
                           <label
                             htmlFor="zip"
@@ -439,29 +437,42 @@ const [popup,setpopup] = useState(true);
                 </div>
               </div>
             </div>
-            <div className="w-full lg:border-t-none 2xl:w-full border-t md:border-transparent border-zinc-300  lg:w-2/5  pt-10 md:pt-10 pb-20 h-full">
+            <div className="w-full lg:border-t-none 2xl:w-full border-t md:border-transparent border-zinc-300  lg:w-2/5  pt-6 pb-20 h-full">
               <div className=" lg:max-w-md px-5 mx-auto flex flex-col gap-5 lg:gap-7 2xl:mr-auto 2xl:ml-[200px]">
-                <div className="flex max-h-[350px] overflow-y-scroll divide-y divide-slate-200 flex-col items-center border-b border-slate-200">
+                <div className="flex max-h-[350px] overflow-y-scroll flex-col items-center">
                   {item.map((data, i) => (
-                    <div key={i} className="flex  items-center py-3 justify-between w-full gap-5">
+                    <div key={i} className="flex  items-center py-3 justify-between w-full border-b border-zinc-300 gap-5">
                       <div className="min-w-[80px] p-1 bg-white rounded-md relative">
                         <Image src={data?.image[0]} width={50} height={50} layout="responsive" className="rounded-md" />
                       </div>
                       <div className="flex  justify-between w-full items-center">
-                        <div className=" flex gap-3 justify-between flex-col">
+                        <div className=" flex w-full gap-3 justify-between flex-col">
                         <h2 className="font-semibold capitalize md:text-[18px] leading-6 inline-block">
                           {data?.name}
                         </h2>
-                        <span>Qty : {data?.quantity}</span>
+                          <div className="text-[15px]">
+                            <p>
+                              Device: {data?.optionalData.type}
+                            </p>
+                            <p>
+                              Model: {data?.optionalData.model}
+                            </p>
+                            <p>
+                              Version: {data?.optionalData.version}
+                            </p>
+                          </div>
+                          <div className="flex  justify-between items-center gap-5 flex-row ">
+                            <span>Qty : {data?.quantity}</span>
+                            <h5 className="md:text-xl text-lg text-left font-semibold sm:mt-0 mt-2 sm:text-right">
+                              ₹{FormatingCurrency(data?.price)}
+                            </h5>
+                          </div>
                       </div>
-                      <h3 className="font-semibold md:text-xl text-lg">
-                      ₹ {FormatingCurrency(data?.price)}
-                      </h3>
                     </div>
                     </div>
                   ))}
                 </div>
-                <div className="flex flex-col gap-4">
+                <div className="flex mt-5 flex-col gap-4">
                   <div className="flex justify-between  md:text-lg text-zinc-800    gap-10">
                     Subtotal:{" "}
                     <span className="text-zinc-800 md:text-xl font-semibold text-lg font-cera_bold">
