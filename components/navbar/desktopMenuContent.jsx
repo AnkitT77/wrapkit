@@ -30,8 +30,8 @@ export default function DesktopMenu(){
         <div className="bg-white w-full py-10">
             <div className="w-full max-w-6xl mx-auto px-5 grid grid-cols-4 gap-7">
             {menu.map((item,i)=>(
-                <Link href={item.link} passHref>
-                    <div key={i} className={`bg-zinc-100/80 hover:border hover:border-blue-500 flex justify-between flex-col overflow-hidden cursor-pointer group w-full p-5 rounded ${style.card}`}>
+                <Link key={i} href={item.link} passHref>
+                    <div  className={`bg-zinc-100/80 hover:border hover:border-blue-500 flex justify-between flex-col overflow-hidden cursor-pointer group w-full p-5 rounded ${style.card}`}>
                     <div className="overflow-hidden">
                         <img src={item.img} className="w-full group-hover:scale-[1.05] duration-100 ease-in" />
                     </div>
@@ -88,8 +88,8 @@ export  function DesktopTheme(){
         <div className="bg-white w-full py-10">
             <div className="w-full max-w-7xl mx-auto px-5 grid grid-cols-5 gap-7">
                 {menu.map((item,i)=>(
-                    <Link href={item.link} passHref>
-                    <div key={i} className={`bg-zinc-50 hover:border hover:border-blue-500 flex justify-between flex-col overflow-hidden cursor-pointer group w-full p-5 rounded ${style.card}`}>
+                    <Link key={i} href={item.link} passHref>
+                    <div  className={`bg-zinc-50 hover:border hover:border-blue-500 flex justify-between flex-col overflow-hidden cursor-pointer group w-full p-5 rounded ${style.card}`}>
                         <div className="overflow-hidden">
                             <img src={item.img} className="w-full group-hover:scale-[1.05] duration-100 ease-in" />
                         </div>
