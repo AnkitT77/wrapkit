@@ -8,7 +8,7 @@ export default function Layout({ children }) {
   return (
     <>
       <TopNav/>
-      <div className="min-h-screen">{children}</div>
+      <div className="min-h-screen bg-[#FFF]">{children}</div>
       <What />
       <Footer/>
     </>

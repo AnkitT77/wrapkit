@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function Sectionthird() {
 	return (
-		<div className="py-14 bg-indigo-50 md:py-20" >
+		<div className="py-14 bg-[#E0E9FF] md:py-20" >
 				<div className="w-full flex flex-col flex-grow items-center text-center justify-center my-6">
 
 					<div className='flex flex-col text-center justify-center items-center'>
@@ -39,7 +39,7 @@ export default function Sectionthird() {
 						
 						<div className=" md:p-9 p-6  max-w-7xl mx-auto mt-10 mx-auto font-heading   grid grid-cols-1 gap-7     sm:grid-cols-2  lg:grid-cols-4 ">
 							<div
-								className="w-full bg-white group lg:md:p-9 p-6 hover:fill-white  items-center justify-center rounded-lg  hover:bg-blue-500 shadow-xl	transition duration-150 ease-out hover:ease-in p-8 hover:shadow-xl text-left"
+								className="w-full bg-white group lg:md:p-9 p-6 hover:fill-white  items-center justify-center rounded-lg  hover:bg-[#7262CC] shadow-xl	transition duration-150 ease-out hover:ease-in p-8 hover:shadow-xl text-left"
 								
 							>
 									<div className="flex flex-col   ">
@@ -63,7 +63,7 @@ export default function Sectionthird() {
 							</div>
 
 <div
-className="w-full bg-white group center items-center hover:fill-white justify-center   hover:bg-blue-500 hover:text-white rounded-lg  shadow-xl	transition duration-150 ease-out hover:ease-in p-8 lg:md:p-9 p-6 hover:shadow-xl text-left"
+className="w-full bg-white group center items-center hover:fill-white justify-center   hover:bg-[#7262CC] hover:text-white rounded-lg  shadow-xl	transition duration-150 ease-out hover:ease-in p-8 lg:md:p-9 p-6 hover:shadow-xl text-left"
 
 >
 	<div className="flex flex-col  ">
@@ -87,7 +87,7 @@ We deliver the skins directly to your place with best safety measures and intact
 
 
 {/* <div
-className="w-full lg:md:p-9 p-6    hover:fill-white rounded-lg center items-center justify-center   hover:bg-blue-500 hover:text-white   shadow-xl	transition duration-150 ease-out hover:ease-in p-8 hover:shadow-xl text-left"
+className="w-full lg:md:p-9 p-6    hover:fill-white rounded-lg center items-center justify-center   hover:bg-[#7262CC] hover:text-white   shadow-xl	transition duration-150 ease-out hover:ease-in p-8 hover:shadow-xl text-left"
 
 >
 	<div className="flex flex-col  ">
@@ -111,7 +111,7 @@ Colors used on the murti are also non toxic and are not harmful to environment
 </div> */}
 
 <div
-className="w-full bg-white lg:md:p-9 p-6 group rounded-lg  hover:fill-white center items-center justify-center  hover:bg-blue-500 hover:text-white  shadow-xl	transition duration-150 ease-out hover:ease-in p-8 hover:shadow-xl text-left"
+className="w-full bg-white lg:md:p-9 p-6 group rounded-lg  hover:fill-white center items-center justify-center  hover:bg-[#7262CC] hover:text-white  shadow-xl	transition duration-150 ease-out hover:ease-in p-8 hover:shadow-xl text-left"
 
 >
 	<div className="flex flex-col   ">
@@ -136,7 +136,7 @@ className="w-full bg-white lg:md:p-9 p-6 group rounded-lg  hover:fill-white cent
 							
 							
 <div
-className="w-full bg-white lg:md:p-9 p-6 group rounded-lg  hover:fill-white center items-center justify-center  hover:bg-blue-500 hover:text-white  shadow-xl	transition duration-150 ease-out hover:ease-in p-8 hover:shadow-xl text-left"
+className="w-full bg-white lg:md:p-9 p-6 group rounded-lg  hover:fill-white center items-center justify-center  hover:bg-[#7262CC] hover:text-white  shadow-xl	transition duration-150 ease-out hover:ease-in p-8 hover:shadow-xl text-left"
 
 >
 	<div className="flex flex-col   ">

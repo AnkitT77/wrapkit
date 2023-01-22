@@ -9,7 +9,7 @@ export default function Popupcart({ data,passclose,active }) {
         from: { opacity: 0, translateX: '100px' },
         enter: { opacity: 1, translateX: '0' },
         leave: { opacity: 0.2, translateX: '100px' },
-        config: { duration: 400,
+        config: { duration: 100,
             tension: 280, friction: 60
         },
     })
@@ -48,10 +48,10 @@ export default function Popupcart({ data,passclose,active }) {
         </div>
           <div className="divide-y max-h-[450px] overflow-y-scroll">
             {data.map((item,i)=>(
-              <div key={i} className="flex py-5 gap-5">
-                <div className="bg-zinc-100/80 p-2 flex justify-center items-center">
+              <div key={i} className="flex py-5 items-start gap-5">
+                <div className="bg-zinc-100/80 flex justify-center items-center">
                   <img
-                      className="w-[100px]  rounded"
+                      className="w-[120px] rounded"
                       src={item?.image[0]}
                       alt="test"
                   />
@@ -71,7 +71,7 @@ export default function Popupcart({ data,passclose,active }) {
                             Version: {item?.optionalData.version}
                         </p>
                     </div>
-                    <div className="text-white flex gap-5 mt-2 justify-between items-center">
+                    <div className="text-white flex gap-5 justify-between items-center">
                         <p className="text-zinc-700">QTY: {item.quantity}</p>
                         <div className="flex gap-1">
                             <h5 className="font-bold text-lg text-zinc-800">
@@ -87,13 +87,8 @@ export default function Popupcart({ data,passclose,active }) {
         </div>
         <div className="flex flex-col gap-3">
             <Link href="/cart">
-                <a  className="border-2 text-center border-orange-500 text-orange-500 w-full px-5 py-4 rounded hover:bg-orange-500 hover:text-white duration-100 ease-linear font-semibold md:text-xl">
-                View Cart
-            </a>
-            </Link>
-            <Link href="/checkout">
-          <a className="bg-zinc-800 text-center text-white w-full px-5 py-5 rounded hover:bg-zinc-700 font-semibold md:text-xl duration-100 ease-linear">
-            Checkout
+          <a className="hover:bg-zinc-800 border border-zinc-800 text-center text-zinc-800 hover:text-white w-full px-5 py-4 rounded hover:bg-zinc-700 font-semibold md:text-xl duration-100 ease-linear">
+              View Cart
           </a>
             </Link>
 

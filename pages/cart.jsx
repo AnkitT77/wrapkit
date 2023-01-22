@@ -121,7 +121,7 @@ function CartItemList({ data, cartid }) {
   return (
     <>
       <div className={`p-5 flex gap-4 items-start`}>
-        <div className="relative  md:w-[160px] p-1 bg-zinc-100 w-[150px] ">
+        <div className="relative  md:w-[160px] bg-zinc-100 w-[150px] ">
           <Image
             src={data?.image[0]}
             alt={data.name}

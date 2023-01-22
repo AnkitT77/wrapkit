@@ -113,7 +113,6 @@ export default function ClayGaneshaSlug() {
   }
 
 
-
   return (
       <>
         {popup &&
@@ -127,7 +126,7 @@ export default function ClayGaneshaSlug() {
         {product ? (
             <>
               <BaseSection>
-                <div className="min-h-screen overflow-x-hidden">
+                <div className="min-h-screen pb-20 bg-[#F7F7F7] overflow-x-hidden">
                   <div className="md:pt-10 truncate pt-10">
                     <div className="flex gap-2 items-center text-zinc-500 max-w-7xl px-5 mx-auto">
                       <Link href="/">
@@ -144,7 +143,7 @@ export default function ClayGaneshaSlug() {
                     {product?.url}
                   </span>
                     </div>
-                    <div className="max-w-7xl w-full mx-auto pt-8 md:gap-10 md:flex-row flex-col gap-10 md:gap-20 flex px-5">
+                    <div className="max-w-7xl w-full mx-auto pt-8 md:flex-row flex-col gap-10 md:gap-20 flex px-5">
                       <div className=" w-full md:w-1/2">
                         <div className="flex-col-reverse flex gap-2">
                           <div className="bg-gray-50 block responsive w-full rounded-md">
@@ -164,8 +163,8 @@ export default function ClayGaneshaSlug() {
                           </div>
                         </div>
                       </div>
-                      <div className=" md:w-1/2 break-words inline-block whitespace-normal 	w-full ">
-                        <div className="md:pl-14 flex w-full max-w-md mx-auto flex-col gap-5">
+                      <div className="md:w-1/2 break-words inline-block whitespace-normal 	w-full ">
+                        <div className=" flex w-full max-w-md mx-auto flex-col gap-5">
                           <div className="flex w-full flex-col gap-3 ">
                             <h2
                                 style={{ lineHeight: 1.3 }}
@@ -302,15 +301,15 @@ export default function ClayGaneshaSlug() {
                     </div>
                   </div>
 
-                  <div className=" flex md:flex-row flex-col gap-10 md:gap-20 mt-14 md:mt-20 max-w-6xl mx-auto px-5">
-                    <h2 className="md:text-6xl text-zinc-800 w-full max-w-[400px] whitespace-nowrap text-4xl sm:text-5xl font-semibold">
-                      Overview
+                  <div className=" flex md:flex-row md:divide-x md:divide-zinc-300 flex-col gap-10 md:gap-20 mt-14 md:mt-20 max-w-6xl mx-auto px-5">
+                    <h2 className="md:text-5xl text-zinc-800 w-full max-w-[450px]  text-4xl sm:text-5xl font-semibold">
+                     Product Overview and Specification
                     </h2>
-<div className="w-full">
-  <ul className="divide-y">
+<div className="w-full md:pl-10">
+  <ul className="divide-y divide-zinc-300">
     <li  className="flex flex-col">
-     <h3 onClick={handleClick} title="desc" className="md:text-2xl cursor-pointer py-6 md:px-7 px-5 hover:bg-zinc-50 text-xl flex justify-between gap-5 items-center">
-       Product Description
+     <h3 onClick={handleClick} title="desc" className="md:text-2xl cursor-pointer py-6 md:px-7 px-5  text-xl flex justify-between gap-5 items-center">
+       Description
        <span>
          {activetab =="desc" ?
              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -332,7 +331,7 @@ export default function ClayGaneshaSlug() {
       }
     </li>
     <li className=" flex flex-col gap-5">
-      <h3 onClick={handleClick} title="features" className="py-6 md:px-7 px-5 md:text-2xl cursor-pointer text-xl flex hover:bg-zinc-50 justify-between gap-5 items-center">
+      <h3 onClick={handleClick} title="features" className="py-6 md:px-7 px-5 md:text-2xl cursor-pointer text-xl flex  justify-between gap-5 items-center">
         Features
         <span>
          {activetab =="features" ?
@@ -370,7 +369,7 @@ export default function ClayGaneshaSlug() {
     </li>
 
     <li className=" flex flex-col">
-      <h3 onClick={handleClick} title="specification" className="md:text-2xl py-6 md:px-7 px-5 cursor-pointer hover:bg-zinc-50 text-xl flex justify-between gap-5 items-center">
+      <h3 onClick={handleClick} title="specification" className="md:text-2xl py-6 md:px-7 px-5 cursor-pointer  text-xl flex justify-between gap-5 items-center">
         Specification
         <span>
          {activetab =="specification" ?
@@ -412,14 +411,3 @@ export default function ClayGaneshaSlug() {
   );
 }
 
-// export async function getStaticProps() {
-
-//   const random = data.filter(item => item.url !== str1).sort( () => Math.random() - 0.5).slice(0,4);
-//   return {
-//       props: {
-//           data: mala.response.products.filter(item => item.url === str1),
-//           url:str1,
-//           random:random
-//       }
-//   }
-// }

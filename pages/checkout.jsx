@@ -441,12 +441,12 @@ const [popup,setpopup] = useState(true);
               <div className=" lg:max-w-md px-5 mx-auto flex flex-col gap-5 lg:gap-7 2xl:mr-auto 2xl:ml-[200px]">
                 <div className="flex max-h-[350px] overflow-y-scroll flex-col items-center">
                   {item.map((data, i) => (
-                    <div key={i} className="flex  items-center py-3 justify-between w-full border-b border-zinc-300 gap-5">
-                      <div className="min-w-[80px] p-1 bg-white rounded-md relative">
-                        <Image src={data?.image[0]} width={50} height={50} layout="responsive" className="rounded-md" />
+                    <div key={i} className="flex  items-start py-3 justify-between w-full border-b border-zinc-300 gap-4">
+                      <div className="min-w-[100px] bg-white rounded-md relative">
+                        <Image src={data?.image[0]} width={80} height={80} layout="responsive" className="rounded-md" />
                       </div>
                       <div className="flex  justify-between w-full items-center">
-                        <div className=" flex w-full gap-3 justify-between flex-col">
+                        <div className=" flex w-full gap-1 justify-between flex-col">
                         <h2 className="font-semibold capitalize md:text-[18px] leading-6 inline-block">
                           {data?.name}
                         </h2>

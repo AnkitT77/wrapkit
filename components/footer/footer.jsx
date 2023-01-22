@@ -3,13 +3,13 @@ import Link from "next/link";
 import React from "react";
 export default function Footer() {
 	return (
-		<div id="footer " className=" bg-[#0F1133]  text-creme">
+		<div id="footer " className=" bg-[#251D5B]">
 			<div className="px-5 max-w-7xl mx-auto pt-14 md:pt-20 pb-12 flex items-center text-gray-100 ">
 				<div className="grid grid-col-1 gap-x-14 gap-y-7 items-start w-full lg:grid-cols-10">
 					<div className="col-span-3">
 						<img src="/img/logo-white.svg" width={180} height={90} />
 						<div className=" flex flex-col mt-5 gap-y-1 ">
-							<p className=" capitalize text-zinc-400 ">
+							<p className=" capitalize text-zinc-200 ">
 								WrapKit Customer Care: WrapKit.in@gmail.com. We’re pretty up and coming in terms of our scale, but the grandiose of our vision surrenders to one thing, and one thing only, ‘The Customer’s Service’. Here at WrapKit, we provide the coolest, the strongest and the dopest wraps that you could imagine.
 							</p>
 						</div>
@@ -22,20 +22,20 @@ export default function Footer() {
 							</h3>
 							<div className="flex flex-col gap-2">
 								<Link href="/phone">
-									<a className=" hover:text-white text-zinc-400  duration-200 ease-in">
+									<a className=" hover:text-white text-zinc-200  duration-200 ease-in">
 										Mobile Phone
 									</a>
 								</Link>
 
 								<Link href="/laptop">
-									<a className=" hover:text-white text-zinc-400 duration-200 ease-in">Laptop</a>
+									<a className=" hover:text-white text-zinc-200 duration-200 ease-in">Laptop</a>
 								</Link>
 
 								<Link href="/charger">
-									<a className=" hover:text-white text-zinc-400 duration-200 ease-in ">Charger</a>
+									<a className=" hover:text-white text-zinc-200 duration-200 ease-in ">Charger</a>
 								</Link>
 								{/*<Link href="/charger">*/}
-								{/*	<a className=" hover:text-white text-zinc-400  duration-200 ease-in">*/}
+								{/*	<a className=" hover:text-white text-zinc-200  duration-200 ease-in">*/}
 								{/*		All Products*/}
 								{/*	</a>*/}
 								{/*</Link>*/}
@@ -50,18 +50,18 @@ export default function Footer() {
 							</h3>
 							<div className="flex flex-col gap-2">
 								<Link href="/contact">
-									<a className=" hover:text-white text-zinc-400 duration-200 ease-in">Contact</a>
+									<a className=" hover:text-white text-zinc-200 duration-200 ease-in">Contact</a>
 								</Link>
 								<Link href="/about">
-									<a className=" hover:text-white text-zinc-400 duration-200 ease-in">About</a>
+									<a className=" hover:text-white text-zinc-200 duration-200 ease-in">About</a>
 								</Link>
 
 								<Link href="/refund-policy">
-									<a className=" hover:text-white text-zinc-400 duration-200 ease-in">Refund Policy</a>
+									<a className=" hover:text-white text-zinc-200 duration-200 ease-in">Refund Policy</a>
 								</Link>
 
 								<Link href="/privacy">
-									<a className=" hover:text-white text-zinc-400 duration-200 ease-in">Privacy Policy </a>
+									<a className=" hover:text-white text-zinc-200 duration-200 ease-in">Privacy Policy </a>
 								</Link>
 							</div>
 						</div>
@@ -71,7 +71,7 @@ export default function Footer() {
 						<h3 className="font-semibold uppercase  text-lg text-white mb-2">
 							Stay Connected
 						</h3>
-						<p className="mb-2 text-zinc-400">
+						<p className="mb-2 text-zinc-200">
                             We’re low on scale, but high on ambitions. We’re a young company….hence, we understand what the young seek….and we, will make their phones, look cool from WrapKit.
                         </p>
 						<div className="flex mt-2 items-center justify-start gap-x-6 w-full">

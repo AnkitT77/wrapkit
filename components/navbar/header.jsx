@@ -30,13 +30,16 @@ export default function TopNav() {
         }
 
     const router = useRouter();
+    const handleresetlink = (e) => {
+        setactive('')
+    }
     return (
         <>
             {diaplsymenu &&
             <Mobilemenu active={diaplsymenu} passclose={hanlemenu}/>
             }
             <div
-                className={` shadow bg-white sticky top-0 z-30 w-full`}
+                className={`border-b border-zinc-100 bg-white sticky top-0 z-30 w-full`}
             >
                 <div className="max-w-7xl w-full bg-white  gap-10 mx-auto px-5 text-zinc-800 flex justify-between items-center ">
                     <div className="flex gap-3 items-center">
@@ -90,7 +93,7 @@ export default function TopNav() {
                                         : 'opacity-0 invisible -translate-y-[1.5px]'
                                 }`}
                             >
-                                <DesktopMenu/>
+                                <DesktopMenu passclose={handleresetlink}/>
                             </div>
 
 
@@ -153,7 +156,7 @@ export default function TopNav() {
                                         : 'opacity-0 invisible -translate-y-[1.5px]'
                                 }`}
                             >
-                                <DesktopTheme/>
+                                <DesktopTheme passclose={handleresetlink}/>
                             </div>
                             {/*<ul className="tooltiparrow shadow-xl text-zinc-800 group-hover:opacity-100 group-hover:visible invisible opacity-0  absolute z-10 w-[220px] top-full left-0 bg-white rounded-xl p-4">*/}
                             {/*    <li className="py-2 hover:text-indigo-500 cursor-pointer">*/}

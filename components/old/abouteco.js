@@ -21,7 +21,7 @@ export default function AboutEco() {
 	const arr = ["Don’t know what Skins are? No problem", "Hide Scratches", "3D Embossed Texture"];
 
 	return (
-		<div className="w-full md:py-20 py-14 text-[#184029]">
+		<div className="w-full md:py-20 bg-[#F1F6FB] py-14 text-[#184029]">
 			<div className="w-full flex flex-col items-center text-center justify-center ">
 				<div className="flex w-full  justify-center items-center">
 

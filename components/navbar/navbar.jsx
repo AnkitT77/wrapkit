@@ -59,7 +59,7 @@ export default function Navbar() {
       {/*/>*/}
 
       <div
-        className={`flex justify-around  w-full  h-[85px]  bg-white`}
+        className={`flex justify-around  w-full  h-[85px]  bg-[#FFF8F0]`}
       >
         <div className="flex w-full  items-center gap-10 justify-between max-w-7xl mx-auto px-5 ">
           <div className="flex items-center gap-2">
