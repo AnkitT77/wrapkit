@@ -15,8 +15,6 @@ export default function Baner() {
 						showStatus={false}
 						interval={3000}
 					>
-
-
 						<div>
 							<Image layout="responsive" src="/banner/banner3.png" alt="banner2" width={1280} height={640} />
 						</div>
