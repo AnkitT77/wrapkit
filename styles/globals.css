@@ -27,4 +27,5 @@
   .st:focus-within ~ label {
     @apply text-zinc-800;
   }
+
 }

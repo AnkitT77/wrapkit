@@ -8,7 +8,10 @@ import { useRouter } from "next/router";
 import { supabase } from "../components/supabase/supabase";
 import displayRazorpay from "../components/paymentbutton/razorpay";
 import CartContextProvider from "../components/context/cartContext";
-import { FormatingCurrency } from "../components/utils/feture";
+import {
+  FormatingCurrency,
+  removeUnwantedEntry,
+} from "../components/utils/feture";
 const country = require("../components/jsondata/country.json");
 
 export default function Checkout(props) {
@@ -23,7 +26,6 @@ export default function Checkout(props) {
     user_country: "India",
     user_zipcode: "",
   };
-const [popup,setpopup] = useState(true);
   const [inputvalue, setinputvalue] = useState(initialvalue);
   const [loader, setloader] = useState(true);
   const [loader2, setloader2] = useState(false);
@@ -35,32 +37,24 @@ const [popup,setpopup] = useState(true);
   const [user, setuser] = useState(null);
   const router = useRouter();
 
-
-
   useEffect(() => {
     // console.log(await Toalvalue());
     if (cartItem) {
       setitem(cartItem);
       setloader(false);
-    }
-    else {
+    } else {
       router.push("/");
     }
-
   }, [cartItem]);
-
 
   const data = getLocalstorage("user");
 
   useEffect(() => {
     if (data) {
       setuser(data);
-      setinputvalue(prev => ({ ...prev, email: user?.email }));
+      setinputvalue((prev) => ({ ...prev, email: user?.email }));
     }
-
   }, []);
-
-
 
   if (error) {
     setTimeout(() => seterror(""), 4000);
@@ -94,7 +88,6 @@ const [popup,setpopup] = useState(true);
     return error;
   };
 
-
   const submitingform = async (e) => {
     e.preventDefault();
     if (Object.keys(validate(inputvalue)).length !== 0) {
@@ -103,33 +96,44 @@ const [popup,setpopup] = useState(true);
     }
     if (Object.keys(validate(inputvalue)).length === 0) {
       setloader2(true);
-      //await updatedatabase();
-      await displayRazorpay(inputvalue.email, inputvalue.firstname + " " + inputvalue.lastname, inputvalue.user_mobile_number, Toalvalue().totalvalue, item);
+      const entry = await updatedatabase(
+        removeUnwantedEntry(item),
+        inputvalue,
+        Toalvalue().totalformat
+      );
+      console.log(entry);
+      await displayRazorpay(
+        inputvalue.email,
+        inputvalue.firstname + " " + inputvalue.lastname,
+        inputvalue.user_mobile_number,
+        Toalvalue().totalvalue,
+        entry
+      );
     } else {
       setFormErrors(validate(inputvalue));
     }
   };
 
-
-  const updatedatabase = async () => {
-    const { data, error } = await supabase.from("orderHistory").insert([
-      {
-        name: inputvalue.firstname + " " + inputvalue.lastname,
-        email: inputvalue.email,
-        shipping: JSON.stringify(inputvalue),
-        order: JSON.stringify(item)
-      },
-    ]);
+  const updatedatabase = async (product, userdata, total) => {
+    const { data, error } = await supabase.from("order_history").insert({
+      user_details: userdata,
+      total_price: total,
+      product_details: product,
+      // quantity: "",
+      // order_id: "",
+    });
     if (!error) {
       setloader2(false);
+      return data[0].id;
+    } else {
+      setloader2(false);
+      return null;
     }
-  }
+  };
 
   if (loader2) {
     setTimeout(() => setloader2(false), 5000);
   }
-
-
 
   const handleinput = (e) => {
     const { name, value } = e.target;
@@ -163,31 +167,27 @@ const [popup,setpopup] = useState(true);
     setTimeout(() => setloader(false), 5000);
   }
 
-
   return (
     <>
-{/*      {popup &&*/}
-{/*<Model active={popup} closepopup={()=> setpopup(false)}/>*/}
-{/*      }*/}
-
-      {loader ?
+      {loader ? (
         <Loader2 />
-        :
-        <div className=" bg-[#f9f8f8]">
+      ) : (
+        <div className=" bg-[#E1E9FF]">
           <div className="flex  w-full  items-start lg:flex-row flex-col">
-            <div className="flex flex-col px-5  lg:w-3/5 2xl:w-full border-zinc-300 border-r pb-24 pt-6  w-full bg-white h-full w-full   gap-5">
+            <div className="flex flex-col px-5  lg:w-3/5 2xl:w-full border-[#B9C4DF] border-r pb-14 md:pb-24 pt-6  w-full bg-white h-full w-full   gap-5">
               <div className="max-w-lg w-full mx-auto 2xl:ml-auto 2xl:mr-[200px] flex flex-col gap-5">
                 <div>
                   <div className={` md:pt-10`}>
-                    <img src="/img/logo-no-background.svg" className="w-[200px]" />
+                    <img
+                      src="/img/logo-no-background.svg"
+                      className="w-[200px]"
+                    />
                   </div>
                 </div>
 
-
-                <div className="mt-10 text-sm w-full border-zinc-200 pt-4 ">
-                  <p className="text-red-500 text-lg">  </p>
+                <div className=" text-sm w-full border-zinc-200 pt-4 ">
+                  <p className="text-red-500 text-lg"> </p>
                 </div>
-
 
                 <div className="flex  flex-col  w-full gap-4">
                   <h5 className="md:text-xl font-semibold text-lg">
@@ -195,7 +195,6 @@ const [popup,setpopup] = useState(true);
                   </h5>
 
                   <div>
-
                     <div className="flex relative flex-col gap-2  w-full">
                       <input
                         autoComplete="off"
@@ -207,8 +206,11 @@ const [popup,setpopup] = useState(true);
                         placeholder=" "
                         onChange={handleinput}
                         name="email"
-                        className={`${formErrors.email ? "border-red-400" : "border-zinc-500"
-                          }  focus:ring-2 focus:ring-blue-200 focus:border-blue-600 st text-[15px]   h-[50px] text-base border  rounded  text-zinc-800 px-3 pt-2.5 outline-none`}
+                        className={`${
+                          formErrors.email
+                            ? "border-red-400"
+                            : "border-zinc-500"
+                        }  focus:ring-2 focus:ring-blue-200 focus:border-blue-600 st text-[15px]   h-[50px] text-base border  rounded  text-zinc-800 px-3 pt-2.5 outline-none`}
                       />
                       <label
                         htmlFor="email"
@@ -219,25 +221,26 @@ const [popup,setpopup] = useState(true);
                     </div>
                     <div className="flex mt-5 relative flex-col gap-2 w-full">
                       <input
-                          autoComplete="off"
-                          autoCorrect="off"
-                          type="number"
-                          minLength="9"
-                          maxLength="11"
-                          value={inputvalue.user_mobile_number}
-                          required
-                          onChange={handleNumber}
-                          placeholder=" "
-                          id="number"
-                          name="user_mobile_number"
-                          className={`${formErrors.user_mobile_number
-                              ? "border-red-400"
-                              : "border-zinc-500"
-                          }  focus:ring-2 focus:ring-blue-200 focus:border-blue-600 st text-[15px]  h-[50px] text-base border  rounded  text-zinc-800 px-3 pt-2.5 outline-none`}
+                        autoComplete="off"
+                        autoCorrect="off"
+                        type="number"
+                        minLength="9"
+                        maxLength="11"
+                        value={inputvalue.user_mobile_number}
+                        required
+                        onChange={handleNumber}
+                        placeholder=" "
+                        id="number"
+                        name="user_mobile_number"
+                        className={`${
+                          formErrors.user_mobile_number
+                            ? "border-red-400"
+                            : "border-zinc-500"
+                        }  focus:ring-2 focus:ring-blue-200 focus:border-blue-600 st text-[15px]  h-[50px] text-base border  rounded  text-zinc-800 px-3 pt-2.5 outline-none`}
                       />
                       <label
-                          htmlFor="number"
-                          className="whitespace-nowrap labelt "
+                        htmlFor="number"
+                        className="whitespace-nowrap labelt "
                       >
                         Phone Number
                       </label>
@@ -249,7 +252,7 @@ const [popup,setpopup] = useState(true);
                     Enter Your Delivery Details
                   </h5>
                   <form
-                    className="flex w-full   gap-10 mx-auto  flex-col"
+                    className="flex w-full gap-5  md:gap-10 mx-auto  flex-col"
                     onSubmit={submitingform}
                   >
                     <div className="flex gap-5 flex-col">
@@ -265,10 +268,11 @@ const [popup,setpopup] = useState(true);
                             placeholder=" "
                             id="fname"
                             name="firstname"
-                            className={`${formErrors.lastname
-                              ? "border-red-400"
-                              : "border-zinc-500"
-                              }  focus:ring-2 focus:ring-blue-200 focus:border-blue-600 st text-[15px]   h-[50px] text-base border  rounded  text-zinc-800 px-3 pt-2.5 outline-none`}
+                            className={`${
+                              formErrors.lastname
+                                ? "border-red-400"
+                                : "border-zinc-500"
+                            }  focus:ring-2 focus:ring-blue-200 focus:border-blue-600 st text-[15px]   h-[50px] text-base border  rounded  text-zinc-800 px-3 pt-2.5 outline-none`}
                           />
                           <label
                             htmlFor="fname"
@@ -289,10 +293,11 @@ const [popup,setpopup] = useState(true);
                             placeholder=" "
                             id="lname"
                             name="lastname"
-                            className={`${formErrors.lastname
-                              ? "border-red-400"
-                              : "border-zinc-500"
-                              }  text-[15px] st focus:ring-2 focus:ring-blue-200 focus:border-blue-600  h-[50px] text-base border  rounded  text-zinc-800 px-3 pt-2.5 outline-none`}
+                            className={`${
+                              formErrors.lastname
+                                ? "border-red-400"
+                                : "border-zinc-500"
+                            }  text-[15px] st focus:ring-2 focus:ring-blue-200 focus:border-blue-600  h-[50px] text-base border  rounded  text-zinc-800 px-3 pt-2.5 outline-none`}
                           />
                           <label
                             htmlFor="lname"
@@ -304,16 +309,17 @@ const [popup,setpopup] = useState(true);
                       </div>
                       <div className="flex w-full flex-col gap-2 ">
                         <select
-                            onChange={handleselect}
-                            name="user_country"
-                            defaultValue={inputvalue.user_country}
-                            className="w-full h-[50px] bg-white  p-2  !border-zinc-500 rounded  text-zinc-800 border  focus:ring-2 focus:ring-blue-200 focus:border-blue-600  focus:outline-none"
+                          onChange={handleselect}
+                          name="user_country"
+                          defaultValue={inputvalue.user_country}
+                          className="w-full h-[50px] bg-white  p-2  !border-zinc-500 rounded  text-zinc-800 border  focus:ring-2 focus:ring-blue-200 focus:border-blue-600  focus:outline-none"
                         >
-                          {country.map((item, i) => (
-                              <option value={item.country_name} key={i}>
-                                {item.country_name}
-                              </option>
-                          ))}
+                          <option value="India">India</option>
+                          {/*{country.map((item, i) => (*/}
+                          {/*  <option value={item.country_name} key={i}>*/}
+                          {/*    {item.country_name}*/}
+                          {/*  </option>*/}
+                          {/*))}*/}
                         </select>
                       </div>
 
@@ -330,10 +336,11 @@ const [popup,setpopup] = useState(true);
                               required
                               onChange={handleinput}
                               name="user_address_line_1"
-                              className={`${formErrors.user_address_line_1
-                                ? "border-red-400"
-                                : "border-zinc-500"
-                                }  focus:ring-2 focus:ring-blue-200 focus:border-blue-600 st text-[15px] h-[50px]   border w-full rounded  text-zinc-800 p-2 outline-none`}
+                              className={`${
+                                formErrors.user_address_line_1
+                                  ? "border-red-400"
+                                  : "border-zinc-500"
+                              }  focus:ring-2 focus:ring-blue-200 focus:border-blue-600 st text-[15px] h-[50px]   border w-full rounded  text-zinc-800 p-2 outline-none`}
                             />
                             <label
                               htmlFor="address2"
@@ -353,10 +360,11 @@ const [popup,setpopup] = useState(true);
                               required
                               onChange={handleinput}
                               name="user_address_line_2"
-                              className={`${formErrors.user_address_line_2
-                                ? "border-red-400"
-                                : "border-zinc-500"
-                                }  focus:ring-2 focus:ring-blue-200 focus:border-blue-600 st text-[15px]  h-[50px] text-base border  rounded  text-zinc-800 px-3 pt-2.5 outline-none w-full`}
+                              className={`${
+                                formErrors.user_address_line_2
+                                  ? "border-red-400"
+                                  : "border-zinc-500"
+                              }  focus:ring-2 focus:ring-blue-200 focus:border-blue-600 st text-[15px]  h-[50px] text-base border  rounded  text-zinc-800 px-3 pt-2.5 outline-none w-full`}
                             />
                             <label
                               htmlFor="address2"
@@ -379,10 +387,11 @@ const [popup,setpopup] = useState(true);
                             required
                             onChange={handleinput}
                             name="user_city"
-                            className={`${formErrors.user_city
-                              ? "border-red-400"
-                              : "border-zinc-500"
-                              } focus:ring-2 focus:ring-blue-200 focus:border-blue-600 st text-[15px]   h-[50px] text-base border  rounded  text-zinc-800 px-3 pt-2.5 outline-none`}
+                            className={`${
+                              formErrors.user_city
+                                ? "border-red-400"
+                                : "border-zinc-500"
+                            } focus:ring-2 focus:ring-blue-200 focus:border-blue-600 st text-[15px]   h-[50px] text-base border  rounded  text-zinc-800 px-3 pt-2.5 outline-none`}
                           />
                           <label
                             htmlFor="city"
@@ -402,10 +411,11 @@ const [popup,setpopup] = useState(true);
                             placeholder=" "
                             onChange={handleinput}
                             name="user_zipcode"
-                            className={`${formErrors.user_zipcode
-                              ? "border-red-400"
-                              : "border-zinc-500"
-                              }  focus:ring-2 focus:ring-blue-200 focus:border-blue-600 st text-[15px]   h-[50px] text-base border  rounded  text-zinc-800 px-3 pt-2.5 outline-none`}
+                            className={`${
+                              formErrors.user_zipcode
+                                ? "border-red-400"
+                                : "border-zinc-500"
+                            }  focus:ring-2 focus:ring-blue-200 focus:border-blue-600 st text-[15px]   h-[50px] text-base border  rounded  text-zinc-800 px-3 pt-2.5 outline-none`}
                           />
                           <label
                             htmlFor="zip"
@@ -420,46 +430,49 @@ const [popup,setpopup] = useState(true);
                     </div>
                     {error && <ErrorButton text={error} />}
 
-
                     <button
                       onClick={submitingform}
                       disabled={loader2}
-                      className={`${!loader2 ? "cursor-pointer" : "cursor-not-allowed"
-                        } text-[18px] ml-auto  bg-[#184029] text-white font-bold  max-w-[250px] hover:bg-green-800 py-4 px-5 rounded`}
+                      className={`${
+                        !loader2 ? "cursor-pointer" : "cursor-not-allowed"
+                      } text-[18px] ml-auto  bg-zinc-800 text-white font-semibold  max-w-[250px] hover:bg-zinc-700 py-4 md:px-10 px-5 rounded`}
                     >
-                      {loader2 ? <Loader3 /> : "Continue shopping"}
+                      {loader2 ? <Loader3 /> : "Checkout"}
                     </button>
 
-                    <div className="mt-10 text-sm border-t border-zinc-200 pt-4 ">
+                    <div className="md:mt-10 mt-5 text-sm border-t border-zinc-200 pt-4 ">
                       <span>All rights reserved WrapKit.</span>
                     </div>
                   </form>
                 </div>
               </div>
             </div>
-            <div className="w-full lg:border-t-none 2xl:w-full border-t md:border-transparent border-zinc-300  lg:w-2/5  pt-6 pb-20 h-full">
+            <div className="w-full lg:border-t-none 2xl:w-full border-t md:border-transparent border-[#B9C4DF]  lg:w-2/5  pt-6 pb-20 h-full">
               <div className=" lg:max-w-md px-5 mx-auto flex flex-col gap-5 lg:gap-7 2xl:mr-auto 2xl:ml-[200px]">
                 <div className="flex max-h-[350px] overflow-y-scroll flex-col items-center">
                   {item.map((data, i) => (
-                    <div key={i} className="flex  items-start py-3 justify-between w-full border-b border-zinc-300 gap-4">
+                    <div
+                      key={i}
+                      className="flex  items-start py-3 justify-between w-full border-b border-zinc-300 gap-4"
+                    >
                       <div className="min-w-[100px] bg-white rounded-md relative">
-                        <Image src={data?.image[0]} width={80} height={80} layout="responsive" className="rounded-md" />
+                        <Image
+                          src={data?.image[0]}
+                          width={80}
+                          height={80}
+                          layout="responsive"
+                          className="rounded-md"
+                        />
                       </div>
                       <div className="flex  justify-between w-full items-center">
                         <div className=" flex w-full gap-1 justify-between flex-col">
-                        <h2 className="font-semibold capitalize md:text-[18px] leading-6 inline-block">
-                          {data?.name}
-                        </h2>
+                          <h2 className="font-semibold capitalize md:text-[18px] leading-6 inline-block">
+                            {data?.name}
+                          </h2>
                           <div className="text-[15px]">
-                            <p>
-                              Device: {data?.optionalData.type}
-                            </p>
-                            <p>
-                              Model: {data?.optionalData.model}
-                            </p>
-                            <p>
-                              Version: {data?.optionalData.version}
-                            </p>
+                            <p>Device: {data?.optionalData.type}</p>
+                            <p>Model: {data?.optionalData.model}</p>
+                            <p>Version: {data?.optionalData.version}</p>
                           </div>
                           <div className="flex  justify-between items-center gap-5 flex-row ">
                             <span>Qty : {data?.quantity}</span>
@@ -467,8 +480,8 @@ const [popup,setpopup] = useState(true);
                               ₹{FormatingCurrency(data?.price)}
                             </h5>
                           </div>
+                        </div>
                       </div>
-                    </div>
                     </div>
                   ))}
                 </div>
@@ -482,10 +495,14 @@ const [popup,setpopup] = useState(true);
                   <div className="flex text-zinc-800 justify-between md:text-lg  pb-1">
                     Shipping Charges
                     <span className="font-semibold  text-zinc-800 text-lg">
-                      {parseInt(Toalvalue().subtotal.split("").slice(1, Toalvalue().subtotal.split("").length).join("")) >= 1000 ?
-                        "Free" :
-                        "+ ₹0"
-                      }
+                      {parseInt(
+                        Toalvalue()
+                          .subtotal.split("")
+                          .slice(1, Toalvalue().subtotal.split("").length)
+                          .join("")
+                      ) >= 1000
+                        ? "Free"
+                        : "+ ₹0"}
                     </span>
                   </div>
 
@@ -507,7 +524,7 @@ const [popup,setpopup] = useState(true);
             </div>
           </div>
         </div>
-      }
+      )}
     </>
   );
 }
@@ -524,9 +541,9 @@ export function ErrorButton({ text }) {
 }
 
 Checkout.getLayout = function getLayout(page) {
-  return <>
-    <CartContextProvider>
-      {page}
-    </CartContextProvider>
-  </>;
+  return (
+    <>
+      <CartContextProvider>{page}</CartContextProvider>
+    </>
+  );
 };

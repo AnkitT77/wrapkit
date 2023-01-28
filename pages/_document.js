@@ -10,14 +10,10 @@ class MyDocument extends Document {
                     <Partytown debug={true} forward={['dataLayer.push']} />
                     <script async src="https://www.googletagmanager.com/gtag/js?id=G-4LX73BLQDF" type="text/partytown" />
 
-                    <link rel="icon" href="/favicon.ico" />
-                    <link rel="preconnect" href="https://fonts.googleapis.com" />
-                    <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin={"true"} />
-                    <link
-                        href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700;900&display=swap"
-                        rel="stylesheet"
-                    />
-
+                    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+                        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin/>
+                            <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap"
+                                  rel="stylesheet"/>
                     <script
                     async
                         type="text/partytown"

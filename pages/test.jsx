@@ -1,36 +1,27 @@
-import React from "react";
-import Popupcart from "../components/product/popupcart";
-import useCart from "../components/context/cartHooks";
-import {GridLayout} from "../components/commonComponent/features";
+import React, { useEffect } from "react";
 import Marque from "../components/commonComponent/marque";
+import { supabase } from "../components/supabase/supabase";
 
 const App = () => {
-
-    const {cartItem} = useCart();
-
-    console.log(cartItem)
-
-
+  useEffect(() => {
+    updatedatabase();
+  }, []);
+  const updatedatabase = async () => {
+    const { data, error } = await supabase.from("test").insert({
+      name: "fddd",
+    });
+    console.log(data, error);
+  };
 
   return (
     <div className="">
-      <Marque/>
-          </div>
+      <Marque />
+    </div>
   );
 };
 
-
-
-
-
-export default  App;
-
+export default App;
 
 App.getLayout = function getLayout(page) {
-return(
-    <>
-        {page}
-    </>
-)
-
-}
+  return <>{page}</>;
+};
