@@ -1,4 +1,3 @@
-import Image from "next/image";
 import React from "react";
 import NewArrival from "../randomProduct/clay-random";
 export default function FeturedProducts() {

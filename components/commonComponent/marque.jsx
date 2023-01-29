@@ -59,6 +59,13 @@ export default function Marque() {
           left: 0;
           white-space: nowrap;
         }
+
+        @media (max-width: 760px) {
+          .scrollingReview {
+            animation-duration: 10s;
+          }
+        }
+
         @keyframes scroll {
           from {
             transform: translateX(0) translateY(-50%);
@@ -69,7 +76,7 @@ export default function Marque() {
         }
       `}</style>
       <div className="w-full overflow-hidden flex  h-[80px] relative bg-[#CEDCFF]">
-        <div className="scrollingReview flex gap-20 w-full">
+        <div className="scrollingReview flex gap-5 md:gap-20 w-full">
           {data.map((item, i) => (
             <div key={i} className="flex w-full min-w-max  gap-4 items-center">
               <span>

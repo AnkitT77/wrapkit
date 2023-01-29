@@ -350,15 +350,15 @@ export default function ClayGaneshaSlug() {
               </div>
 
               {/* marqueee slider features */}
-              <div className="w-full  overflow-hidden flex items-center h-[100px] relative bg-[#CEDCFF]">
+              <div className="w-full  mt-5 overflow-hidden flex items-center h-[70px] md:h-[100px] relative bg-[#CEDCFF]">
                 <div className="scrollingReview min-w-full shrink-0 flex w-full">
                   <div className=" shrink-0  flex rounded">
                     {obj.features.map((item, i) => (
                       <div
                         key={i}
-                        className="flex px-10 items-center gap-3 whitespace-nowrap w-full"
+                        className="flex px-5 md:px-10 items-center gap-3 whitespace-nowrap w-full"
                       >
-                        <div className="w-[60px]">
+                        <div className="w-[40px] md:w-[60px]">
                           <img
                             src={`/icon/${item.img}.svg`}
                             className="w-full"
@@ -371,13 +371,13 @@ export default function ClayGaneshaSlug() {
                       </div>
                     ))}
                   </div>
-                  <div className="  shrink-0 flex rounded">
+                  <div className="shrink-0 flex rounded">
                     {obj.features.map((item, i) => (
                       <div
                         key={i}
-                        className="flex px-10 items-center gap-3 whitespace-nowrap w-full"
+                        className="flex px-5 md:px-10 items-center gap-3 whitespace-nowrap w-full"
                       >
-                        <div className="w-[60px]">
+                        <div className="w-[40px] md:w-[60px]">
                           <img
                             src={`/icon/${item.img}.svg`}
                             className="w-full"
@@ -395,7 +395,7 @@ export default function ClayGaneshaSlug() {
               <div className="bg-white md:py-20 py-14">
                 <div className=" flex md:flex-row md:divide-x md:divide-zinc-300 flex-col gap-10 md:gap-20  max-w-6xl mx-auto px-5">
                   <h2 className="md:text-5xl text-zinc-800 w-full max-w-[450px]  text-4xl sm:text-5xl font-semibold">
-                    Product Overview and Specification
+                    Product Overview
                   </h2>
                   <div className="w-full md:pl-10">
                     <ul className="divide-y divide-zinc-300">

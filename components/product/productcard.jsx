@@ -10,16 +10,11 @@ import CustomImage from "../utils/customImage";
 export function Product(props) {
   const [popup, setpopup] = useState(false);
 
-  const handlecart = (e) => {
-    setpopup((prev) => !prev);
-  };
-
   if (popup) {
     setTimeout(() => setpopup(false), 3000);
   }
 
   const router = useRouter();
-  console.log(props.url);
   return (
     <>
       <div className="flex  px-0 md:px-4 py-4 flex-col gap-2 w-full group">
