@@ -95,6 +95,16 @@ export default function Mobilemenu({ active, passclose }) {
                         <a onClick={() => passclose(false)}>Laptop</a>
                       </Link>
                     </li>
+                    <li className="py-2 hover:text-indigo-500 duration-100 ease-in  cursor-pointer">
+                      <Link href="/camera">
+                        <a onClick={() => passclose(false)}>Camera</a>
+                      </Link>
+                    </li>
+                    <li className="py-2 hover:text-indigo-500 duration-100 ease-in  cursor-pointer">
+                      <Link href="/cards">
+                        <a onClick={() => passclose(false)}>Cards</a>
+                      </Link>
+                    </li>
                     {/*<li className="py-2 hover:text-indigo-500 duration-100 ease-in  cursor-pointer">*/}
                     {/*  <Link href="/all-products">*/}
                     {/*    <a>*/}

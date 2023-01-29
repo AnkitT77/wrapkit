@@ -48,7 +48,7 @@ export default function ClayGanesha() {
       </div>
 
       {isLoading ? (
-        <div>Loading...</div>
+        <Loader2 />
       ) : isError ? (
         <div>Error: {error.message}</div>
       ) : (

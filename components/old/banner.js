@@ -25,6 +25,36 @@ export default function Baner() {
                 height={293}
               />
             </div>
+            <div>
+              <Image
+                priority={true}
+                layout="responsive"
+                src="/banner/banner2.png"
+                alt="banner2"
+                width={1241}
+                height={293}
+              />
+            </div>
+            <div>
+              <Image
+                priority={true}
+                layout="responsive"
+                src="/banner/banner3.png"
+                alt="banner3"
+                width={1241}
+                height={293}
+              />
+            </div>
+            <div>
+              <Image
+                priority={true}
+                layout="responsive"
+                src="/banner/banner4.png"
+                alt="banner4"
+                width={1241}
+                height={293}
+              />
+            </div>
 
             {/*<div>*/}
             {/*	<Image loading="lazy" layout="responsive" src="/banner/banner1.png" alt="banner3" width={1280} height={640}/>*/}

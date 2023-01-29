@@ -8,6 +8,7 @@ import Trail from "../../components/react-spring/trailanimation";
 import { supabase } from "../../components/supabase/supabase";
 import { color, ProductBackground } from "../../components/utils/feture";
 import { useQuery } from "@tanstack/react-query";
+import { Loader2 } from "../../components/loader";
 
 export default function ClayGanesha() {
   // const [page, setpage] = useState(1);
@@ -49,7 +50,7 @@ export default function ClayGanesha() {
       </div>
 
       {isLoading ? (
-        <div>Loading...</div>
+        <Loader2 />
       ) : isError ? (
         <div>Error: {error.message}</div>
       ) : (

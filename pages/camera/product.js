@@ -16,6 +16,7 @@ import {
 import { FormError } from "../../components/error/formerrortext";
 import dynamic from "next/dynamic";
 import NewArrival from "../../components/randomProduct/clay-random";
+import { useQuery } from "@tanstack/react-query";
 const Popupcart = dynamic(() => import("../../components/product/popupcart"), {
   ssr: false,
 });
@@ -24,9 +25,10 @@ export default function ClayGaneshaSlug() {
   const [qty, setqty] = useState({ qty: 1 });
   const [activetab, setactivetab] = useState("desc");
   const [popup, setpopup] = useState(false);
+
   const [error, seterror] = useState(null);
-  const [product, setproducts] = useState(null);
   const { addtocart, increase, decrease, cartItem } = useCart();
+  const [images, setimages] = useState("");
   const [device, setdevice] = useState({
     model: "",
     version: "",
@@ -34,10 +36,7 @@ export default function ClayGaneshaSlug() {
   });
   const router = useRouter();
 
-  useEffect(() => {
-    const id = router.asPath.split("/")[2].split("=")[1];
-    fetchGanesha(id);
-  }, [router]);
+  const id = router.asPath.split("/")[2].split("=")[1];
 
   const fetchGanesha = async (id) => {
     const { data, error } = await supabase
@@ -46,9 +45,15 @@ export default function ClayGaneshaSlug() {
       .eq("url", id)
       .single();
     // .order("id", { isActive: true });
-    setproducts(data);
+    setimages(data?.image[0]);
     return data;
   };
+
+  const { isLoading, isError, data, isFetching, isPreviousData } = useQuery({
+    queryKey: ["camera"],
+    queryFn: () => fetchGanesha(id),
+    // keepPreviousData: true,
+  });
 
   const handledecrease = () => {
     // if (isInCart(product, cartItem)) {
@@ -75,8 +80,8 @@ export default function ClayGaneshaSlug() {
     } else if (device.version == "") {
       seterror("Please select device version");
     } else {
-      // isInCart(product, cartItem) ? setpopup(true) : "";
-      addtocart({ ...product, optionalData: device, quantity: qty.qty });
+      // isInCart(data, cartItem) ? setpopup(true) : "";
+      addtocart({ ...data, optionalData: device, quantity: qty.qty });
       handlePopup(true);
     }
   };
@@ -135,7 +140,9 @@ export default function ClayGaneshaSlug() {
           passclose={() => handlePopup(false)}
         />
       )}
-      {product ? (
+      {isLoading ? (
+        <Loader2 />
+      ) : (
         <>
           <style jsx>{`
             .scrollingReview {
@@ -171,24 +178,40 @@ export default function ClayGaneshaSlug() {
                   </Link>
                   /
                   <span className="whitespace-nowrap max-w-xs w-full truncate">
-                    {product?.url}
+                    {data?.url}
                   </span>
                 </div>
                 <div className="max-w-7xl w-full mx-auto pt-8 md:flex-row flex-col gap-10 md:gap-20 flex px-5">
                   <div className=" w-full md:w-1/2">
                     <div className="flex-col-reverse flex gap-2">
-                      <div className="bg-gray-50 block responsive w-full rounded-md">
-                        <Image
-                          layout="responsive"
-                          objectFit="cover"
-                          objectPosition="center"
-                          height={100}
-                          width={100}
-                          loading="lazy"
-                          src={product?.image[0] ? product?.image[0] : ""}
-                          alt={product?.name}
-                          className="rounded"
-                        />
+                      <div className="md:flex-row flex-col-reverse flex gap-2">
+                        <div className="flex flex-row md:flex-col gap-4 md:gap-2">
+                          {data?.image?.map((item, i) => (
+                            <div
+                              onClick={() => setimages(data?.image[i])}
+                              key={i}
+                              className={`${
+                                images == item
+                                  ? "border-zinc-600"
+                                  : "border-zinc-200"
+                              } bg-gray-50 cursor-pointer rounded-md  border-2  min-w-[50px] md:max-w-max`}
+                            >
+                              <img
+                                loading="lazy"
+                                src={item}
+                                alt={data?.name}
+                                className="md:w-20 w-16"
+                              />
+                            </div>
+                          ))}
+                        </div>
+                        <div className="bg-gray-50 block responsive w-full rounded-md">
+                          <img
+                            src={images}
+                            alt={data?.name}
+                            className="w-full h-full"
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -199,22 +222,18 @@ export default function ClayGaneshaSlug() {
                           style={{ lineHeight: 1.3 }}
                           className="text-zinc-900 capitalize font-semibold md:text-4xl text-2xl sm:text-3xl"
                         >
-                          {product?.name}
+                          {data?.name}
                         </h2>
 
                         <div className="relative flex items-end gap-3 pb-3 pt-1">
                           <h5 className="md:text-4xl text-3xl font-bold font- text-zinc-900 flex gap-3 items-center">
-                            ₹{FormatingCurrency(product?.price)}
+                            ₹{FormatingCurrency(data?.price)}
                           </h5>
                           <h5 className="md:text-2xl  text-xl line-through  font-semibold  text-zinc-500 flex gap-3 items-center">
-                            ₹{FormatingCurrency(product?.strike_price)}
+                            ₹{FormatingCurrency(data?.strike_price)}
                           </h5>
                           <span className="text-orange-500 text-xl font-semibold">
-                            (Rs.{" "}
-                            {handleAmount(
-                              product?.strike_price,
-                              product?.price
-                            )}{" "}
+                            (Rs. {handleAmount(data?.strike_price, data?.price)}{" "}
                             OFF)
                           </span>
                         </div>
@@ -224,9 +243,7 @@ export default function ClayGaneshaSlug() {
                           val={device.type}
                           passSelect={(e) => handleChange(e, "type")}
                         >
-                          <option value="" hidden disable>
-                            Select Device Type
-                          </option>
+                          {/*<option value="">Select Device Type</option>*/}
                         </CommonSelect>
                         {device.type !== "" && (
                           <CommonSelect
@@ -239,7 +256,11 @@ export default function ClayGaneshaSlug() {
                         )}
                         {device.model !== "" && (
                           <CommonSelect
-                            data={versionname[device.type][device.model]}
+                            data={
+                              versionname[device.type][
+                                device.model.toLowerCase()
+                              ]
+                            }
                             val={device.version}
                             passSelect={(e) => handleChange(e, "version")}
                           >
@@ -308,7 +329,7 @@ export default function ClayGaneshaSlug() {
                           <a
                             target="_blank"
                             rel="noreferrer"
-                            href={`https://wa.me/918591386693/?text=Hii, Wrapkit, %0a %0a I want to order this ${product?.name} %0a  https://wrapkit.in/phone/product?q=${product?.url}`}
+                            href={`https://wa.me/918591386693/?text=Hii, Wrapkit, %0a %0a I want to order this ${data?.name} %0a  https://wrapkit.in/phone/data?q=${data?.url}`}
                             className="text-base rounded-full hover:scale-[1.05] transform transition duration-200 ease-in bg-green-600 uppercase text-white font-semibold hover:bg-green-700 flex gap-3 justify-center items-center  px-4 py-3  w-full"
                           >
                             <span>
@@ -511,14 +532,12 @@ export default function ClayGaneshaSlug() {
             </div>
           </BaseSection>
           <NewArrival
-            name="mobile"
+            name="camera"
             bg={"bg-[#F1F6FC]"}
-            redirect="phone"
-            url={product?.url}
+            redirect="camera"
+            url={data?.url}
           />
         </>
-      ) : (
-        <Loader2 />
       )}
     </>
   );
