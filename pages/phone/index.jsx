@@ -56,7 +56,7 @@ export default function ClayGanesha() {
         <div>Error: {error.message}</div>
       ) : (
         <>
-          <div className=" mt-10 md:mt-4 w-full max-w-7xl mx-auto md:grid-cols-3  grid-cols-2 lg:grid-cols-4 grid ">
+          <div className=" mt-10 px-5  md:mt-4 w-full max-w-7xl mx-auto md:grid-cols-3 gap-5 grid-cols-2 lg:grid-cols-4 grid ">
             <Trail open={true}>
               {data?.map((item, i) => (
                 <Product
