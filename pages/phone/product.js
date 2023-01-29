@@ -30,7 +30,7 @@ export default function ClayGaneshaSlug() {
   const [device, setdevice] = useState({
     model: "",
     version: "",
-    type: "",
+    type: "Smartphone",
   });
   const router = useRouter();
 
@@ -224,11 +224,11 @@ export default function ClayGaneshaSlug() {
                           val={device.type}
                           passSelect={(e) => handleChange(e, "type")}
                         >
-                          <option value="">Select Device Type</option>
+                          {/*<option value="">Select Device Type</option>*/}
                         </CommonSelect>
                         {device.type !== "" && (
                           <CommonSelect
-                            data={model[device.type.toLowerCase()]}
+                            data={model[device.type]}
                             val={device.model}
                             passSelect={(e) => handleChange(e, "model")}
                           >
@@ -237,11 +237,7 @@ export default function ClayGaneshaSlug() {
                         )}
                         {device.model !== "" && (
                           <CommonSelect
-                            data={
-                              versionname[device.type.toLowerCase()][
-                                device.model.toLowerCase()
-                              ]
-                            }
+                            data={versionname[device.type][device.model]}
                             val={device.version}
                             passSelect={(e) => handleChange(e, "version")}
                           >

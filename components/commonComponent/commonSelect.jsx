@@ -1,3 +1,5 @@
+import React from "react";
+
 export default function CommonSelect({ val, data, passSelect, children }) {
   const handleSelect = (e) => {
     passSelect(e.target.value);

@@ -1,5 +1,5 @@
 export const model = {
-  smartphone: [
+  Smartphone: [
     "Apple",
     "Asus",
     "Google",
@@ -24,7 +24,7 @@ export const model = {
     "Micromax",
     "Tecno",
   ],
-  laptop: [
+  Laptop: [
     "Apple Macbook",
     "Microsoft Surface",
     "Dell Alienware",
@@ -35,19 +35,19 @@ export const model = {
     "Lenovo Laptops",
     "HP Laptops",
   ],
-  charger: [
-    "Apple				",
-    "OnePlus				",
-    "Realme				",
-    "Oppo				",
-    "Redmi				",
-    "Samsung				",
-    "IQOO				",
-    "Vivo				",
-    "Xiaomi				",
-    "Nothing Phone				",
-    "Nokia				",
-    "Huawei				",
+  Charger: [
+    "Apple",
+    "OnePlus",
+    "Realme",
+    "Oppo",
+    "Redmi",
+    "Samsung",
+    "IQOO",
+    "Vivo",
+    "Xiaomi",
+    "Nothing Phone",
+    "Nokia",
+    "Huawei",
   ],
   // card: [
   //   "Debit Card\n",
@@ -61,7 +61,7 @@ export const model = {
 };
 
 export const versionname = {
-  smartphone: {
+  Smartphone: {
     apple: [
       "Apple iPhone 14",
       "Apple iPhone 14 Pro ",
@@ -872,7 +872,7 @@ export const versionname = {
     "10. or g": ["10. or G (No Sides) ", "10. or G 2"],
     blackberry: ["Blackberry Passport", "Blackberry Priv", "Blackberry Z10"],
   },
-  laptop: {
+  Laptop: {
     "apple macbook": [
       "Macbook Air 11 inch (2010)				",
       "Macbook Air 11 inch (2013)				",
@@ -1102,7 +1102,7 @@ export const versionname = {
       "HP Pavilion x360 14-dw1018TU				",
     ],
   },
-  charger: {
+  Charger: {
     apple: [
       "Apple 5W				",
       "Apple 10W 				",

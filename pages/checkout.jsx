@@ -495,14 +495,15 @@ export default function Checkout(props) {
                   <div className="flex text-zinc-800 justify-between md:text-lg  pb-1">
                     Shipping Charges
                     <span className="font-semibold  text-zinc-800 text-lg">
-                      {parseInt(
-                        Toalvalue()
-                          .subtotal.split("")
-                          .slice(1, Toalvalue().subtotal.split("").length)
-                          .join("")
-                      ) >= 1000
-                        ? "Free"
-                        : "+ ₹0"}
+                      FREE
+                      {/*{parseInt(*/}
+                      {/*  Toalvalue()*/}
+                      {/*    .subtotal.split("")*/}
+                      {/*    .slice(1, Toalvalue().subtotal.split("").length)*/}
+                      {/*    .join("")*/}
+                      {/*) >= 1000*/}
+                      {/*  ? "Free"*/}
+                      {/*  : "+ ₹0"}*/}
                     </span>
                   </div>
 

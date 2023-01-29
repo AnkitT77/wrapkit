@@ -70,14 +70,15 @@ export default function Cart() {
                     <div className="flex text-zinc-600 md:text-xl text-lg justify-between py-3 px-6">
                       Shipping Charges
                       <span className="font-semibold md:text-2xl text-xl text-zinc-800 ">
-                        {parseInt(
-                          Toalvalue()
-                            .subtotal.split("")
-                            .slice(1, Toalvalue().subtotal.split("").length)
-                            .join("")
-                        ) >= 1000
-                          ? "Free"
-                          : "+ ₹0"}
+                        FREE
+                        {/*{parseInt(*/}
+                        {/*  Toalvalue()*/}
+                        {/*    .subtotal.split("")*/}
+                        {/*    .slice(1, Toalvalue().subtotal.split("").length)*/}
+                        {/*    .join("")*/}
+                        {/*) >= 1000*/}
+                        {/*  ? "Free"*/}
+                        {/*  : "+ ₹0"}*/}
                       </span>
                     </div>
                     <div className="flex mt-4 pt-5 md:text-xl text-lg border-t justify-between text-zinc-800 px-6 font-cera_medium pb-6">
@@ -109,7 +110,7 @@ function CartItemList({ data, cartid }) {
   // const [optonal,setoptional]  = useState(false);
   const { increase, decrease, removeCart } = useCart();
   const [qty, setqty] = useState({ qty: data.quantity });
-  
+
   const handleincrase = () => {
     increase(data);
     setqty((prev) => ({ qty: prev.qty + 1 }));
@@ -158,175 +159,64 @@ function CartItemList({ data, cartid }) {
               {data.name}
             </h6>
             <div className="text-[15px]">
-              <p>
-                Device: {data?.optionalData.type}
-              </p>
-              <p>
-                Model: {data?.optionalData.model}
-              </p>
-              <p>
-                Version: {data?.optionalData.version}
-              </p>
+              <p>Device: {data?.optionalData.type}</p>
+              <p>Model: {data?.optionalData.model}</p>
+              <p>Version: {data?.optionalData.version}</p>
             </div>
             <div className="flex  justify-between items-center gap-5 flex-row ">
-            <div className="flex rounded-[10px] max-w-[100px] px-2 w-full   border border-zinc-300">
-              <button
-                onClick={handledecrease}
-                className={`${
-                  data.quantity === 1 ? "text-zinc-300 cursor-not-allowed" : ""
-                } py-1 `}
-                disabled={data.quantity === 1}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+              <div className="flex rounded-[10px] max-w-[100px] px-2 w-full   border border-zinc-300">
+                <button
+                  onClick={handledecrease}
+                  className={`${
+                    data.quantity === 1
+                      ? "text-zinc-300 cursor-not-allowed"
+                      : ""
+                  } py-1 `}
+                  disabled={data.quantity === 1}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M18 12H6"
-                  />
-                </svg>
-              </button>
-              <span className="py-1 sm:py-2 px-1 w-full text-center">
-                {data.quantity}
-                {/*{qty.qty}*/}
-              </span>
-              <button onClick={handleincrase} className="py-1">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 4v16m8-8H4"
-                  />
-                </svg>
-              </button>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M18 12H6"
+                    />
+                  </svg>
+                </button>
+                <span className="py-1 sm:py-2 px-1 w-full text-center">
+                  {data.quantity}
+                  {/*{qty.qty}*/}
+                </span>
+                <button onClick={handleincrase} className="py-1">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 4v16m8-8H4"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <h5 className="md:text-2xl text-xl text-left font-semibold sm:mt-0 mt-2 sm:text-right">
+                ₹{FormatingCurrency(data?.price)}
+              </h5>
             </div>
-          <h5 className="md:text-2xl text-xl text-left font-semibold sm:mt-0 mt-2 sm:text-right">
-            ₹{FormatingCurrency(data?.price)}
-          </h5>
-            </div>
-        </div>
-        </div>
-      </div>
-    </>
-  );
-}
-
-export function CalculatePercentage({ val }) {
-  // let value = val;
-  const total = val;
-  const [percentage, setpercentage] = useState(0);
-  // parseInt(value.slice(1,value.length).join(""))
-  // const percentage = (((total) / 1000) * 100 > 100 ? 0.01 : 100 - ((total) / 1000) * 100);
-  // const remainingpprice = 1000 - total;
-  const [mouted, setmouted] = useState(false);
-
-  useEffect(() => {
-    setpercentage(
-      (total / 1000) * 100 > 100 ? 0.01 : 100 - (total / 1000) * 100
-    );
-    setmouted(true);
-    return () => setmouted(false);
-  }, [total, mouted]);
-
-  return (
-    <>
-      {mouted ? (
-        <div className="w-full px-5 flex flex-col gap-3 pb-3">
-          <div className="h-[5px]  bg-gray-100 opacity-90 w-full overflow-x-hidden">
-            <div
-              className={`${
-                1000 - total <= 0 ? "bg-green-500" : "bg-yellow-300"
-              }`}
-              style={{
-                transform: `translate3d(-${percentage}%, 0px, 0px)`,
-                height: "5px",
-                transition:
-                  ".3s background-color ease-in-out,.3s transform cubic-bezier(0, 0, .25, 1)",
-              }}
-            ></div>
           </div>
         </div>
-      ) : (
-        ""
-      )}
+      </div>
     </>
   );
 }
-
-const Model = (props) => {
-  const [optionaldata, setoptionaldata] = useState({ name: "", gotra: "" });
-  const handleOptional = (e) => {
-    const { name, value } = e.target;
-    setoptionaldata((prev) => ({ ...prev, [name]: value }));
-  };
-  const ref = useRef();
-  return (
-    <div
-      ref={ref}
-      className="flex bg-white p-5 rounded-md z-10 fixed top-1/2 left-1/2 -translate-x-1/2 max-w-xs w-full -translate-x-1/2 flex-col gap-6 shadow-md"
-    >
-      <h3 className="flex justify-between text-xl text-zinc-800">
-        Add your Personalisation
-        <button onClick={() => props.passclose(true)}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fillRule="evenodd"
-              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </button>
-      </h3>
-      <div className="flex flex-col gap-5 pb-5 w-full">
-        <label htmlFor="name" className="flex gap-2 items-center">
-          Name:{" "}
-          <input
-            id="name"
-            value={optionaldata.name}
-            onChange={handleOptional}
-            type="text"
-            name="name"
-            placeholder="Enter your full name"
-            className=" py-3 w-full focus:border-black outline-none border-b border-zinc-400"
-          />
-        </label>
-        <label htmlFor="gotra" className="flex gap-2 items-center">
-          Gotra:{" "}
-          <input
-            id="gotra"
-            value={optionaldata.gotra}
-            onChange={handleOptional}
-            type="text"
-            name="gotra"
-            placeholder="Enter your Gotra"
-            className=" py-3 w-full focus:border-black outline-none border-b border-zinc-400"
-          />
-        </label>
-      </div>
-      <button
-        onClick={() => props.handledata(optionaldata)}
-        className="bg-gray-200 p-3 rounded-full font-cera_bold hover:bg-gray-300"
-      >
-        Submit
-      </button>
-    </div>
-  );
-};

@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import Marque from "../components/commonComponent/marque";
 import { supabase } from "../components/supabase/supabase";
 import Pagination from "../components/utils/pagination";
+import { deviceType } from "../components/jsondata/device";
 
 const App = () => {
   useEffect(() => {
@@ -18,7 +19,17 @@ const App = () => {
   return (
     <div className="">
       <Marque />
-      <Pagination total={100} showing={50} />
+      <select
+        value={"laptop"}
+        onChange={""}
+        className=" h-[50px]  bg-white cursor-pointer pl-3 outline-none focus:ring-4 focus:ring-blue-200 md:text-lg shadow-md shadow-zinc-200/30 rounded-[10px]"
+      >
+        {deviceType.map((item, i) => (
+          <option value={item} key={i}>
+            {item}
+          </option>
+        ))}
+      </select>{" "}
     </div>
   );
 };

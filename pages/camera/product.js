@@ -30,7 +30,7 @@ export default function ClayGaneshaSlug() {
   const [device, setdevice] = useState({
     model: "",
     version: "",
-    type: "Laptop",
+    type: "",
   });
   const router = useRouter();
 
@@ -41,7 +41,7 @@ export default function ClayGaneshaSlug() {
 
   const fetchGanesha = async (id) => {
     const { data, error } = await supabase
-      .from("laptop")
+      .from("camera")
       .select("*")
       .eq("url", id)
       .single();
@@ -166,8 +166,8 @@ export default function ClayGaneshaSlug() {
                     <a className="hover:text-green-700 text-zinc-800">Home</a>
                   </Link>
                   /
-                  <Link href="/laptop">
-                    <a className="hover:text-green-700 text-zinc-800">laptop</a>
+                  <Link href="/camera">
+                    <a className="hover:text-green-700 text-zinc-800">camera</a>
                   </Link>
                   /
                   <span className="whitespace-nowrap max-w-xs w-full truncate">
@@ -223,16 +223,18 @@ export default function ClayGaneshaSlug() {
                           data={deviceType}
                           val={device.type}
                           passSelect={(e) => handleChange(e, "type")}
-                        />
+                        >
+                          <option value="" hidden disable>
+                            Select Device Type
+                          </option>
+                        </CommonSelect>
                         {device.type !== "" && (
                           <CommonSelect
                             data={model[device.type]}
                             val={device.model}
                             passSelect={(e) => handleChange(e, "model")}
                           >
-                            <option disabled value="" hidden>
-                              Select Device Model
-                            </option>
+                            <option value="">Select Device Model</option>
                           </CommonSelect>
                         )}
                         {device.model !== "" && (
@@ -509,7 +511,7 @@ export default function ClayGaneshaSlug() {
             </div>
           </BaseSection>
           <NewArrival
-            name="laptop"
+            name="mobile"
             bg={"bg-[#F1F6FC]"}
             redirect="phone"
             url={product?.url}

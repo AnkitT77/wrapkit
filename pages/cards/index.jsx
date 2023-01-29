@@ -13,7 +13,7 @@ export default function ClayGanesha() {
   // const [page, setpage] = useState(1);
 
   const fetchProcucts = async () => {
-    const { data, error } = await supabase.from("mobile").select("*");
+    const { data, error } = await supabase.from("cards").select("*");
     // .range(1, 50);
 
     // const total = await supabase
@@ -26,7 +26,7 @@ export default function ClayGanesha() {
 
   const { isLoading, isError, error, data, isFetching, isPreviousData } =
     useQuery({
-      queryKey: ["projects"],
+      queryKey: ["cards"],
       queryFn: () => fetchProcucts(),
       // keepPreviousData: true,
     });
@@ -37,12 +37,12 @@ export default function ClayGanesha() {
         <div className="max-w-7xl w-full mx-auto">
           <div className="flex flex-col gap-5 max-w-4xl text-center mx-auto px-5">
             <Heading size="md:text-[50px] text-[30px] sm:text-[40px]">
-              MOBILE PHONE SKINS
+              CARDS SKINS
             </Heading>
             <Paragraph size="md:text-lg " extra="max-w-2xl mx-auto">
               We have a variety of classic designs and materials to choose from.
-              So go ahead and decorate your charger with one of our cool printed
-              mobile charger wraps.
+              So go ahead and decorate your laptop with one of our cool printed
+              laptop wraps.
             </Paragraph>
           </div>
         </div>
@@ -59,7 +59,7 @@ export default function ClayGanesha() {
               {data?.map((item, i) => (
                 <Product
                   key={i}
-                  category="phone"
+                  category="cards"
                   color={ProductBackground(color, i)}
                   url={item?.url}
                   data={item}

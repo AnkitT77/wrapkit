@@ -30,7 +30,7 @@ export default function ClayGaneshaSlug() {
   const [device, setdevice] = useState({
     model: "",
     version: "",
-    type: "Laptop",
+    type: "",
   });
   const router = useRouter();
 
@@ -41,7 +41,7 @@ export default function ClayGaneshaSlug() {
 
   const fetchGanesha = async (id) => {
     const { data, error } = await supabase
-      .from("laptop")
+      .from("cards")
       .select("*")
       .eq("url", id)
       .single();
@@ -223,7 +223,11 @@ export default function ClayGaneshaSlug() {
                           data={deviceType}
                           val={device.type}
                           passSelect={(e) => handleChange(e, "type")}
-                        />
+                        >
+                          <option value="" hidden disable>
+                            Select Device Type
+                          </option>
+                        </CommonSelect>
                         {device.type !== "" && (
                           <CommonSelect
                             data={model[device.type]}
