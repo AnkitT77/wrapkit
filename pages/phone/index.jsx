@@ -27,7 +27,7 @@ export default function ClayGanesha() {
 
   const { isLoading, isError, error, data, isFetching, isPreviousData } =
     useQuery({
-      queryKey: ["projects"],
+      queryKey: ["phone"],
       queryFn: () => fetchProcucts(),
       // keepPreviousData: true,
     });

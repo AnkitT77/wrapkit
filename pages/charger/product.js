@@ -1,7 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import BaseSection from "../../components/commonComponent/baseSection";
 import useCart from "../../components/context/cartHooks";
 import { Loader2 } from "../../components/loader";
@@ -17,7 +16,6 @@ import { FormError } from "../../components/error/formerrortext";
 import dynamic from "next/dynamic";
 import NewArrival from "../../components/randomProduct/clay-random";
 import { useQuery } from "@tanstack/react-query";
-import image_data from "next/dist/server/lib/squoosh/image_data";
 const Popupcart = dynamic(() => import("../../components/product/popupcart"), {
   ssr: false,
 });
@@ -51,7 +49,7 @@ export default function ClayGaneshaSlug() {
   };
 
   const { isLoading, isError, data, isFetching, isPreviousData } = useQuery({
-    queryKey: ["charger"],
+    queryKey: ["charger_detail"],
     queryFn: () => fetchGanesha(id),
     // keepPreviousData: true,
   });
@@ -334,7 +332,7 @@ export default function ClayGaneshaSlug() {
                           <a
                             target="_blank"
                             rel="noreferrer"
-                            href={`https://wa.me/918591386693/?text=Hii, Wrapkit, %0a %0a I want to order this ${data?.name} %0a  https://wrapkit.in/phone/data?q=${data?.url}`}
+                            href={`https://wa.me/919421193881/?text=Hii, Wrapkit, %0a %0a I want to order this ${data?.name} %0a  https://wrapkit.in/phone/data?q=${data?.url}`}
                             className="text-base rounded-full hover:scale-[1.05] transform transition duration-200 ease-in bg-green-600 uppercase text-white font-semibold hover:bg-green-700 flex gap-3 justify-center items-center  px-4 py-3  w-full"
                           >
                             <span>

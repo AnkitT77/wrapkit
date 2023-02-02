@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 
-
-
 import Image from "next/image";
 export default function Contact() {
   const initialvalue = {
@@ -67,50 +65,59 @@ export default function Contact() {
                   <h4 className="font-bold md:text-2xl mb-2 text-xl text-zinc-800 ">
                     Contact us
                   </h4>
-                    <div className="flex flex-col ">
-                      <label htmlFor="name" className="mb-2 text-zinc-700 font-semibold">
-                        Name{' '}
-                      </label>
-                      <input
-                          id="name"
-                          type="name"
-                          onChange={handleInput}
-                          value={formValue.name}
-                          name="name"
-                          placeholder="Kevin"
-                          className={`border-gray-300 border rounded focus:border-blue-300 focus:ring-2 focus:ring-blue-100  outline-none w-full  p-2.5`}
-                      />
-                    </div>
                   <div className="flex flex-col ">
-                    <label htmlFor="name" className="mb-2 text-zinc-700 font-semibold">
-                      Email Address{' '}
+                    <label
+                      htmlFor="name"
+                      className="mb-2 text-zinc-700 font-semibold"
+                    >
+                      Name{" "}
                     </label>
                     <input
-                        id="email"
-                        type="email"
-                        onChange={handleInput}
-                        value={formValue.email}
-                        name="email"
-                        placeholder="name@address.com"
-                        className={`border-gray-300 border rounded focus:border-blue-300 focus:ring-2 focus:ring-blue-100  outline-none w-full  p-2.5`}
+                      required
+                      id="name"
+                      type="name"
+                      onChange={handleInput}
+                      value={formValue.name}
+                      name="name"
+                      placeholder="Kevin"
+                      className={`border-gray-300 border rounded focus:border-blue-300 focus:ring-2 focus:ring-blue-100  outline-none w-full  p-2.5`}
                     />
                   </div>
                   <div className="flex flex-col ">
                     <label
-                        htmlFor="message"
-                        className="text-zinc-700 mb-2   font-semibold "
+                      htmlFor="name"
+                      className="mb-2 text-zinc-700 font-semibold"
+                    >
+                      Email Address{" "}
+                    </label>
+                    <input
+                      required
+                      id="email"
+                      type="email"
+                      onChange={handleInput}
+                      value={formValue.email}
+                      name="email"
+                      placeholder="name@address.com"
+                      className={`border-gray-300 border rounded focus:border-blue-300 focus:ring-2 focus:ring-blue-100  outline-none w-full  p-2.5`}
+                    />
+                  </div>
+                  <div className="flex flex-col ">
+                    <label
+                      htmlFor="message"
+                      className="text-zinc-700 mb-2   font-semibold "
                     >
                       Message
                     </label>
                     <div className="w-full ">
-              <textarea
-                  id="message"
-                  placeholder="Write your message"
-                  onChange={handleInput}
-                  name="message"
-                  value={formValue.message}
-                  className={`border-gray-300 resize-y border focus:border-blue-300 outline-none focus:ring-2 focus:ring-blue-100  w-full rounded p-2.5 h-24`}
-              />
+                      <textarea
+                        required
+                        id="message"
+                        placeholder="Write your message"
+                        onChange={handleInput}
+                        name="message"
+                        value={formValue.message}
+                        className={`border-gray-300 resize-y border focus:border-blue-300 outline-none focus:ring-2 focus:ring-blue-100  w-full rounded p-2.5 h-24`}
+                      />
                     </div>
                   </div>
                   {error !== null && (
@@ -118,7 +125,7 @@ export default function Contact() {
                       {error}
                     </span>
                   )}
-                  <button className="bg-blue-500 px-10 py-2.5 transition duration-150  max-w-[200px] hover:bg-green-800 hover:scale-[1.05]  rounded-md font-semibold text-base text-white">
+                  <button className="bg-blue-500 px-10 py-2.5 transition duration-150  max-w-[200px] hover:bg-blue-600 hover:scale-[1.05]  rounded-md font-semibold text-base text-white">
                     Send Enquiry
                   </button>
                 </form>
@@ -145,7 +152,8 @@ export default function Contact() {
                     Address
                   </h5>
                   <p className="mt-1 max-w-xs ml-10 group-hover:text-white md:text-lg">
-                    Vidhya Nagari, Kalina Air India, Santacruz East, Mumbai - 400055
+                    Vidhya Nagari, Kalina Air India, Santacruz East, Mumbai -
+                    400055
                   </p>
                 </div>
 
@@ -169,7 +177,7 @@ export default function Contact() {
                     href="mailto:gogreenganeshaa@gmail.com"
                     className="mt-1 ml-10 group-hover:text-white md:text-lg"
                   >
-                   wrapkit.in@gmail.com
+                    wrapkit.in@gmail.com
                   </a>
                 </div>
 
@@ -190,20 +198,17 @@ export default function Contact() {
                     Phone{" "}
                   </h5>
                   <p className="mt-1 ml-10 group-hover:text-white md:text-lg">
-                    Mobile: +91 8591386693
+                    Mobile: +91 9421193881
                   </p>
-
                 </div>
-
-                 
-
-
 
                 <div className="flex w-full flex-col gap-5">
                   <h6>Follow Us</h6>
                   <div className="flex items-center gap-5 ">
                     <a
-                      href="#"
+                      target="_blank"
+                      rel="noreferrer"
+                      href="https://www.facebook.com/Wrapkit.in?mibexid=ZbWKwL"
                       className="p-3 group hover:bg-indigo-200 bg-indigo-600 rounded-md"
                     >
                       <svg
@@ -218,20 +223,22 @@ export default function Contact() {
                     </a>
 
                     <a
+                      target="_blank"
+                      rel="noreferrer"
                       href="https://www.instagram.com/wrapkit.in/?igshid=OGQ2MjdiOTE%3D"
                       className="p-3 group hover:bg-red-200 bg-red-600 rounded-mdhover:bg-red-200 bg-red-600 rounded-md"
                     >
-<Image
-											src="/imgs/insta.svg"
-											width={20}
-											height={20}
-											className="cursor-pointer items-center text-center justify-center "
-										></Image>
-
-
-                      </a>
+                      <Image
+                        src="/imgs/insta.svg"
+                        width={20}
+                        height={20}
+                        className="cursor-pointer items-center text-center justify-center "
+                      ></Image>
+                    </a>
                     <a
-                      href="https://wa.me/918591386693"
+                      target="_blank"
+                      rel="noreferrer"
+                      href="https://wa.me/919421193881"
                       className=" p-3 group hover:bg-green-200 bg-green-600 rounded-md"
                     >
                       <svg
@@ -259,10 +266,6 @@ export default function Contact() {
           </div>
         </div>
       </div>
-
-
-
-
     </>
   );
 }
