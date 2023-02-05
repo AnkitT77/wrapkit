@@ -36,6 +36,10 @@ export default function TopNav() {
     };
   }, [diaplsymenu]);
 
+  const hanlemenu = () => {
+    setdisplaymenu((prev) => !prev);
+  };
+
   return (
     <>
       {diaplsymenu && <Mobilemenu active={diaplsymenu} passclose={hanlemenu} />}
@@ -44,7 +48,7 @@ export default function TopNav() {
       >
         <div className="max-w-7xl w-full bg-white  gap-10 mx-auto px-5 text-zinc-800 flex justify-between items-center ">
           <div className="flex gap-3 items-center">
-            <button onClick={() => hanlemenu(true)} className="md:hidden block">
+            <button onClick={hanlemenu} className="md:hidden block">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
