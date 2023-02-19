@@ -6,13 +6,12 @@ import { Toalvalue } from "../components/utils/countryHandle";
 import { getLocalstorage } from "../components/utils/getlocalstorage";
 import { useRouter } from "next/router";
 import { supabase } from "../components/supabase/supabase";
-import displayRazorpay from "../components/paymentbutton/razorpay";
 import CartContextProvider from "../components/context/cartContext";
 import {
   FormatingCurrency,
   removeUnwantedEntry,
 } from "../components/utils/feture";
-const country = require("../components/jsondata/country.json");
+// const country = require("../components/jsondata/country.json");
 
 export default function Checkout(props) {
   const initialvalue = {
@@ -39,6 +38,11 @@ export default function Checkout(props) {
 
   useEffect(() => {
     // console.log(await Toalvalue());
+    // const d = localStorage.getItem("checkout");
+    // if (d != null) {
+    //   setinputvalue(JSON.parse(d));
+    // }
+
     if (cartItem) {
       setitem(cartItem);
       setloader(false);
@@ -101,20 +105,21 @@ export default function Checkout(props) {
         inputvalue,
         Toalvalue().totalformat
       );
-      console.log(entry);
-      await displayRazorpay(
-        inputvalue.email,
-        inputvalue.firstname + " " + inputvalue.lastname,
-        inputvalue.user_mobile_number,
-        Toalvalue().totalvalue,
-        entry
-      );
+      // localStorage.setItem("checkout", JSON.stringify(inputvalue));
+      await InitiateInstamojo(entry, inputvalue);
+      // await displayRazorpay(
+      //   inputvalue.email,
+      //   inputvalue.firstname + " " + inputvalue.lastname,
+      //   inputvalue.user_mobile_number,
+      //   Toalvalue().totalvalue,
+      //   entry
+      // );
     } else {
       setFormErrors(validate(inputvalue));
     }
   };
 
-  const updatedatabase = async (product, userdata, total) => {
+  const updatedatabase = async (product, userdata, total, id) => {
     const { data, error } = await supabase.from("order_history").insert({
       user_details: userdata,
       total_price: total,
@@ -128,6 +133,54 @@ export default function Checkout(props) {
     } else {
       setloader2(false);
       return null;
+    }
+  };
+
+  const updateDatabasePaymentId = async (id, paymentid) => {
+    const { error } = await supabase
+      .from("order_history")
+      .update({ payment_id: paymentid })
+      .eq("id", id);
+
+    if (!error) {
+      return true;
+    } else {
+      return null;
+    }
+  };
+
+  const InitiateInstamojo = async (id, inputvalue) => {
+    // get insta token
+    const getToken = await fetch("/api/instamojo", {
+      method: "POST",
+      body: JSON.stringify({
+        operation: "TOKEN",
+      }),
+    });
+    const tokenRes = await getToken.json();
+
+    if (tokenRes?.status) {
+      const createPaymentLink = await fetch("/api/instamojo", {
+        method: "POST",
+        body: JSON.stringify({
+          operation: "CREATE_PAYMENT_LINK",
+          token: tokenRes?.token?.access_token,
+          amount: Toalvalue().totalvalue,
+          purpose: id,
+          buyer_name: inputvalue.firstname + " " + inputvalue.lastname,
+          email: inputvalue.email,
+          phone: inputvalue.user_mobile_number,
+        }),
+      });
+      const paymentLinkRes = await createPaymentLink.json();
+      if (paymentLinkRes?.status) {
+        const d = await updateDatabasePaymentId(
+          paymentLinkRes?.response?.purpose,
+          paymentLinkRes?.response?.id
+        );
+        //console.log(tokenRes, paymentLinkRes);
+        window.location.href = paymentLinkRes?.response?.longurl;
+      }
     }
   };
 
