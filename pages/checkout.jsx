@@ -124,8 +124,6 @@ export default function Checkout(props) {
       user_details: userdata,
       total_price: total,
       product_details: product,
-      // quantity: "",
-      // order_id: "",
     });
     if (!error) {
       setloader2(false);
@@ -166,7 +164,7 @@ export default function Checkout(props) {
           operation: "CREATE_PAYMENT_LINK",
           token: tokenRes?.token?.access_token,
           amount: Toalvalue().totalvalue,
-          purpose: id,
+          purpose: "skins" + "-" + id,
           buyer_name: inputvalue.firstname + " " + inputvalue.lastname,
           email: inputvalue.email,
           phone: inputvalue.user_mobile_number,
@@ -174,8 +172,9 @@ export default function Checkout(props) {
       });
       const paymentLinkRes = await createPaymentLink.json();
       if (paymentLinkRes?.status) {
+        const id = paymentLinkRes?.response?.purpose.split("-");
         const d = await updateDatabasePaymentId(
-          paymentLinkRes?.response?.purpose,
+          id[1],
           paymentLinkRes?.response?.id
         );
         //console.log(tokenRes, paymentLinkRes);

@@ -5,10 +5,12 @@ export default async function InstamojoWebhook(req, res) {
     const reqBody = JSON.parse(req.body);
 
     const updateDatabasePayment = async (id, status) => {
+      const oId = id.split("-");
+
       const { error } = await supabase
         .from("order_history")
         .update({ payment_status: status })
-        .eq("id", id);
+        .eq("id", oId);
 
       if (!error) {
         return true;

@@ -36,8 +36,8 @@ async function instamojoToken() {
     },
     body: new URLSearchParams({
       grant_type: "client_credentials",
-      client_id: TEST_KEY,
-      client_secret: TEST_SECRET,
+      client_id: LIVE_KEY,
+      client_secret: LIVE_SECRET,
     }),
   };
 
