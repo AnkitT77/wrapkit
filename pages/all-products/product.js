@@ -21,12 +21,10 @@ export default function PapperGaneshaSlug() {
 
   const router = useRouter();
 
-
   useEffect(() => {
     const id = router.asPath.split("/")[2].split("=")[1];
     fetchGanesha(id);
   }, [router]);
-
 
   const fetchGanesha = async (id) => {
     const { data, error } = await supabase
@@ -34,12 +32,11 @@ export default function PapperGaneshaSlug() {
       .select("*")
       .eq("url", id)
       .limit(1)
-      .single()
+      .single();
     // .order("id", { isActive: true });
     setproducts(data);
     return data;
   };
-
 
   const handledecrease = () => {
     if (isInCart(product, cartItem)) {
@@ -90,25 +87,23 @@ export default function PapperGaneshaSlug() {
 
   const handleiamge = (i) => {
     setimage(i);
-  }
-// console.log(product?.imgs)
+  };
+  // console.log(product?.imgs)
 
   return (
     <>
-
-<div className="bg-green-300/70 py-2.5 mt-[85px]  text-center center px-3">
-
-Note : Booking are closed for 2022 
-
-</div>
-      {product ?
+      <div className="bg-green-300/70 py-2.5 mt-[85px]  text-center center px-3">
+        Note : Booking are closed for 2022
+      </div>
+      {product ? (
         <>
           <Popupcart
             qty={qty.qty}
-            transition={`${popup
-              ? "-translate-x-[10px] md:-translate-x-[100px] opacity-100 visible"
-              : "translate-x-[0px] opacity-0 invisible"
-              }`}
+            transition={`${
+              popup
+                ? "-translate-x-[10px] md:-translate-x-[100px] opacity-100 visible"
+                : "translate-x-[0px] opacity-0 invisible"
+            }`}
             data={product}
             passclose={handlecart}
           />
@@ -139,7 +134,11 @@ Note : Booking are closed for 2022
                           <div
                             key={i}
                             onClick={() => handleiamge(i)}
-                            className={`${images === i ? "border-zinc-800" : "border-zinc-200"} bg-gray-50 flex cursor-pointer rounded-md  border-2   max-w-max`}
+                            className={`${
+                              images === i
+                                ? "border-zinc-800"
+                                : "border-zinc-200"
+                            } bg-gray-50 flex cursor-pointer rounded-md  border-2   max-w-max`}
                           >
                             <Image
                               src={item}
@@ -160,7 +159,9 @@ Note : Booking are closed for 2022
                           height={100}
                           width={100}
                           loading="lazy"
-                          src={product?.imgs[images] ? product?.imgs[images] : ""}
+                          src={
+                            product?.imgs[images] ? product?.imgs[images] : ""
+                          }
                           alt={product?.name}
                           className="rounded"
                         />
@@ -180,7 +181,6 @@ Note : Booking are closed for 2022
                         <div className="relative pb-3 pt-1">
                           <h5 className="md:text-4xl text-3xl font-bold font- text-zinc-900 flex gap-3 items-center">
                             ₹{FormatingCurrency(product?.price)}
-
                           </h5>
                         </div>
                         {/*fetures */}
@@ -188,16 +188,28 @@ Note : Booking are closed for 2022
                         <div>
                           <ul className="flex flex-col gap-2 text-zinc-600">
                             <li className="md:text-xl md:text-lg ">
-                              <b className="font-semibold text-zinc-800">Size</b> : {product?.feature?.size}
+                              <b className="font-semibold text-zinc-800">
+                                Size
+                              </b>{" "}
+                              : {product?.feature?.size}
                             </li>
                             <li className="md:text-xl md:text-lg">
-                              <b className="font-semibold text-zinc-800">Material</b> : {product?.feature?.material}
+                              <b className="font-semibold text-zinc-800">
+                                Material
+                              </b>{" "}
+                              : {product?.feature?.material}
                             </li>
                             <li className="md:text-xl md:text-lg">
-                              <b className="font-semibold text-zinc-800">Finish</b> : {product?.feature?.finish}
+                              <b className="font-semibold text-zinc-800">
+                                Finish
+                              </b>{" "}
+                              : {product?.feature?.finish}
                             </li>
                             <li className="md:text-xl md:text-lg">
-                              <b className="font-semibold text-zinc-800">Features</b> : {product?.feature?.features}
+                              <b className="font-semibold text-zinc-800">
+                                Features
+                              </b>{" "}
+                              : {product?.feature?.features}
                             </li>
                           </ul>
                         </div>
@@ -209,10 +221,11 @@ Note : Booking are closed for 2022
                           <div className="flex py-2 px-2 gap-3 rounded-[10px] max-w-[100px] w-full divide-zinc-200   border border-zinc-300">
                             <button
                               onClick={handledecrease}
-                              className={`${qty.qty === 1
-                                ? "text-zinc-300 cursor-not-allowed"
-                                : ""
-                                } w-full`}
+                              className={`${
+                                qty.qty === 1
+                                  ? "text-zinc-300 cursor-not-allowed"
+                                  : ""
+                              } w-full`}
                               disabled={qty.qty === 1}
                             >
                               <svg
@@ -230,7 +243,9 @@ Note : Booking are closed for 2022
                                 />
                               </svg>
                             </button>
-                            <span className="w-full text-center">{qty.qty}</span>
+                            <span className="w-full text-center">
+                              {qty.qty}
+                            </span>
                             <button onClick={handleincrase} className="w-full">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -262,8 +277,8 @@ Note : Booking are closed for 2022
                           <a
                             target="_blank"
                             rel="noreferrer"
-                            href={`https://wa.me/918169882692/?text=Hii, Gogreenganesha, %0a %0a I want to order this ${product?.name} murti %0a  https://gogreenganesha.com/clay-ganesha/product?q=${product?.url}`}
-                            className="text-base md:mx-12 rounded-full hover:scale-[1.05] transform transition duration-200 ease-in bg-green-600 uppercase text-white font-semibold hover:bg-green-700 flex gap-3 justify-center items-center  px-4 py-3 max-w-sm w-full"
+                            href={`https://wa.me/919421193881/?text=Hii, Wrapkit, %0a %0a I want to order this ${data?.name} %0a  https://wrapkit.in/phone/product?q=${data?.url}`}
+                            className="text-base rounded-full hover:scale-[1.05] transform transition duration-200 ease-in bg-green-600 uppercase text-white font-semibold hover:bg-green-700 flex gap-3 justify-center items-center  px-4 py-3  w-full"
                           >
                             <span>
                               <svg
@@ -303,24 +318,27 @@ Note : Booking are closed for 2022
               {/*mobile description */}
               <div className="sm:hidden px-5 flex flex-col gap-3">
                 <div
-                  className={`${text === "desc"
-                    ? " border-zinc-100 shadow-md shadow-zinc-200/50 "
-                    : "border-transparent"
-                    } border flex flex-col gap-4 rounded-lg `}
+                  className={`${
+                    text === "desc"
+                      ? " border-zinc-100 shadow-md shadow-zinc-200/50 "
+                      : "border-transparent"
+                  } border flex flex-col gap-4 rounded-lg `}
                 >
                   <button
                     onClick={() =>
                       settext((prev) => (prev === "desc" ? "" : "desc"))
                     }
-                    className={`${text === "desc" ? "rounded-t-lg" : " rounded-lg"
-                      } bg-gradient-to-r from-green-50 to-teal-50  p-4  w-full   flex justify-between text-left cursor-pointer font-semibold text-xl md:text-2xl`}
+                    className={`${
+                      text === "desc" ? "rounded-t-lg" : " rounded-lg"
+                    } bg-gradient-to-r from-green-50 to-teal-50  p-4  w-full   flex justify-between text-left cursor-pointer font-semibold text-xl md:text-2xl`}
                   >
                     Description
                     <span className=" block">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className={`${text === "desc" ? "transform rotate-180" : ""
-                          } fill-zinc-800 h-5 w-5 transition duration-100 ease-in`}
+                        className={`${
+                          text === "desc" ? "transform rotate-180" : ""
+                        } fill-zinc-800 h-5 w-5 transition duration-100 ease-in`}
                         viewBox="0 0 20 20"
                         fill="currentColor"
                       >
@@ -346,24 +364,27 @@ Note : Booking are closed for 2022
                   )}
                 </div>
                 <div
-                  className={`${text === "feature"
-                    ? " border-zinc-100 rounded-t-lg shadow-md shadow-zinc-200/50 "
-                    : "border-transparent rounded-lg"
-                    } border flex flex-col gap-4`}
+                  className={`${
+                    text === "feature"
+                      ? " border-zinc-100 rounded-t-lg shadow-md shadow-zinc-200/50 "
+                      : "border-transparent rounded-lg"
+                  } border flex flex-col gap-4`}
                 >
                   <button
                     onClick={() =>
                       settext((prev) => (prev === "feature" ? "" : "feature"))
                     }
-                    className={`${text === "desc" ? "rounded-t-lg" : " rounded-lg"
-                      } bg-gradient-to-r from-green-50 to-teal-50  p-4  w-full   flex justify-between text-left cursor-pointer font-semibold text-xl md:text-2xl`}
+                    className={`${
+                      text === "desc" ? "rounded-t-lg" : " rounded-lg"
+                    } bg-gradient-to-r from-green-50 to-teal-50  p-4  w-full   flex justify-between text-left cursor-pointer font-semibold text-xl md:text-2xl`}
                   >
                     Features
                     <span className=" block">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className={`${text === "feature" ? "transform rotate-180" : ""
-                          } fill-zinc-800 h-5 w-5 transition duration-100 ease-in`}
+                        className={`${
+                          text === "feature" ? "transform rotate-180" : ""
+                        } fill-zinc-800 h-5 w-5 transition duration-100 ease-in`}
                         viewBox="0 0 20 20"
                         fill="currentColor"
                       >
@@ -398,26 +419,30 @@ Note : Booking are closed for 2022
                   )}
                 </div>
 
-
                 <div
-                  className={`${text === "specification"
-                    ? " border-zinc-100 rounded-t-lg shadow-md shadow-zinc-200/50 "
-                    : "border-transparent rounded-lg"
-                    } border flex flex-col gap-4`}
+                  className={`${
+                    text === "specification"
+                      ? " border-zinc-100 rounded-t-lg shadow-md shadow-zinc-200/50 "
+                      : "border-transparent rounded-lg"
+                  } border flex flex-col gap-4`}
                 >
                   <button
                     onClick={() =>
-                      settext((prev) => (prev === "specification" ? "" : "specification"))
+                      settext((prev) =>
+                        prev === "specification" ? "" : "specification"
+                      )
                     }
-                    className={`${text === "desc" ? "rounded-t-lg" : " rounded-lg"
-                      } bg-gradient-to-r from-green-50 to-teal-50  p-4  w-full   flex justify-between text-left cursor-pointer font-semibold text-xl md:text-2xl`}
+                    className={`${
+                      text === "desc" ? "rounded-t-lg" : " rounded-lg"
+                    } bg-gradient-to-r from-green-50 to-teal-50  p-4  w-full   flex justify-between text-left cursor-pointer font-semibold text-xl md:text-2xl`}
                   >
                     Specification
                     <span className=" block">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className={`${text === "desc" ? "transform rotate-180" : ""
-                          } fill-zinc-800 h-5 w-5 transition duration-100 ease-in`}
+                        className={`${
+                          text === "desc" ? "transform rotate-180" : ""
+                        } fill-zinc-800 h-5 w-5 transition duration-100 ease-in`}
                         viewBox="0 0 20 20"
                         fill="currentColor"
                       >
@@ -436,16 +461,14 @@ Note : Booking are closed for 2022
                           <h6 className="w-full max-w-[80px] col-span-2 font-semibold">
                             {item.title}
                           </h6>
-                          <p className="md:text-lg  col-span-10 break-words ">{item.desc}</p>
+                          <p className="md:text-lg  col-span-10 break-words ">
+                            {item.desc}
+                          </p>
                         </div>
                       ))}
                     </div>
                   )}
-
                 </div>
-
-
-
 
                 {/* <div
                   className={`${text === "additional"
@@ -491,11 +514,6 @@ Note : Booking are closed for 2022
                   )}
                 </div>
                       */}
-
-
-
-
-
               </div>
 
               {/*desktop description*/}
@@ -504,8 +522,9 @@ Note : Booking are closed for 2022
                   <ul className="flex divide-x divide-slate-200  rounded-l bg-white   w-full font-bold font-body">
                     <li
                       className={`py-3.5
-								${text === "desc" ? "bg-slate-50" : ""
-                        } cursor-pointer text-xl transition-all duration-200 px-8 ease-in uppercase  font-bold`}
+								${
+                  text === "desc" ? "bg-slate-50" : ""
+                } cursor-pointer text-xl transition-all duration-200 px-8 ease-in uppercase  font-bold`}
                       onClick={() => handleClick("desc")}
                     >
                       Description
@@ -513,8 +532,9 @@ Note : Booking are closed for 2022
 
                     <li
                       className={`py-3.5
-								${text === "feature" ? "bg-slate-50" : ""
-                        } cursor-pointer text-xl transition-all duration-200 px-8 ease-in uppercase  font-bold`}
+								${
+                  text === "feature" ? "bg-slate-50" : ""
+                } cursor-pointer text-xl transition-all duration-200 px-8 ease-in uppercase  font-bold`}
                       onClick={() => handleClick("feature")}
                     >
                       Features
@@ -530,8 +550,6 @@ Note : Booking are closed for 2022
                       </li>
                         */}
 
-
-
                     {/*  <li
                       className={`py-3.5
                  ${text === "additional" ? "bg-slate-50" : ""
@@ -540,8 +558,6 @@ Note : Booking are closed for 2022
                     >
                       Additional Information
                       </li>*/}
-
-
                   </ul>
                   <div className="p-6">
                     {text === "desc" && (
@@ -559,11 +575,16 @@ Note : Booking are closed for 2022
                     {text === "additional" && (
                       <div className="flex divide-y border rounded px-5 flex-col">
                         {product?.description?.additional?.map((item, i) => (
-                          <div key={i} className="grid grid-cols-12  py-3 gap-14">
+                          <div
+                            key={i}
+                            className="grid grid-cols-12  py-3 gap-14"
+                          >
                             <h6 className="text-lg col-span-2 font-semibold">
                               {item.title}
                             </h6>
-                            <p className="md:text-lg col-span-10 ">{item.desc}</p>
+                            <p className="md:text-lg col-span-10 ">
+                              {item.desc}
+                            </p>
                           </div>
                         ))}
                       </div>
@@ -592,25 +613,19 @@ Note : Booking are closed for 2022
                     )}
                   </div>
 
-
                   <div className="max-w-6xl border border-slate-200 rounded bg-slate-50 mx-auto mt-5 w-full mb-10">
-
                     <ul className="flex divide-x divide-slate-200  rounded-l bg-white   w-full font-bold font-body">
                       <li
                         className={`py-3.5
-${text === "additional" ? "bg-slate-50" : ""
-                          } cursor-pointer text-xl transition-all duration-200 px-8 ease-in uppercase  font-bold`}
+${
+  text === "additional" ? "bg-slate-50" : ""
+} cursor-pointer text-xl transition-all duration-200 px-8 ease-in uppercase  font-bold`}
                         onClick={() => handleClick("additional")}
                       >
                         Specification
                       </li>
-
                     </ul>
                   </div>
-
-
-
-
                 </div>
               </div>
 
@@ -618,17 +633,14 @@ ${text === "additional" ? "bg-slate-50" : ""
             </div>
           </BaseSection>
         </>
-        :
+      ) : (
         <Loader2 />
-      }
+      )}
     </>
   );
 }
 
-
 // export async function getStaticProps() {
-
-
 
 //   const random = data.filter(item => item.url !== str1).sort( () => Math.random() - 0.5).slice(0,4);
 //   return {
@@ -639,4 +651,3 @@ ${text === "additional" ? "bg-slate-50" : ""
 //       }
 //   }
 // }
-

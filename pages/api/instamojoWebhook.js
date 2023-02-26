@@ -2,7 +2,7 @@ import { supabase } from "../../components/supabase/supabase";
 
 export default async function InstamojoWebhook(req, res) {
   if (req.body) {
-    const reqBody = JSON.parse(req.body);
+    const reqBody = req.body;
 
     const updateDatabasePayment = async (id, status) => {
       const oId = id.split("-");

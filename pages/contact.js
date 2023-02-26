@@ -174,7 +174,7 @@ export default function Contact() {
                   <a
                     target="_blank"
                     rel="noreferrer"
-                    href="mailto:gogreenganeshaa@gmail.com"
+                    href="mailto:wrapkit.in@gmail.com"
                     className="mt-1 ml-10 group-hover:text-white md:text-lg"
                   >
                     wrapkit.in@gmail.com
